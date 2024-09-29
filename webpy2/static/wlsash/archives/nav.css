@@ -1,0 +1,77 @@
+.topbar a {
+    cursor: none;
+    color: white;
+    transition: .25s;
+    cursor: pointer;
+}
+.topbar a:hover {
+    color: var(--hyperlink-blue);
+    text-decoration: none;
+}
+.topbar {
+    cursor: none;
+    user-select: none;
+    background: var(--black-bg);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: var(--topbar-height);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: hidden;
+    backdrop-filter: saturate(180%) blur(20px);
+
+}
+
+.topbar:first-child {
+    cursor: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar .right {
+    cursor: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-right: 25px;
+    gap: 20px;
+}
+
+.topbar .left {
+    cursor: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    color: white;
+    gap: 20px;
+}
+
+.topbar .left * {
+    cursor: none;
+    max-height: 100%;
+    width: auto;
+    display: block;
+}
+
+.hyperlink:after {
+    cursor: none;
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.hyperlink:hover:after {
+    cursor: none;
+    width: 100%;
+    background-color: var(--hyperlink-blue);
+}

@@ -5,7 +5,9 @@ import web
 urls = (
     "", "Rewlsa",
     '/favicon.ico', 'Favicon',
-    "/(.*)", "Index"
+    "/archives", "Archives",
+    "/", "Index",
+    "/(.*)", "PageNotFound"
 )
 
 
@@ -21,8 +23,17 @@ class Rewlsa:
 
 
 class Index:
-    def GET(self, n):
+    def GET(self):
         with open('static/wlsash/index/index.html', 'r', encoding='utf-8') as f:
+            return f.read()
+        
+class PageNotFound:
+    def GET(self, n):
+        raise web.NotFound()
+    
+class Archives:
+    def GET(self):
+        with open('static/wlsash/archives/index.html', 'r', encoding='utf-8') as f:
             return f.read()
 
 
