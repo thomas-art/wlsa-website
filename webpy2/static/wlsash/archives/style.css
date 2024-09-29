@@ -33,6 +33,17 @@ body {
   gap: 16px;
 }
 
+.main-bg {
+  width: 100%;
+    height: calc(100vh - var(--topbar-height));
+    object-fit: cover;
+    backface-visibility: hidden;
+    z-index: -3;
+    left: 0;
+    top: 0;
+position: absolute;
+}
+
 
 @keyframes slide-in {
   0% {

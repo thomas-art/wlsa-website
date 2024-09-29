@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
     var progressText = document.getElementById('progressText');
     var loadingImage = document.getElementById('loadingImage');
-    var image = '/static/images/mainbg.jpg';
+    var image = 'https://webcnstatic.yostar.net/ba_cn_web/prod/web/assets/loading_bg_pc.ba246778.png';
     var imageIndex = 0;
     var interval = setInterval(function () {
         images[imageIndex].style.display = 'none';
