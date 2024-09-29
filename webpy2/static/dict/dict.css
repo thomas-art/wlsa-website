@@ -1,0 +1,186 @@
+#loadingAnimation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    z-index: 1001;
+}
+#loadingImage {
+    animation: bounce 1.5s infinite ease-in-out;
+}
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@font-face {
+    font-family: 'TVPS-Vain-Capital';
+    src: url('/static/font/TVPS-Vain-Capital.ttf') format('truetype');
+}
+#progressText {
+    font-family: 'TVPS-Vain-Capital', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: #1F90FA;
+}
+a {
+    cursor: none;
+}
+body {
+    background-image: url('https://webcnstatic.yostar.net/ba_cn_web/prod/web/assets/loading_bg_pc.ba246778.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: white;
+    font-family: 'FZLanTYK_Zhong', sans-serif;
+    cursor: none;
+}
+h1, p {
+    color: black;
+    cursor: none;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+    cursor: none;
+}
+th, td {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word;
+    cursor: none;
+}
+th {
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: none;
+}
+details summary {
+    color: black;
+    font-weight: bold;
+    margin-top: 5px;
+    cursor: none;
+    transition: color 0.3s ease;
+}
+details summary:hover {
+    color: #21BBFF;
+}
+th[class='filename'] {
+    width: 40%;
+    overflow: hidden;
+    word-wrap: break-word;
+    cursor: none;
+}
+th[class='size'],
+th[class='detail'],
+th[class='download'],
+th[class='del'] {
+    color: #black;
+    width: 12%;
+    cursor: none;
+}
+th[class='time'] {
+    color: #black;
+    width: 16%;
+    cursor: none;
+}
+.directory-name {
+    font-size: 1.2em;
+    color: #black;
+    cursor: none;
+}
+.header {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.header .title {
+    display: flex;
+    align-items: center;
+}
+.header .title img {
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
+}
+.header .title span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.header .subtitle {
+    font-size: 1.2em;
+    line-height: 60px;
+}
+a[id='title'] {
+    color: white;
+    text-decoration: none;
+    cursor: none;
+}
+a[id='title']:hover {
+    none;
+    cursor: none;
+}
+.search-container {
+    margin-top: 20px;
+}
+
+input[type="submit"] {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    font-size: 1.1em;
+    cursor: none;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px  1px 0 #000,
+        1px  1px 0 #000;
+}
+input[type="text"],
+button {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    width: 200px;
+    padding: 5px;
+    border: none;
+    font-size: 1.1em;
+    cursor: none;
+}
+#transitionVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001; /* 确保动画位于页面最上方 */
+}
+input[type="submit"]:hover,
+input[type="text"]:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: none;
+}

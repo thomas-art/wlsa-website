@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Video Load Progress</title>
+</head>
+<body onload="setupVideo();">
+<video id="myVideo" controls>
+  <source  src="/static/videos/bg.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+<script>
+function setupVideo() {
+    var video = document.getElementById('myVideo');
+    video.addEventListener('progress', function(e) {
+        var buffered = video.buffered;
+        var percentBuffered = 0;
+        if (buffered.length) {
+            percentBuffered = (buffered.end(0) / video.duration) * 100;
+        }
+        console.log('Buffered: ' + percentBuffered.toFixed(2) + '%');
+    });
+}
+</script>
+</body>
+</html>
