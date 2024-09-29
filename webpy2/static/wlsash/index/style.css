@@ -67,10 +67,7 @@ a{
   --black-bg:rgba(22,22,23,.8)
 }
 
-.topbar a:hover {
-  cursor: none;
-  color: var(--hyperlink-blue);
-}
+
 .text * {
   cursor: none;
   user-select: text !important;
@@ -247,8 +244,7 @@ a{
   animation-iteration-count: 1;
 }
 
-.hyperlink:after {
-  cursor: none;
+.right>a:after {
   content: '';
   display: block;
   margin: auto;
@@ -258,8 +254,7 @@ a{
   transition: width .5s ease, background-color .5s ease;
 }
 
-.hyperlink:hover:after {
-  cursor: none;
+.right>a:hover:after {
   width: 100%;
   background-color: var(--hyperlink-blue);
 }
