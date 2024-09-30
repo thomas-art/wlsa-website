@@ -27,3 +27,5 @@
 0.2.1 如果是手机，不显示鼠标图样。加载结束后移除加载动画标签，而不是设置display:none避免干扰页面排版
 
 0.2.2 Change hyperlink hover effect, Remove home button, Fix index href
+
+0.2.3 破译了校宝的登录哈希，lib.py中封装了自动生成校宝的md5（下一步模拟请求校宝并检测是否通过请求）
