@@ -1,3 +1,4 @@
+# 压缩视频的工具
 from moviepy.editor import VideoFileClip  # 导入VideoFileClip类
 
 clip = VideoFileClip("static/videos/bg源.MP4")  # 载入原始视频

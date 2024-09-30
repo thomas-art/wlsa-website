@@ -1,5 +1,11 @@
 import requests
+import os
+import sys
 from bs4 import BeautifulSoup
+# 这样便能导入父目录的包
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, parent_dir)
+
 from lib import *
 
 # 发送 GET 请求获取 HTML 内容

@@ -27,7 +27,7 @@
     <div class="header">
         <div class="title">
             <img src="https://patchwiki.biligame.com/images/arknights/2/20/n1g9uj7azpvtbpgitqsla213jdbyic9.png" alt="Logo">
-            <span><a id="title" href="/upload">共享云盘</a></span>
+            <span><a id="title" href="/disk/upload">共享云盘</a></span>
         </div>
         <button id="soundToggle" style="background: none; border: none; cursor: none; width: 39px; height: 39px;">
             <img class="muting" style="width: 35px; height: 35px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAYAAACMo1E1AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEy0lEQVRYhbXYW4xeUxQH8N98RjXqlqhxzyBTFXpBXKMUqXbq9uIeFV4I0WBIPOEBT0KRoEjwoCFIihDGEHGpS5G0OurWeqAtopegBpkR42Gdk29/Z853m9F/8iXn22fvvf5nr7XX+u/dMTQ0ZByYijNxOo7E4dgDUzCE3/Et1uJdvI0t7RrpaJNcL67F2di5jXEjeA1L8cb/Te4UPIDj2iBUD5/hJnzQrGMzcrviflyNjsK7zzGAj4QLf8YwJmE/4eqTMR+zC2NH8Rhuxl/jIdeNVzAzaRvG03gQg42+qoCZuBFXZORzDOI8fN8OuSPFqhyYtA3geqxvg1QR0/CQWM0cm7L/XxY7V0om6BZBmxMbEcvfO0FisC6b52b8k7UdmNk7uNi5uHK7YiVmZP//xIV4fYKkynAunstsEi4+KbOJsSu3JCEGj+4gYvAqLhOeIeLyvrRDunJz8J6xu/JxEcx/t2BwT+wjkvRU7IsuEWs92f/ncXsypk8sCrGLT5WlmZTcp6p5bADLRW6bjNW4WMQMHCbc0pUZ3BcHZSR2a/IBg5iV/O9Av+om+RQnpOR6Vd03LFy7DkdnXzoNv+EqvIRnhEvGg7dwVqFtGr5QTTMLMJDH3HVJx2WqK7RarOYLwmXLVV0wXoyWtK3L7Oa4nli5vfGTaq2cjTUlEyzGvdgFm0VsjQdvqs1zOWaJqkN4b/8K5iXE1tQhRiTPufhhAsSo5rciUtuTMK8TpyUd+ptMvBLHYpWSpFnA39iA7/CjiNk+Ia3q4Q3VzTK3U23tXNnEIGwV+uxKET8dojY+ImJnS/bbbKyGa0bu4+T5qIrIPzm+boEckV7gAlEbuzPDv+J9fFVCLB9Tz61F+z0VtV/yS4vk8h23FseIvLifCPbbldfsYnIvQ2p/r4qQ1jlaqQIpJgn3LcQdGYE7Rc4sbppctzUiOZw8T+kUmj8nOBl/tECquDL/4i4Rs8tEqliF23CIcPGAcGlZnsuRar0/OsVhJCfXpf5BZAZ2xyfqu39AuPlZUSOfSt6NZh+xrQG5ruT5t4pajXZEyYADMqOD+FDsyAUNDGwSiqOIDuyk8YZI7a+vqJXbJxY6TxEHkrQWHipqYT1UcGuD950N3p2UPK+tCJmUo7fQ+Qbs32CysuDeWeNc1t3gXeqRdytCJeSCb5ZaOXNKg4kINxUxrHFc9QilU/yA1PYw3qqIjJ+q3RuT561NyG0oaRsVO7cehnCRCJej69jtx7Y8JSxNXixSjalG8qhfffIPlxDchkvFbl6d2fgI12TPiwrjGyrhXrEKi3G32ty2HmeIYt4IPRmZEbwjyhuRTx/MiBHC4ICER40SZuwZok/I9B2Jy/GE0IgUzhDpaqwQh5kc9+D8HUxuu9rU8pjkDqWVc+slypPqRNH2ufXPbNDGhOyLwsWtqIpW0JHN92JCbCPOSYmVkSOE4wJRhohlXyJ2Z09J/3YwLZtniao7N2X2xqSlMnLEpcoccVzLMV/otyfUqudWMBNPZvOlh5tBkejHXOIw8fu5N0Wu+sbY+7np4n7uLPXv525RcGU75HLMyUj+XzebfSI7NEQ9txaxAscLxfuyai1uFSPZuIXZPE2J0f6FdY7ibfp0IUTz2/TtwtUTuk3/DxwWSkf1S9ZlAAAAAElFTkSuQmCC" alt="Sound Control" id="soundIcon">
@@ -48,7 +48,7 @@
 
         <!-- 输入路径跳转下载 -->
         <br/>
-        <form id="downloadForm" action="/getfile" method="GET" onsubmit="return submitForm()">
+        <form id="downloadForm" action="/disk/getfile" method="GET" onsubmit="return submitForm()">
             <label for="filepath">输入文件路径下载：</label><br/>
             <input type="text" id="filepath" name="filepath" placeholder="例如 C:/uploads/file.txt" /><br/>
             <input type="submit" value="确认下载" />

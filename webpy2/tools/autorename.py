@@ -1,3 +1,9 @@
+import sys
+import os
+# 这样便能导入父目录的包
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, parent_dir)
+
 from lib import *
 
 root_dir = r"C:\uploads"

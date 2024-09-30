@@ -34,3 +34,7 @@
 0.2.4 2024/9/30 12:39 封装了校宝密码校验函数check_xiaobao_login(username, password)在lib.py中，账号密码正确会返回True，错误会返回False，发生异常会返回None
 
 0.2.5 2024/9/30 14:56 新建了config.py用于存储常量；在wlsaSH中新建页面/login来实现登录逻辑
+
+0.2.6 2024/9/30 20:04 重构项目逻辑：将大部分html转移到templates中；使用webpy.render动态加载html，而不是pages.py；将网盘与学校网站写为总网站的子应用（模块化）；
+
+下个版本的目标: 1.修改dict逻辑到render里面; 2.翻一下static的实现逻辑; 3.notify.html template; 4.config实现作用; 5.js和css的模块复用; 6.规范化变量，函数，类和文件的命名

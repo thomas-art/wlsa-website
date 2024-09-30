@@ -6,7 +6,6 @@ import os
 import time
 import requests
 import config
-from pages import *
 
 
 def decode_file_path(encoded_file_path):
@@ -152,7 +151,7 @@ def list_directory(root_dir, baseurl):
     """
 
     # 将生成的 HTML 写入文件
-    with open(f"C:\\net\webpy2\static\dict\dict.html", 'w', encoding='utf-8') as f:
+    with open(f"static\dict\dict.html", 'w', encoding='utf-8') as f:
         f.write(html_page)
 
     return html_page

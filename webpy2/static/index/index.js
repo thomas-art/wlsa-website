@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var file = fileInput.files[0];
         if (!file) {
-            window.location.href = '/error/emptyfile';
+            window.location.href = '/disk/error/emptyfile';
             return;
         }
 
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('myfile', file);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/upload', true);
+        xhr.open('POST', '/disk/upload', true);
 
         xhr.setRequestHeader('X-File-Size', fileSize);
 
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitForm() {
         var filepath = document.getElementById('filepath').value;
         if (filepath) {
-            window.location.href = '/getfile/' + encodeURIComponent(filepath);
+            window.location.href = '/disk/getfile/' + encodeURIComponent(filepath);
             return false; // 阻止表单提交，直接跳转
         } else {
             alert("请不要输入空路径");

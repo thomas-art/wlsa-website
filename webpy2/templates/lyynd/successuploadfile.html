@@ -1,3 +1,4 @@
+$def with (base_url, t1, filename, md5)
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -19,12 +20,12 @@
     <center><h1>上传成功，文件分享链接:</h1></center><hr>
     <center>
     <p>
-        <a href="http://%s/getfile/C:/uploads/%s/%s" target="_blank" style="cursor: none;">http://%s/getfile/C:/uploads/%s/%s</a>
+        <a href="http://$base_url/disk/getfile/C:/uploads/$t1/$filename" target="_blank" style="cursor: none;">http://$base_url/disk/getfile/C:/uploads/$t1/$filename</a>
     </p>
-    <h1>该文件独立删除密码:%s</h1>
+    <h1>该文件独立删除密码:$md5</h1>
     <h1>请妥善保管删除密码，否则文件将无法删除！</h1>
     <p>
-        <a href="http://%s/upload" style="cursor: none;">点击返回</a>
+        <a href="/disk/upload" style="cursor: none;">点击返回</a>
     </p>
         </center>
         <div id="customCursor">
