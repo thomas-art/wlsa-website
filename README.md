@@ -33,3 +33,4 @@
 
 0.2.4 2024/9/30 12:39 封装了校宝密码校验函数check_xiaobao_login(username, password)在lib.py中，账号密码正确会返回True，错误会返回False，发生异常会返回None
 
+0.2.5 2024/9/30 14:56 新建了config.py用于存储常量；在wlsaSH中新建页面/login来实现登录逻辑

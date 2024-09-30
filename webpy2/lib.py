@@ -5,6 +5,7 @@ import mimetypes
 import os
 import time
 import requests
+import config
 from pages import *
 
 
@@ -350,9 +351,9 @@ def get_file_time(path):
 
 def MD5_salt(time='20240917140059'):
     hasher = hashlib.md5()
-    hasher.update("油盐酱醋".encode('utf-8'))
+    hasher.update(config.salt1().encode('utf-8'))
     hasher.update(time.encode('utf-8'))
-    hasher.update("添油加醋".encode('utf-8'))
+    hasher.update(config.salt2().encode('utf-8'))
 
     return hasher.hexdigest()
 

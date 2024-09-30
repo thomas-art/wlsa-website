@@ -4,6 +4,7 @@ import web
 from lib import *
 from pages import *
 import wlsaSH
+import config
 
 urls = (
     '/wlsash', wlsaSH.wlsaSH,
@@ -21,9 +22,7 @@ urls = (
     '/(.*)', 'Upload',
 )
 
-baseurl = "115.238.185.111:43279"
-baseurl = "127.0.0.1:8080"
-# baseurl = "192.168.0.102:8080"
+baseurl = config.baseurl()
 uploadsloc = "C:\\"
 
 
