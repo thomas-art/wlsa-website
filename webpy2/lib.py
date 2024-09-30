@@ -4,7 +4,7 @@ import hashlib
 import mimetypes
 import os
 import time
-
+import requests
 from pages import *
 
 
@@ -369,6 +369,42 @@ def xiaobao_MD5_password(password, timestamp):
     return hashed_twice_password
 
 
+def check_xiaobao_login(username, password):
+    try:
+        login_url = 'https://wlsastu.schoolis.cn/api/MemberShip/Login?captcha='
+
+        timestamp = int(time.time()) #生成一个10位秒时间戳
+        timestamp_str = str(timestamp)[:10]
+
+        md5_pass=xiaobao_MD5_password(password, timestamp_str)
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
+        }
+        data = {
+            "LanguageType": 1,
+            "isWeekPassword": True,
+            "name": username,
+            "password": md5_pass,
+            "timestamp": timestamp
+        }
+        r1 = requests.post(login_url, json=data, headers=headers)
+        # 访问校宝api
+        if r1.status_code == 200:
+            rjson=r1.json()
+            # 密码正确会返回:
+            # {"data":true,"msgCN":null,"msgEN":null,"state":0,"msg":null}
+
+            # 密码错误会返回:
+            # {"data":null,"msgCN":null,"msgEN":null,"state":1010076,"msg":"引发类型为“Myth.ErrorException”的异常。"}
+            if rjson.get('data') is True:
+                return True
+            return False
+        else:
+            return None
+    except:
+        return None
+
+
 def replace_list(string, char_list):
     for char in char_list:
         string = string.replace(char, '')
@@ -376,6 +412,15 @@ def replace_list(string, char_list):
 
 
 if __name__ == "__main__":
-    while True:
-        path = input("文件日期: ")
-        print(MD5_salt(path))
+    mode = input("调试模式 1.生成文件md5, 2.测试校宝密码是否可以登录\n\n请输入调试模式:")
+    if mode=='1':
+        while True:
+            path = input("date: ")
+            print(MD5_salt(path))
+    if mode=='2':
+        while True:
+            name = input('username:')
+            password = input('password:')
+            content = check_xiaobao_login(name, password)
+            print(content)
+    

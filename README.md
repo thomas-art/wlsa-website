@@ -22,6 +22,7 @@
 
 0.1.11 修改字体，添加字体加载进度条，加载伪延时0.2秒
 
+
 0.2.0 与wlsaSH合作，添加子应用
 
 0.2.1 如果是手机，不显示鼠标图样。加载结束后移除加载动画标签，而不是设置display:none避免干扰页面排版
@@ -29,3 +30,6 @@
 0.2.2 Change hyperlink hover effect, Remove home button, Fix index href
 
 0.2.3 破译了校宝的登录哈希，lib.py中封装了自动生成校宝的md5（下一步模拟请求校宝并检测是否通过请求）
+
+0.2.4 2024/9/30 12:39 封装了校宝密码校验函数check_xiaobao_login(username, password)在lib.py中，账号密码正确会返回True，错误会返回False，发生异常会返回None
+
