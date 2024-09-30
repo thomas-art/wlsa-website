@@ -37,4 +37,6 @@
 
 0.2.6 2024/9/30 20:04 重构项目逻辑：将大部分html转移到templates中；使用webpy.render动态加载html，而不是pages.py；将网盘与学校网站写为总网站的子应用（模块化）；
 
+0.2.7 2024/9/30 21:12 重构了wlsash的资源html，并修改为render加载
+
 下个版本的目标: 1.修改dict逻辑到render里面; 2.翻一下static的实现逻辑; 3.notify.html template; 4.config实现作用; 5.js和css的模块复用; 6.规范化变量，函数，类和文件的命名

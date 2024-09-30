@@ -11,6 +11,7 @@ urls = (
     "/(.*)", "PageNotFound"
 )
 
+render = web.template.render('templates/wlsash/')
 
 class Favicon:
     def GET(self):
@@ -30,62 +31,7 @@ class Login:
             if flag:
                 return("xiaobao check success")
         else:
-            return """<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录页面</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            background-color: #5cb85c;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-        input[type="submit"]:hover {
-            background-color: #4cae4c;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h2>请输入校宝账号以登录</h2>
-        <form action="/wlsash/login" method="post">
-            <input type="text" name="name" placeholder="用户名" required>
-            <input type="password" name="password" placeholder="密码" required>
-            <input type="hidden" name="timestamp" value="1700000000">
-            <input type="submit" value="登录">
-        </form>
-    </div>
-</body>
-</html>"""
+            return render.login()
 
         return("login failed")
     def POST(self):
@@ -106,8 +52,7 @@ class Rewlsa:
 
 class Index:
     def GET(self):
-        with open('static/wlsash/index/index.html', 'r', encoding='utf-8') as f:
-            return f.read()
+        return render.index()
         
 class PageNotFound:
     def GET(self, n):
@@ -115,8 +60,7 @@ class PageNotFound:
     
 class Archives:
     def GET(self):
-        with open('static/wlsash/archives/index.html', 'r', encoding='utf-8') as f:
-            return f.read()
+        return render.archives()
 
 
 wlsaSH = web.application(urls, locals())
