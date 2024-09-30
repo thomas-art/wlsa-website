@@ -350,11 +350,23 @@ def get_file_time(path):
 
 def MD5_salt(time='20240917140059'):
     hasher = hashlib.md5()
-    hasher.update("油".encode('utf-8'))
+    hasher.update("油盐酱醋".encode('utf-8'))
     hasher.update(time.encode('utf-8'))
-    hasher.update("盐".encode('utf-8'))
+    hasher.update("添油加醋".encode('utf-8'))
 
     return hasher.hexdigest()
+
+
+def md5_hash(value):
+    return hashlib.md5(value.encode()).hexdigest()
+
+
+def xiaobao_MD5_password(password, timestamp):
+    # password = "Password123"
+    # timestamp = 1727659448
+    hashed_password = md5_hash(password).upper()
+    hashed_twice_password = hashlib.md5((hashed_password + str(timestamp)).encode()).hexdigest().upper()
+    return hashed_twice_password
 
 
 def replace_list(string, char_list):
