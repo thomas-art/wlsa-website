@@ -1,3 +1,4 @@
+@echo off
 chcp 65001
 set currentDir=%~dp0
 cd /d "%currentDir%"
