@@ -39,4 +39,6 @@
 
 0.2.7 2024/9/30 21:12 重构了wlsash的资源html，并修改为render加载
 
+0.2.8 2024/10/1 12:38 Rewrite start.bat, py.bat and 一键启动.vbs, so that it could cd to current folder automatically, as well as determine use a conda env python or python in system path automatically and give out info; Changed the archives page.
+
 下个版本的目标: 1.修改dict逻辑到render里面; 2.翻一下static的实现逻辑; 3.notify.html template; 4.config实现作用; 5.js和css的模块复用; 6.规范化变量，函数，类和文件的命名

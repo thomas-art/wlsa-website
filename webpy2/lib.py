@@ -350,9 +350,9 @@ def get_file_time(path):
 
 def MD5_salt(time='20240917140059'):
     hasher = hashlib.md5()
-    hasher.update(config.salt1().encode('utf-8'))
+    hasher.update(config.SALT_1.encode('utf-8'))
     hasher.update(time.encode('utf-8'))
-    hasher.update(config.salt2().encode('utf-8'))
+    hasher.update(config.SALT_2.encode('utf-8'))
 
     return hasher.hexdigest()
 
