@@ -1,6 +1,6 @@
 let path = ["WLSA", "School House", "Soilwater"];
 
-const pathWay = path.map(pathName => ` / <a href="./${pathName}">${pathName}</a>`);
+const pathWay = path.map(pathName => ` / <a href="./archives/${pathName}">${pathName}</a>`);
 //Array to a tag
 document.getElementById("path").innerHTML = pathWay.join('\n');
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data.forEach(item => {
             const listItem = document.createElement('li');
             listItem.onclick = function () {
-                window.open(`./${item.name}`, '_blank');
+                window.open(`./archives/${item.name}`, '_blank');
             };
             listItem.classList.add(item.type);
             listItem.innerHTML = `<span>${item.name}</span>`;
