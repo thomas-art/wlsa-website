@@ -29,6 +29,30 @@ def decode_file_path(encoded_file_path):
 
     return decoded_file_path
 
+def list_directory_json(dir):
+    '''
+    Creates a JSON string of the files in a directory. 
+    Interface:
+    [
+        {type: folder | file, name: string},
+        ...
+    ]
+    '''
+
+    if not os.path.exists(dir):
+        raise Exception(dir + " don't exist")
+    
+    entries = []
+    print("lost_directory_json", dir)
+    for entry in os.listdir(dir):
+        entryType = "file"
+        if os.path.isdir(os.path.join(dir, entry)):
+            entryType = "folder"
+        entries.append({
+            "type": entryType,
+            "name": entry
+        })
+    return json.dumps(entries)
 
 def list_directory(root_dir, baseurl):
     # 如果目录不存在，则创建它
