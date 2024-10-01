@@ -59,7 +59,7 @@ body {
 }
 @font-face {
     font-family: 'FZLanTYJW_Cu';
-    src: url('/static/font/FZLanTYJW_Cu.TTF') format('truetype');
+    src: url('/static/common/font/FZLanTYJW_Cu.TTF') format('truetype');
 }
 .container {
     background-color: rgba(0, 0, 0, 0.1);
@@ -145,7 +145,6 @@ a[id='title'] {
     cursor: none;
 }
 a[id='title']:hover {
-    none;
     cursor: none;
 }
 progress {

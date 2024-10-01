@@ -28,7 +28,7 @@
 }
 @font-face {
     font-family: 'TVPS-Vain-Capital';
-    src: url('/static/font/TVPS-Vain-Capital.ttf') format('truetype');
+    src: url('/static/common/font/TVPS-Vain-Capital.ttf') format('truetype');
 }
 #progressText {
     font-family: 'TVPS-Vain-Capital', sans-serif;

@@ -3,9 +3,9 @@
     <head>
         <meta charset='UTF-8'>
         <title>查看文件</title>
-        <script src="/static/dict/loadfont.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="/static/mouse/mouse.css">
-        <link rel="stylesheet" href="/static/dict/dict.css">
+        <script src="/static/lyynd/dict/loadfont.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="/static/common/mouse/mouse.css">
+        <link rel="stylesheet" href="/static/lyynd/dict/dict.css">
     <div id="loadingAnimation">
         <div id="loadingImage" style="position: absolute; top: 20%; left: 41%;">
             <img id="loadingImage1" class="loading-frame" src="https://webcnstatic.yostar.net/ba_cn_web/prod/web/assets/avatar1.c18ce793.png" alt="connecting..." style="position: absolute; top: 0; left: 0; display: block;">
@@ -18,9 +18,9 @@
     </head>
     <body>
         <div id="content" style="display: none;">
-        <p><a href="/upload">点击返回</a></p>
+        <p><a href="/disk/upload">点击返回</a></p>
         <div class="search-container">
-        <form action="/search/" method="GET">
+        <form action="/disk/search/" method="GET">
             <input type="text" name="q" placeholder="输入搜索关键词" required>
             <input type="submit" value="搜索">
         </form>
@@ -56,6 +56,15 @@
                                 </thead>
                                 <tbody>
                                     
+                <tr>
+                    <td class='fl'>VT-Chat.zip</td>
+                    <td class='fl'>83.38 KB</td>
+                    <td class='fl'>2024/10/01/22:00:48</td>
+                    <td><a href="http://192.168.0.102:8080/detail/C:\uploads\20241001\VT-Chat.zip" target="_blank">查看详情</a></td>
+                    <td><a href="http://192.168.0.102:8080/getfile/C:\uploads\20241001\VT-Chat.zip">点击下载</a></td>
+                    <td><a href="http://192.168.0.102:8080/del/C:\uploads\20241001\VT-Chat.zip">点击删除</a></td>
+                </tr>
+                
                 <tr>
                     <td class='fl'>IMG_2130.jpeg</td>
                     <td class='fl'>61.84 KB</td>
@@ -729,7 +738,7 @@
         <div id="catchIcon">
         <img id="catchIco" src="data:image/png;base64,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" alt="Catch Icon" style="display:none;"> <!-- 默认隐藏 -->
     </div>
-    <script src="/static/mouse/mouse.js" type="text/javascript"></script>
+    <script src="/static/common/mouse/mouse.js" type="text/javascript"></script>
     </div>
     </body>
     </html>

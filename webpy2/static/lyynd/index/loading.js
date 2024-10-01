@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const videoUrl = '/static/videos/bg.mp4';
+    const videoUrl = '/static/lyynd/videos/bg.mp4';
     var images = [
         document.getElementById('loadingImage1'),
         document.getElementById('loadingImage2'),
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var backgroundVideo = document.getElementById('backgroundVideo');
     var progressText = document.getElementById('progressText');
     var loadingImage = document.getElementById('loadingImage');
-    var image = '/static/images/bg.jpg';
+    var image = '/static/lyynd/images/bg.jpg';
     var imageIndex = 0;
     var interval = setInterval(function () {
         images[imageIndex].style.display = 'none';

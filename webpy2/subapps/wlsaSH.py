@@ -74,11 +74,8 @@ class FileAPI:
         params = web.input()
         path = params.get("path")
         try:
-            # print(os.path.join(wlsa_path, path))
             return list_directory_json(os.path.join(wlsa_path, path))
         except:
             return "[]"
-        
-# print(wlsa_path)
 
 wlsaSH = web.application(urls, locals())

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const fontUrl = '/static/font/FZLanTYK_Zhong.OTF';
+    const fontUrl = '/static/common/font/FZLanTYK_Zhong.OTF';
     const progressText = document.getElementById('progressText');
     const loadingImage = document.getElementById('loadingAnimation');
     const content = document.getElementById('content');

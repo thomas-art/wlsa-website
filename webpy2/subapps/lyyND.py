@@ -64,13 +64,13 @@ class Detail:
                     remaining -= len(chunk)
 
         if file_path is None:
-            raise web.seeother('/dict')
+            raise web.seeother('dict')
         file_path = file_path.replace("/", "\\")
         file_path = encoded_file_path_regardless_end(file_path)
         # 检查文件是否存在
         print(file_path)
         if not os.path.isfile(file_path):
-            raise web.seeother('/dict')
+            raise web.seeother('dict')
         fn = os.path.basename(file_path)
         fn = decode_filename(fn)
         safe_filename = urllib.parse.quote(fn)  # 对文件名进行 URL 编码
@@ -124,7 +124,7 @@ class Del:
     def GET(self, file_path_password):
         list = file_path_password.split(' ')
         if len(list) == 0:
-            raise web.seeother('/dict')
+            raise web.seeother('dict')
         elif len(list) == 1:
             return render.passwordinput()
 
@@ -134,7 +134,7 @@ class Del:
         file_path = encoded_file_path_regardless_end(file_path)
 
         if not os.path.exists(file_path):
-            raise web.seeother('/dict')
+            raise web.seeother('dict')
 
         # 检查文件位置
         root_dir = f"{uploadsloc}uploads"
@@ -152,13 +152,13 @@ class Del:
                     return render.successdelfile(decode_file_path(abs_file_path))
                 except:
                     pass
-        return web.seeother('/error/deleterror')
+        return web.seeother('error/deleterror')
 
 
 class Favicon:
     def GET(self):
         # 获取 favicon 文件路径
-        favicon_path = os.path.join(os.getcwd(), 'static/images/favicon.ico')
+        favicon_path = os.path.join(os.getcwd(), 'static/lyynd/images/favicon.ico')
         web.header('Content-Type', 'image/x-icon')  # 设置响应头为图标类型
         return open(favicon_path, 'rb').read()  # 以二进制模式读取文件并返回
 
@@ -166,23 +166,23 @@ class Favicon:
 class Dict:
     def GET(self):
         web.header('connection', 'keep-alive')
-        if not os.path.exists(r"static/dict/dict.html"):
+        if not os.path.exists(r"static/lyynd/dict/dict.html"):
             list_directory(f"{uploadsloc}uploads", baseurl)
-        with open(r"static/dict/dict.html", 'rb') as f:
+        with open(r"static/lyynd/dict/dict.html", 'rb') as f:
             return f.read()
 
 
 class GetFile:
     def GET(self, file_path):
         if file_path is None:
-            raise web.seeother('/dict')
+            raise web.seeother('dict')
         file_path = file_path.replace("/", "\\")
         file_path = encoded_file_path_regardless_end(file_path)
         # 检查文件是否存在
         if not os.path.isfile(file_path):
-            if not os.path.exists(r"static/dict/dict.html"):
+            if not os.path.exists(r"static/lyynd/dict/dict.html"):
                 list_directory(f"{uploadsloc}uploads", baseurl)
-            with open(r"static/dict/dict.html", 'rb') as f:
+            with open(r"static/lyynd/dict/dict.html", 'rb') as f:
                 return f.read()
         fn = os.path.basename(file_path)
         fn = decode_filename(fn)
@@ -205,7 +205,7 @@ class Upload:
         x = web.input(myfile={})
         size = web.ctx.env.get('HTTP_X_FILE_SIZE', None)
         if size is None:
-            web.seeother('/dict')
+            web.seeother('dict')
         if 'myfile' not in x or not hasattr(x['myfile'], 'filename') or not hasattr(x['myfile'], 'value'):
             return render.uploademptyfile()
 
@@ -232,7 +232,7 @@ class Upload:
                 return "文件名太长了"
             file_path = f"{uploadsloc}uploads\\{t1}\\{filename}"
             if os.path.exists(file_path):  # 重复的文件？
-                raise web.seeother('/error/filealreadyexist')
+                raise web.seeother('error/filealreadyexist')
             with open(file_path, 'wb') as f:
                 f.write(x['myfile'].value)
 
@@ -244,7 +244,7 @@ class Upload:
             list_directory(f"{uploadsloc}uploads", baseurl)
             return render.successuploadfile(baseurl, t1, filename1, md5)
         else:
-            raise web.seeother('/error/emptyfile')
+            raise web.seeother('error/emptyfile')
 
 
 class Filealreadyexist:
