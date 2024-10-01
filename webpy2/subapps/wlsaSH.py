@@ -7,11 +7,13 @@ urls = (
     '/favicon.ico', 'Favicon',
     '/login', 'Login',
     "/archives", "Archives",
+    "/api/files","FileAPI",
     "/", "Index",
     "/(.*)", "PageNotFound"
 )
 
 render = web.template.render('templates/wlsash/')
+wlsa_path = os.path.join(os.getcwd(), "wlsa-files")
 
 class Favicon:
     def GET(self):
@@ -61,6 +63,17 @@ class PageNotFound:
 class Archives:
     def GET(self):
         return render.archives()
-
+    
+class FileAPI:
+    def GET(self):
+        params = web.input()
+        path = params.get("path")
+        try:
+            print(os.path.join(wlsa_path, path))
+            return list_directory_json(os.path.join(wlsa_path, path))
+        except:
+            return "[]"
+        
+print(wlsa_path)
 
 wlsaSH = web.application(urls, locals())

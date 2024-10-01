@@ -1,46 +1,51 @@
-let path = ["WLSA", "School House", "Soilwater"];
+let path = [""];
 
-const pathWay = path.map(pathName => ` / <a href="./${pathName}">${pathName}</a>`);
-//Array to a tag
-document.getElementById("path").innerHTML = pathWay.join('\n');
+const fileList = document.getElementById('fileList');
 
-document.addEventListener('DOMContentLoaded', function () {
-    const fileList = document.getElementById('fileList');
+function fetchFiles(hash) {
+    let strPath = hash.slice(1);   // removes leading #
+    if (strPath == "/") strPath = "";
+    path = strPath.split("/");
+    fetch(`api/files?path=${strPath}`)
+        .then(response => response.json())
+        .then(renderFileList);
+}
 
-    // Sample data representing folders and files
-    const data = [
-        { type: 'folder', name: 'SEO' },
-        { type: 'folder', name: 'SEC' },
-        { type: 'folder', name: 'Soilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwateroilwater' },
-        { type: 'folder', name: 'Ejiao' },
-        { type: 'folder', name: 'SEO' },
-        { type: 'folder', name: 'SEC' },
-        { type: 'folder', name: 'Soilwater' },
-        { type: 'folder', name: 'Ejiao' },
-        { type: 'file', name: 'thing.pdf' },
-        { type: 'file', name: 'thing.jpg' },
-        { type: 'file', name: 'thing.mp3' },
-        { type: 'file', name: 'thing.pdf' },
-        { type: 'file', name: 'thing.jpg' },
-        { type: 'file', name: 'thing.mp3' },
-        { type: 'file', name: 'thing.pdf' },
-        { type: 'file', name: 'thing.jpg' },
-        { type: 'file', name: 'thing.mp3' },
-    ];
+function joinPath() {
+    return path.join("/");
+}
 
-    // Function to render the folders and files
-    function renderFileList(data) {
-        data.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.onclick = function () {
-                window.open(`./${item.name}`, '_blank');
-            };
-            listItem.classList.add(item.type);
-            listItem.innerHTML = `<span>${item.name}</span>`;
-            fileList.appendChild(listItem);
-        });
+// Function to render the folders and files
+function renderFileList(data) {
+    let pathWay = ["<a href='#/'>WLSA</a>"];
+    let traversedPaths = [];
+    for (let item of path) {
+        traversedPaths.push(item);
+        pathWay.push(` / <a href="#${traversedPaths.join('/')}">${item}</a>`)
     }
 
-    // Render the file list on page load
-    renderFileList(data);
+    document.getElementById("path").innerHTML = pathWay.join('\n');
+    fileList.innerHTML = "";
+    data.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.onclick = function () {
+            //window.open(`./${item.name}`, '_blank');
+            if (window.location.hash.slice(1) == "/") window.location.hash = item.name;
+            else window.location.hash = path.join("/") + "/" + item.name;
+        };
+        listItem.classList.add(item.type);
+        listItem.innerHTML = `<img src="/static/images/icons8-${item.type}.svg"><span>${item.name}</span>`;
+        fileList.appendChild(listItem);
+    });
+}
+
+window.addEventListener("hashchange", () => fetchFiles(window.location.hash));
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.hash == "") {
+        window.location.hash = "/";
+        // fetchFiles in the listener
+    } else {
+        fetchFiles(window.location.hash);
+    }
 });
