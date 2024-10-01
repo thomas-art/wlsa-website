@@ -231,6 +231,11 @@ a {
   gap: 12px;
   align-items: center;
   transition: 0.25s;
+  height: 60px;
+  box-sizing: border-box;
+}
+.storage-section li>img{
+  height: 48px;
 }
 
 .storage-section li:hover {
