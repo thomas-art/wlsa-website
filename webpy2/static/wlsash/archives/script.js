@@ -21,7 +21,7 @@ function renderFileList(data) {
     let traversedPaths = [];
     for (let item of path) {
         traversedPaths.push(item);
-        pathWay.push(` / <a href="#${traversedPaths.join('/')}">${item}</a>`)
+        pathWay.push(` / <a href="#${traversedPaths.join('/')}">${decodeURIComponent(item)}</a>`)
     }
 
     document.getElementById("path").innerHTML = pathWay.join('\n');
