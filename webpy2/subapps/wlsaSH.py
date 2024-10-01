@@ -1,6 +1,7 @@
 import os
 from lib import *
 import web
+import config
 
 urls = (
     "", "Rewlsa",
@@ -13,11 +14,14 @@ urls = (
 )
 
 render = web.template.render('templates/wlsash/')
-wlsa_path = os.path.join(os.getcwd(), "wlsa-files")
+wlsa_path = config.WLSA_PATH
+
+if not os.path.exists(wlsa_path):
+    os.makedirs(wlsa_path)
 
 class Favicon:
     def GET(self):
-        favicon_path = os.path.join(os.getcwd(), 'wlsash/static/index/Favicon.ico')
+        favicon_path = os.path.join(os.getcwd(), 'static/wlsash/index/Favicon.ico')
         web.header('Content-Type', 'image/x-icon')
         return open(favicon_path, 'rb').read()
 
@@ -36,6 +40,7 @@ class Login:
             return render.login()
 
         return("login failed")
+    
     def POST(self):
         params = web.input()
         username = params.get('name')  # 从表单中获取用户名
@@ -69,11 +74,11 @@ class FileAPI:
         params = web.input()
         path = params.get("path")
         try:
-            print(os.path.join(wlsa_path, path))
+            # print(os.path.join(wlsa_path, path))
             return list_directory_json(os.path.join(wlsa_path, path))
         except:
             return "[]"
         
-print(wlsa_path)
+# print(wlsa_path)
 
 wlsaSH = web.application(urls, locals())

@@ -44,7 +44,7 @@ def list_directory_json(dir):
         raise Exception(dir + " don't exist")
     
     entries = []
-    print("lost_directory_json", dir)
+    #print("lost_directory_json", dir)
     for entry in os.listdir(dir):
         entryType = "file"
         if os.path.isdir(os.path.join(dir, entry)):
