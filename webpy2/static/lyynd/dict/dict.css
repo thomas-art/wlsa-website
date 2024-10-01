@@ -27,7 +27,7 @@
 }
 @font-face {
     font-family: 'TVPS-Vain-Capital';
-    src: url('/static/font/TVPS-Vain-Capital.ttf') format('truetype');
+    src: url('/static/common/font/TVPS-Vain-Capital.ttf') format('truetype');
 }
 #progressText {
     font-family: 'TVPS-Vain-Capital', sans-serif;
@@ -90,18 +90,18 @@ th[class='size'],
 th[class='detail'],
 th[class='download'],
 th[class='del'] {
-    color: #black;
+    color: black;
     width: 12%;
     cursor: none;
 }
 th[class='time'] {
-    color: #black;
+    color: black;
     width: 16%;
     cursor: none;
 }
 .directory-name {
     font-size: 1.2em;
-    color: #black;
+    color: black;
     cursor: none;
 }
 .header {
@@ -141,7 +141,6 @@ a[id='title'] {
     cursor: none;
 }
 a[id='title']:hover {
-    none;
     cursor: none;
 }
 .search-container {

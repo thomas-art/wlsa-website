@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
     var progressText = document.getElementById('progressText');
     var loadingImage = document.getElementById('loadingImage');
-    var image = '/static/images/keyvision.jpg';
+    var image = '/static/wlsash/images/keyvision.jpg';
     var imageIndex = 0;
     var interval = setInterval(function () {
         images[imageIndex].style.display = 'none';

@@ -46,7 +46,7 @@ function renderFileList(data) {
             
         };
         listItem.classList.add(item.type);
-        listItem.innerHTML = `<img src="/static/images/icons8-${item.type}.svg"><span>${item.name}</span>`;
+        listItem.innerHTML = `<img src="/static/common/images/icons8-${item.type}.svg"><span>${item.name}</span>`;
         fileList.appendChild(listItem);
     });
 }
