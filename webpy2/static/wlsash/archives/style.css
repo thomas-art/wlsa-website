@@ -82,7 +82,7 @@ a {
   --topbar-height: 65px;
   --pale-blue: #009ef7;
   --wlsa-blue: #2e358b;
-  --hyperlink-paleblue: rgb(0,120,215);;
+  --hyperlink-paleblue: rgb(0,120,215);
   --hyperlink-blue: rgb(0, 140, 255);
   --black-bg: rgba(22, 22, 23, .8);
 }
@@ -208,7 +208,7 @@ a {
 }
 
 .storage-section h2 {
-  border-bottom: 2px solid var(--wlsa-blue);
+  border-bottom: 3px solid var(--wlsa-blue);
   padding-bottom: 0.5em;
 }
 
@@ -223,7 +223,6 @@ a {
 }
 
 .storage-section li {
-  background-color: var(--wlsa-blue);
   margin: 8px 0;
   padding: 6px 12px;
   border-radius: 4px;
@@ -234,6 +233,8 @@ a {
   height: 50px;
   box-sizing: border-box;
   cursor: pointer;
+  border: 3px solid var(--wlsa-blue);
+  background-color: rgb(46,53,139,.2);
 }
 .storage-section li>img{
   height: 32px;
