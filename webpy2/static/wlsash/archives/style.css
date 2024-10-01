@@ -234,7 +234,7 @@ a {
   box-sizing: border-box;
   cursor: pointer;
   border: 3px solid var(--wlsa-blue);
-  background-color: rgb(46,53,139,.2);
+  background-color: rgb(46,53,139,.4);
 }
 .storage-section li>img{
   height: 32px;
@@ -243,10 +243,12 @@ a {
 
 .storage-section li:hover {
   transform: scale(1.01);
+  background-color: var(--wlsa-blue);
 }
 
 .storage-section li:active {
   background-color: var(--hyperlink-paleblue);
+  border: 3px solid var(--hyperlink-paleblue);
 }
 
 .storage-section li span {
