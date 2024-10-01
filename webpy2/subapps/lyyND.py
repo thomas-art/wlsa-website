@@ -19,7 +19,7 @@ urls = (
     '/(.*)', 'Upload',
 )
 
-baseurl = config.baseurl()
+baseurl = config.BASE_URL
 uploadsloc = "C:\\"
 render = web.template.render('templates/lyynd/')
 

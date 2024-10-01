@@ -1,4 +1,6 @@
-cd C:\net
-start /b py.bat
-start /b frpc.bat
+set currentDir=%~dp0
+cd /d "%currentDir%"
+
+start /b Frpc\frpc.bat
+start /b py.bat 1001
 

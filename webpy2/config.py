@@ -1,12 +1,9 @@
-def baseurl():
-    baseurl = "115.238.185.111:43279"
-    baseurl = "127.0.0.1:8080"
-    # baseurl = "192.168.0.102:8080"
-    return baseurl
+# common config
+BASE_URL = "127.0.0.1:8080"
+BASE_URL = "115.238.185.111:43279"
+BASE_URL = "192.168.0.102:8080"
 
-def salt1():
-    return "salt1"
-
-def salt2():
-    return "盐2"
+# lib.py
+SALT_1 = "salt1"
+SALT_2 = "盐2"
 

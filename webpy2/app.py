@@ -10,10 +10,13 @@ urls = (
     '/(.*)', "Redirect"
 )
 
+def notfound():
+    raise web.seeother('/disk/')
+
 class Redirect:
     def GET(self, path):
         encoded_path = urllib.parse.quote(path)  # 对路径进行 URL 编码
-        web.seeother('/disk/' + encoded_path)
+        raise web.seeother('/disk/' + encoded_path)
 
 
 if __name__ == "__main__":
