@@ -29,9 +29,21 @@ function renderFileList(data) {
     data.forEach(item => {
         const listItem = document.createElement('li');
         listItem.onclick = function () {
-            //window.open(`./${item.name}`, '_blank');
-            if (window.location.hash.slice(1) == "/") window.location.hash = item.name;
-            else window.location.hash = path.join("/") + "/" + item.name;
+            switch (item.type) {
+                case "file":
+                    // opens the file or download it
+                case "folder":
+                    if (window.location.hash.slice(1) == "/") window.location.hash = item.name;
+                    else window.location.hash = path.join("/") + "/" + item.name;
+                    break;
+                case "link":
+                    window.open(item.url, "_blank");
+                    break;
+                default:
+                    alert("Unknown file type: " + item.type);
+                    break;
+            }
+            
         };
         listItem.classList.add(item.type);
         listItem.innerHTML = `<img src="/static/images/icons8-${item.type}.svg"><span>${item.name}</span>`;

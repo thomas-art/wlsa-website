@@ -30,6 +30,7 @@ def decode_file_path(encoded_file_path):
 
     return decoded_file_path
 
+
 def list_directory_json(dir):
     '''
     Creates a JSON string of the files in a directory. 
@@ -44,8 +45,10 @@ def list_directory_json(dir):
         raise Exception(dir + " don't exist")
     
     entries = []
-    #print("lost_directory_json", dir)
     for entry in os.listdir(dir):
+        if entry == "links.json":
+            continue
+        
         entryType = "file"
         if os.path.isdir(os.path.join(dir, entry)):
             entryType = "folder"
@@ -53,7 +56,20 @@ def list_directory_json(dir):
             "type": entryType,
             "name": entry
         })
+
+    try:
+        flinks = open(os.path.join(dir, "links.json"), "r")
+        links = json.loads(flinks.read())
+        for link in links:
+            link["type"] = "link"
+            entries.append(link)
+        flinks.close()
+    except Exception as e:
+        print(e)
+        pass # links are optional
+
     return json.dumps(entries)
+
 
 def list_directory(root_dir, baseurl):
     # 如果目录不存在，则创建它
