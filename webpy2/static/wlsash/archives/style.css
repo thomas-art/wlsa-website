@@ -25,7 +25,9 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--hyperlink-blue);
+  color: var(--hyperlink-paleblue);
+  transition: .25s;
+  cursor: pointer;
 }
 
 ::selection {
@@ -80,6 +82,7 @@ a {
   --topbar-height: 65px;
   --pale-blue: #009ef7;
   --wlsa-blue: #2e358b;
+  --hyperlink-paleblue: rgb(0,120,215);;
   --hyperlink-blue: rgb(0, 140, 255);
   --black-bg: rgba(22, 22, 23, .8);
 }
@@ -182,7 +185,7 @@ a {
 
 .right>a:hover:after {
   width: 100%;
-  background-color: var(--hyperlink-blue);
+  background-color: var(--hyperlink-paleblue);
 }
 
 .main {
@@ -235,7 +238,7 @@ a {
 }
 
 .storage-section li:active {
-  background-color: var(--hyperlink-blue);
+  background-color: var(--hyperlink-paleblue);
 }
 
 .storage-section li.folder {
