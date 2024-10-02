@@ -20,7 +20,6 @@ urls = (
 )
 
 baseurl = config.BASE_URL
-uploadsloc = "C:\\"
 render = web.template.render('templates/lyynd/')
 
 def get_ip(request):
@@ -40,7 +39,7 @@ class Test:
 class Search:
     def GET(self):
         input_data = web.input(q='')
-        return list_directory_keyword(f"{uploadsloc}uploads", baseurl, input_data.q)
+        return list_directory_keyword(config.UPLODADS, baseurl, input_data.q)
 
 
 class Redirect:
@@ -137,7 +136,7 @@ class Del:
             raise web.seeother('dict')
 
         # 检查文件位置
-        root_dir = f"{uploadsloc}uploads"
+        root_dir = config.UPLODADS
         # 获取文件的绝对路径和根目录的绝对路径
         abs_file_path = os.path.abspath(file_path)
         abs_root_dir = os.path.abspath(root_dir)
@@ -148,7 +147,7 @@ class Del:
             if password == md5:
                 try:
                     os.remove(abs_file_path)
-                    list_directory(f"{uploadsloc}uploads", baseurl)
+                    list_directory(config.UPLODADS, baseurl)
                     return render.successdelfile(decode_file_path(abs_file_path))
                 except:
                     pass
@@ -167,7 +166,7 @@ class Dict:
     def GET(self):
         web.header('connection', 'keep-alive')
         if not os.path.exists(r"static/lyynd/dict/dict.html"):
-            list_directory(f"{uploadsloc}uploads", baseurl)
+            list_directory(config.UPLODADS, baseurl)
         with open(r"static/lyynd/dict/dict.html", 'rb') as f:
             return f.read()
 
@@ -181,7 +180,7 @@ class GetFile:
         # 检查文件是否存在
         if not os.path.isfile(file_path):
             if not os.path.exists(r"static/lyynd/dict/dict.html"):
-                list_directory(f"{uploadsloc}uploads", baseurl)
+                list_directory(config.UPLODADS, baseurl)
             with open(r"static/lyynd/dict/dict.html", 'rb') as f:
                 return f.read()
         fn = os.path.basename(file_path)
@@ -209,7 +208,7 @@ class Upload:
         if 'myfile' not in x or not hasattr(x['myfile'], 'filename') or not hasattr(x['myfile'], 'value'):
             return render.uploademptyfile()
 
-        disk_usage = shutil.disk_usage(f'{uploadsloc}')
+        disk_usage = shutil.disk_usage(config.LYYND_FILE_PATH)
         file_size = len(x['myfile'].value)
 
         if file_size > disk_usage.free - 10 * 1024 * 1024 * 1024:
@@ -224,13 +223,13 @@ class Upload:
                                  [' ', '\x00', '%', '\\', '/', '*', ':', '"', "'", '?', '>', '<', '[', ']', '|'])
         web.header('connection', 'keep-alive')
         if x['myfile'].value != b'':
-            if not os.path.isdir(f'{uploadsloc}uploads\\{t1}'):
-                os.makedirs(f'{uploadsloc}uploads\\{t1}')
+            if not os.path.isdir(f'{config.UPLODADS}\\{t1}'):
+                os.makedirs(f'{config.UPLODADS}\\{t1}')
 
             filename = encode_filename_regardless_end(filename1)
             if len(filename) > 250:
                 return "文件名太长了"
-            file_path = f"{uploadsloc}uploads\\{t1}\\{filename}"
+            file_path = f"{config.UPLODADS}\\{t1}\\{filename}"
             if os.path.exists(file_path):  # 重复的文件？
                 raise web.seeother('error/filealreadyexist')
             with open(file_path, 'wb') as f:
@@ -241,7 +240,7 @@ class Upload:
                 os.remove(file_path)  # 删除不匹配的文件
                 return render.md5error()
             md5 = MD5_salt(get_file_time(file_path))
-            list_directory(f"{uploadsloc}uploads", baseurl)
+            list_directory(f"{config.UPLODADS}", baseurl)
             return render.successuploadfile(baseurl, t1, filename1, md5)
         else:
             raise web.seeother('error/emptyfile')
