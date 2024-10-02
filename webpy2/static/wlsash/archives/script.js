@@ -6,9 +6,43 @@ function fetchFiles(hash) {
     let strPath = hash.slice(1);   // removes leading #
     if (strPath == "/") strPath = "";
     path = strPath.split("/");
-    fetch(`api/files?path=${strPath}`)
+    fetch(`api/files?path=${strPath}&file=0`)
         .then(response => response.json())
         .then(renderFileList);
+}
+
+function fetchFile(path) {
+    let ext = path.split(".").at(-1);
+    let previewExts = {
+        images: ["jpg", "jpeg", "png", "webp", "gif"],
+        audio: ["mp3", "wav", "flac"],
+        video: ["mp4", "mov", "avi"],
+        document: ["pdf"],
+        text: ["txt", "js", "py", "cpp", "c", "java", "html", "css"]
+    }
+    let fileType = "other";
+    for (let type in previewExts) {
+        if (previewExts[type].includes(ext)) {
+            fileType = type;
+            break;
+        }
+    }
+    fetch(`api/files?path=${path}&file=1`)
+    .then(response => response.blob())
+    .then(result => {
+        if (false /*fileType != "other"*/) {
+            // opens the file in a separate page
+            let newWindow = window.open("archives/preview", "_blank");
+            newWindow.onload = () => newWindow.postMessage([result, fileType], "*");
+        } else {
+            // downloads the file
+            let a = document.createElement("a");
+            a.download = path.split("/").at(-1);
+            a.href = URL.createObjectURL(result);
+            a.click();
+            URL.revokeObjectURL(a.href);
+        }
+    })
 }
 
 function joinPath() {
@@ -24,6 +58,12 @@ function renderFileList(data) {
         pathWay.push(` / <a href="#${traversedPaths.join('/')}">${decodeURIComponent(item)}</a>`)
     }
 
+    data.sort((a, b) => {
+        if (a.type == "folder" && b.type != "folder") return -1;
+        else if (b.type == "folder" && a.type != "folder") return 1;
+        else return a.name > b.name ? 1 : -1;
+    })
+
     document.getElementById("path").innerHTML = pathWay.join('\n');
     fileList.innerHTML = "";
     data.forEach(item => {
@@ -31,7 +71,8 @@ function renderFileList(data) {
         listItem.onclick = function () {
             switch (item.type) {
                 case "file":
-                    // opens the file or download it
+                    fetchFile(path.join("/") + "/" + item.name);
+                    break;
                 case "folder":
                     if (window.location.hash.slice(1) == "/") window.location.hash = item.name;
                     else window.location.hash = path.join("/") + "/" + item.name;

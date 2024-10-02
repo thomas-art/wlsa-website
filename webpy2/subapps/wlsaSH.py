@@ -8,6 +8,7 @@ urls = (
     '/favicon.ico', 'Favicon',
     '/login', 'Login',
     "/archives", "Archives",
+    "/archives/preview", "FilePreview",
     "/api/files","FileAPI",
     "/", "Index",
     "/(.*)", "PageNotFound"
@@ -73,9 +74,28 @@ class FileAPI:
     def GET(self):
         params = web.input()
         path = params.get("path")
-        try:
-            return list_directory_json(os.path.join(wlsa_path, path))
-        except:
-            return "[]"
+        isfile = int(params.get("file"))
+        if not isfile:
+            try:
+                return list_directory_json(os.path.join(wlsa_path, path))
+            except:
+                return "[]"
+        else:
+            f = open(os.path.join(wlsa_path, path), "rb")
+            data = f.read()
+            f.close()
+            return data
+        
+class FilePreview:
+    def GET(self):
+        # I don't want to create a separate file for only a few lines of code
+        return """
+<script>
+window.addEventListener("message", e => {
+    alert(e.data);
+    document.write = e.data;
+})
+</script>
+"""
 
 wlsaSH = web.application(urls, locals())
