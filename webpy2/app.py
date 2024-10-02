@@ -18,7 +18,7 @@ urls = (
 )
 
 def notfound():
-    raise web.seeother('/disk/')
+    raise web.seeother(web.ctx.home + '/')
 
 class Redirect:
     def GET(self, path):
@@ -28,4 +28,5 @@ class Redirect:
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
+    app.notfound = notfound
     app.run()

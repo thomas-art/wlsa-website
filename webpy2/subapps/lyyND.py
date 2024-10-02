@@ -19,7 +19,8 @@ urls = (
     '/(.*)', 'Upload',
 )
 
-baseurl = config.BASE_URL
+if not os.path.exists(r"static/lyynd/dict/dict.html"):
+    list_directory(config.UPLODADS, config.BASE_URL)
 render = web.template.render('templates/lyynd/')
 
 def get_ip(request):
@@ -39,7 +40,7 @@ class Test:
 class Search:
     def GET(self):
         input_data = web.input(q='')
-        return list_directory_keyword(config.UPLODADS, baseurl, input_data.q)
+        return list_directory_keyword(config.UPLODADS, config.BASE_URL, input_data.q)
 
 
 class Redirect:
@@ -63,13 +64,13 @@ class Detail:
                     remaining -= len(chunk)
 
         if file_path is None:
-            raise web.seeother('dict')
+            raise web.seeother(web.ctx.home + '/dict')
         file_path = file_path.replace("/", "\\")
         file_path = encoded_file_path_regardless_end(file_path)
         # 检查文件是否存在
         print(file_path)
         if not os.path.isfile(file_path):
-            raise web.seeother('dict')
+            raise web.seeother(web.ctx.home + '/dict')
         fn = os.path.basename(file_path)
         fn = decode_filename(fn)
         safe_filename = urllib.parse.quote(fn)  # 对文件名进行 URL 编码
@@ -123,7 +124,7 @@ class Del:
     def GET(self, file_path_password):
         list = file_path_password.split(' ')
         if len(list) == 0:
-            raise web.seeother('dict')
+            raise web.seeother(web.ctx.home + '/dict')
         elif len(list) == 1:
             return render.passwordinput()
 
@@ -133,7 +134,7 @@ class Del:
         file_path = encoded_file_path_regardless_end(file_path)
 
         if not os.path.exists(file_path):
-            raise web.seeother('dict')
+            raise web.seeother(web.ctx.home + '/dict')
 
         # 检查文件位置
         root_dir = config.UPLODADS
@@ -147,11 +148,11 @@ class Del:
             if password == md5:
                 try:
                     os.remove(abs_file_path)
-                    list_directory(config.UPLODADS, baseurl)
+                    list_directory(config.UPLODADS, config.BASE_URL)
                     return render.successdelfile(decode_file_path(abs_file_path))
                 except:
                     pass
-        return web.seeother('error/deleterror')
+        return web.seeother(web.ctx.home + '/error/deleterror')
 
 
 class Favicon:
@@ -165,8 +166,6 @@ class Favicon:
 class Dict:
     def GET(self):
         web.header('connection', 'keep-alive')
-        if not os.path.exists(r"static/lyynd/dict/dict.html"):
-            list_directory(config.UPLODADS, baseurl)
         with open(r"static/lyynd/dict/dict.html", 'rb') as f:
             return f.read()
 
@@ -174,13 +173,11 @@ class Dict:
 class GetFile:
     def GET(self, file_path):
         if file_path is None:
-            raise web.seeother('dict')
+            raise web.seeother(web.ctx.home + '/dict')
         file_path = file_path.replace("/", "\\")
         file_path = encoded_file_path_regardless_end(file_path)
         # 检查文件是否存在
         if not os.path.isfile(file_path):
-            if not os.path.exists(r"static/lyynd/dict/dict.html"):
-                list_directory(config.UPLODADS, baseurl)
             with open(r"static/lyynd/dict/dict.html", 'rb') as f:
                 return f.read()
         fn = os.path.basename(file_path)
@@ -204,7 +201,7 @@ class Upload:
         x = web.input(myfile={})
         size = web.ctx.env.get('HTTP_X_FILE_SIZE', None)
         if size is None:
-            web.seeother('dict')
+            web.seeother(web.ctx.home + '/dict')
         if 'myfile' not in x or not hasattr(x['myfile'], 'filename') or not hasattr(x['myfile'], 'value'):
             return render.uploademptyfile()
 
@@ -231,7 +228,7 @@ class Upload:
                 return "文件名太长了"
             file_path = f"{config.UPLODADS}\\{t1}\\{filename}"
             if os.path.exists(file_path):  # 重复的文件？
-                raise web.seeother('error/filealreadyexist')
+                raise web.seeother(web.ctx.home + '/error/filealreadyexist')
             with open(file_path, 'wb') as f:
                 f.write(x['myfile'].value)
 
@@ -240,10 +237,10 @@ class Upload:
                 os.remove(file_path)  # 删除不匹配的文件
                 return render.md5error()
             md5 = MD5_salt(get_file_time(file_path))
-            list_directory(f"{config.UPLODADS}", baseurl)
-            return render.successuploadfile(baseurl, t1, filename1, md5)
+            list_directory(f"{config.UPLODADS}", config.BASE_URL)
+            return render.successuploadfile(config.BASE_URL, t1, filename1, md5)
         else:
-            raise web.seeother('error/emptyfile')
+            raise web.seeother(web.ctx.home + '/error/emptyfile')
 
 
 class Filealreadyexist:

@@ -7,9 +7,10 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, parent_dir)
 
 from lib import *
+import config
 
 # 发送 GET 请求获取 HTML 内容
-url = "http://115.238.185.111:43279/dict"  # 替换为实际 URL
+url = f"http://{config.BASE_URL}/dict"
 response = requests.get(url)
 
 # 确保请求成功
@@ -44,7 +45,7 @@ if response.status_code == 200:
             htmln = htmln.replace(delete_link, (delete_link + ' ' + MD5_salt(time=ftime)))
 
     with open('admin.html', 'w', encoding='utf-8') as f:
-        htmln = htmln.replace('/static/', 'http://115.238.185.111:43279/static/')
+        htmln = htmln.replace('/static/', f'http://{config.BASE_URL}/static/')
         htmln = htmln.replace('id="loadingAnimation"', 'id="loadingAnimation" style="display: none;"')
         htmln = htmln.replace('id="loadingAnimation"', 'id="loadingAnimation" style="display: none;"')
         htmln = htmln.replace('id="content" style="display: none;"', 'id="content" style="display: block;"')
