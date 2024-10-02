@@ -19,6 +19,8 @@ urls = (
     '/(.*)', 'Upload',
 )
 
+if not os.path.exists(config.UPLODADS):
+    os.makedirs(config.UPLODADS)
 if not os.path.exists(r"static/lyynd/dict/dict.html"):
     list_directory(config.UPLODADS, config.BASE_URL)
 render = web.template.render('templates/lyynd/')
@@ -178,8 +180,7 @@ class GetFile:
         file_path = encoded_file_path_regardless_end(file_path)
         # 检查文件是否存在
         if not os.path.isfile(file_path):
-            with open(r"static/lyynd/dict/dict.html", 'rb') as f:
-                return f.read()
+            raise web.seeother(web.ctx.home + '/dict')
         fn = os.path.basename(file_path)
         fn = decode_filename(fn)
         safe_filename = urllib.parse.quote(fn)  # 对文件名进行 URL 编码
