@@ -192,7 +192,8 @@ a{
   cursor: none;
   color: white;
   font-size: 55px;
-  text-shadow: 0 0 20px rgba(0,0,0,.35);
+  text-shadow: 0 0 20px rgba(0,0,0,.8);
+  font-weight: bold;
 }
 .main-bg {
   cursor: none;
