@@ -45,4 +45,6 @@
 
 0.2.10 2024/10/2 01:02 (Calvin) Fixed the bug that path displays Unicode encoding for non Latin letters, Fixed icons8-link.svg, changed hover and active effects for li tags, and set fixed width and height for li and img tags in li
 
+0.2.11 2024/10/3 14:09 rewrite the logic of lyynd dist, use render instead of +=html; delete some functions in lib.py.
+
 下个版本的目标: 1.修改dict逻辑到render里面; 2.翻一下static的实现逻辑; 3.notify.html template; 4.config实现作用; 5.js和css的模块复用; 6.规范化变量，函数，类和文件的命名

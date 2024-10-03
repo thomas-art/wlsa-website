@@ -5,7 +5,7 @@ from lib import *
 import config
 
 urls = (
-    '/search/', 'Search',
+    '/search', 'Search',
     '/test', 'Test',
     '/dict', 'Dict',
     '/favicon.ico', 'Favicon',
@@ -19,8 +19,10 @@ urls = (
     '/(.*)', 'Upload',
 )
 
-if not os.path.exists(r"static/lyynd/dict/dict.html"):
-    list_directory(config.UPLODADS, config.BASE_URL)
+if not os.path.exists(config.UPLODADS):
+    os.makedirs(config.UPLODADS)
+if not os.path.exists(config.DICT_SAVE_JSON_PATH):
+    list_directory_list(config.UPLODADS)
 render = web.template.render('templates/lyynd/')
 
 def get_ip(request):
@@ -34,13 +36,16 @@ def get_ip(request):
 
 class Test:
     def GET(self):
-        return render.test()
-
+        input_data = web.input(q='')
+        entries, i, time = list_directory_list_keyword(config.UPLODADS, input_data.q)
+        return render.search(entries, config.BASE_URL, i, time)
+    
 
 class Search:
     def GET(self):
         input_data = web.input(q='')
-        return list_directory_keyword(config.UPLODADS, config.BASE_URL, input_data.q)
+        entries, i, time = list_directory_list_keyword(config.UPLODADS, input_data.q)
+        return render.search(entries, config.BASE_URL, i, time)
 
 
 class Redirect:
@@ -148,7 +153,7 @@ class Del:
             if password == md5:
                 try:
                     os.remove(abs_file_path)
-                    list_directory(config.UPLODADS, config.BASE_URL)
+                    list_directory_list(config.UPLODADS)
                     return render.successdelfile(decode_file_path(abs_file_path))
                 except:
                     pass
@@ -166,8 +171,7 @@ class Favicon:
 class Dict:
     def GET(self):
         web.header('connection', 'keep-alive')
-        with open(r"static/lyynd/dict/dict.html", 'rb') as f:
-            return f.read()
+        return render.dict(entries=load_directory_structure(), baseurl=config.BASE_URL)
 
 
 class GetFile:
@@ -178,8 +182,7 @@ class GetFile:
         file_path = encoded_file_path_regardless_end(file_path)
         # 检查文件是否存在
         if not os.path.isfile(file_path):
-            with open(r"static/lyynd/dict/dict.html", 'rb') as f:
-                return f.read()
+            raise web.seeother(web.ctx.home + '/dict')
         fn = os.path.basename(file_path)
         fn = decode_filename(fn)
         safe_filename = urllib.parse.quote(fn)  # 对文件名进行 URL 编码
@@ -237,7 +240,7 @@ class Upload:
                 os.remove(file_path)  # 删除不匹配的文件
                 return render.md5error()
             md5 = MD5_salt(get_file_time(file_path))
-            list_directory(f"{config.UPLODADS}", config.BASE_URL)
+            list_directory_list(config.UPLODADS)
             return render.successuploadfile(config.BASE_URL, t1, filename1, md5)
         else:
             raise web.seeother(web.ctx.home + '/error/emptyfile')

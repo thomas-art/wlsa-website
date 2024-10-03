@@ -10,16 +10,16 @@ echo py.bat: check if conda exist...
 where conda > nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
     echo py.bat: cannot find conda, use normal python.
-    python app.py %1
+    python -B app.py %1
 ) ELSE (
     echo py.bat: checking conda envs...
     conda env list | findstr /C:"pyweb"
     IF %ERRORLEVEL%==0 (
         echo py.bat: found conda env, use conda env.
         call conda activate pyweb
-        python app.py %1
+        python -B app.py %1
     ) ELSE (
         echo py.bat: cannot find conda env, use normal python.
-        python app.py %1
+        python -B app.py %1
     )
 )

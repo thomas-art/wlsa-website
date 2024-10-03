@@ -1,0 +1,368 @@
+[
+    {
+        "name": "20241003",
+        "type": "directory",
+        "children": []
+    },
+    {
+        "name": "20241002",
+        "type": "directory",
+        "children": [
+            {
+                "name": "media_20240829_112843_6857578030387228153.mp4",
+                "type": "file",
+                "size": "19.43 MB",
+                "time": "2024/10/02/22:46:44",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20241002\\media_20240829_112843_6857578030387228153.mp4"
+            }
+        ]
+    },
+    {
+        "name": "20240930",
+        "type": "directory",
+        "children": [
+            {
+                "name": "bg.jpg",
+                "type": "file",
+                "size": "680.27 KB",
+                "time": "2024/09/30/22:11:26",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240930\\bg.jpg"
+            },
+            {
+                "name": "stc-isp.exe",
+                "type": "file",
+                "size": "3.98 MB",
+                "time": "2024/09/30/20:40:03",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240930\\stc-isp.exe"
+            },
+            {
+                "name": "图片1.png",
+                "type": "file",
+                "size": "49.71 KB",
+                "time": "2024/09/30/20:19:48",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240930\\图片1.png"
+            },
+            {
+                "name": "11-41-59-12-47141.pdf",
+                "type": "file",
+                "size": "383.12 KB",
+                "time": "2024/09/30/20:18:40",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240930\\11-41-59-12-47141.pdf"
+            },
+            {
+                "name": "code.txt",
+                "type": "file",
+                "size": "460 B",
+                "time": "2024/09/30/14:53:17",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240930\\code.txt"
+            }
+        ]
+    },
+    {
+        "name": "20241001",
+        "type": "directory",
+        "children": [
+            {
+                "name": "IMG_2130.jpeg",
+                "type": "file",
+                "size": "61.84 KB",
+                "time": "2024/10/01/08:08:49",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20241001\\IMG_2130.jpeg"
+            }
+        ]
+    },
+    {
+        "name": "递归文件夹",
+        "type": "directory",
+        "children": [
+            {
+                "name": "2",
+                "type": "directory",
+                "children": [
+                    {
+                        "name": "Burn_Controller-0.7.0.zip",
+                        "type": "file",
+                        "size": "8.46 KB",
+                        "time": "2024/10/01/08:08:34",
+                        "path": "C:\\netfiles\\lyynd\\uploads\\递归文件夹\\2\\Burn_Controller-0.7.0.zip"
+                    },
+                    {
+                        "name": "feixieer.rar",
+                        "type": "file",
+                        "size": "4.40 MB",
+                        "time": "2024/10/01/08:08:34",
+                        "path": "C:\\netfiles\\lyynd\\uploads\\递归文件夹\\2\\feixieer.rar"
+                    }
+                ]
+            },
+            {
+                "name": "1",
+                "type": "directory",
+                "children": [
+                    {
+                        "name": "2",
+                        "type": "directory",
+                        "children": []
+                    },
+                    {
+                        "name": "ComplementaryShaders_v4.6.zip",
+                        "type": "file",
+                        "size": "3.29 MB",
+                        "time": "2024/10/01/08:08:19",
+                        "path": "C:\\netfiles\\lyynd\\uploads\\递归文件夹\\1\\ComplementaryShaders_v4.6.zip"
+                    },
+                    {
+                        "name": "RPReplay_Final1722610313.mp4",
+                        "type": "file",
+                        "size": "77.09 MB",
+                        "time": "2024/10/01/08:08:19",
+                        "path": "C:\\netfiles\\lyynd\\uploads\\递归文件夹\\1\\RPReplay_Final1722610313.mp4"
+                    },
+                    {
+                        "name": "HMCL-3.5.4.exe.zip",
+                        "type": "file",
+                        "size": "3.86 MB",
+                        "time": "2024/10/01/08:08:19",
+                        "path": "C:\\netfiles\\lyynd\\uploads\\递归文件夹\\1\\HMCL-3.5.4.exe.zip"
+                    },
+                    {
+                        "name": "dex2jar-2.0.zip",
+                        "type": "file",
+                        "size": "2.25 MB",
+                        "time": "2024/10/01/08:08:19",
+                        "path": "C:\\netfiles\\lyynd\\uploads\\递归文件夹\\1\\dex2jar-2.0.zip"
+                    }
+                ]
+            },
+            {
+                "name": "3",
+                "type": "directory",
+                "children": []
+            },
+            {
+                "name": "K2-D2-0.2.1.zip",
+                "type": "file",
+                "size": "48.46 KB",
+                "time": "2024/10/01/08:08:09",
+                "path": "C:\\netfiles\\lyynd\\uploads\\递归文件夹\\K2-D2-0.2.1.zip"
+            }
+        ]
+    },
+    {
+        "name": "20240924",
+        "type": "directory",
+        "children": [
+            {
+                "name": "K2-D2-0.2.1.zip",
+                "type": "file",
+                "size": "48.46 KB",
+                "time": "2024/09/24/17:12:58",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240924\\K2-D2-0.2.1.zip"
+            }
+        ]
+    },
+    {
+        "name": "20240923",
+        "type": "directory",
+        "children": [
+            {
+                "name": "Burn_Controller-0.7.0.zip",
+                "type": "file",
+                "size": "8.46 KB",
+                "time": "2024/09/23/19:57:26",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240923\\Burn_Controller-0.7.0.zip"
+            },
+            {
+                "name": "傻子鉴定器源码.zip",
+                "type": "file",
+                "size": "163.57 KB",
+                "time": "2024/09/23/19:55:26",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240923\\傻子鉴定器源码.zip"
+            },
+            {
+                "name": "feixieer.rar",
+                "type": "file",
+                "size": "4.40 MB",
+                "time": "2024/09/23/19:38:07",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240923\\feixieer.rar"
+            }
+        ]
+    },
+    {
+        "name": "20240922",
+        "type": "directory",
+        "children": [
+            {
+                "name": "feixieer.rar",
+                "type": "file",
+                "size": "4.40 MB",
+                "time": "2024/09/22/11:12:31",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240922\\feixieer.rar"
+            }
+        ]
+    },
+    {
+        "name": "20240921",
+        "type": "directory",
+        "children": [
+            {
+                "name": "新概念三教材.pdf",
+                "type": "file",
+                "size": "12.19 MB",
+                "time": "2024/09/21/22:50:33",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240921\\新概念三教材.pdf"
+            },
+            {
+                "name": "ComplementaryShaders_v4.6.zip",
+                "type": "file",
+                "size": "3.29 MB",
+                "time": "2024/09/21/22:44:11",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240921\\ComplementaryShaders_v4.6.zip"
+            },
+            {
+                "name": "RPReplay_Final1722610313.mp4",
+                "type": "file",
+                "size": "77.09 MB",
+                "time": "2024/09/21/22:33:49",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240921\\RPReplay_Final1722610313.mp4"
+            },
+            {
+                "name": "348E9117BE57CD63FCFEBD389340013E.mov",
+                "type": "file",
+                "size": "2.34 MB",
+                "time": "2024/09/21/22:32:40",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240921\\348E9117BE57CD63FCFEBD389340013E.mov"
+            },
+            {
+                "name": "HMCL-3.5.4.exe.zip",
+                "type": "file",
+                "size": "3.86 MB",
+                "time": "2024/09/21/21:07:56",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240921\\HMCL-3.5.4.exe.zip"
+            },
+            {
+                "name": "dex2jar-2.0.zip",
+                "type": "file",
+                "size": "2.25 MB",
+                "time": "2024/09/21/20:56:31",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240921\\dex2jar-2.0.zip"
+            }
+        ]
+    },
+    {
+        "name": "20240918",
+        "type": "directory",
+        "children": [
+            {
+                "name": "dywauhdyiawhdvayguhdwovygauwdivygiauhwdihvyguiawihdvgahuowdiguahwidgauwdvuguaiwgydhuahvygwduhaiwgidhagywiudhioawigudhai.jpg",
+                "type": "file",
+                "size": "56.74 KB",
+                "time": "2024/09/19/18:39:05",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240918\\dywauhdyiawhdvayguhdwovygauwdivygiauhwdihvyguiawihdvgahuowdiguahwidgauwdvuguaiwgydhuahvygwduhaiwgidhagywiudhioawigudhai.jpg"
+            },
+            {
+                "name": "QQ图片  20230118124000.jpg",
+                "type": "file",
+                "size": "222.80 KB",
+                "time": "2024/09/19/18:39:05",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240918\\QQ图片  20230118124000.jpg"
+            },
+            {
+                "name": "QQ图片20230111135034.jpg",
+                "type": "file",
+                "size": "7.30 KB",
+                "time": "2024/09/19/18:39:05",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240918\\QQ图片20230111135034.jpg"
+            },
+            {
+                "name": "QQ图片20230112134945.gif",
+                "type": "file",
+                "size": "16.14 KB",
+                "time": "2024/09/19/18:39:05",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240918\\QQ图片20230112134945.gif"
+            },
+            {
+                "name": "QQ图片20230112134956.jpg",
+                "type": "file",
+                "size": "13.28 KB",
+                "time": "2024/09/19/18:39:05",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240918\\QQ图片20230112134956.jpg"
+            },
+            {
+                "name": "QQ图片20221221081528.gif",
+                "type": "file",
+                "size": "33.14 KB",
+                "time": "2024/09/19/18:39:05",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240918\\QQ图片20221221081528.gif"
+            }
+        ]
+    },
+    {
+        "name": "20240919",
+        "type": "directory",
+        "children": [
+            {
+                "name": "QQ图片20230118124000.jpg",
+                "type": "file",
+                "size": "222.80 KB",
+                "time": "2024/09/19/19:02:40",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240919\\QQ图片20230118124000.jpg"
+            },
+            {
+                "name": "dywauhdyiawhdvayguhdwovygauwdivygiauhwdihvyguiawihdvgahuowdiguahwidgauwdvuguaiwgydhuahvygwduhaiwgidhagywiudhioawigudhai.jpg",
+                "type": "file",
+                "size": "56.74 KB",
+                "time": "2024/09/19/19:01:35",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240919\\dywauhdyiawhdvayguhdwovygauwdivygiauhwdihvyguiawihdvgahuowdiguahwidgauwdvuguaiwgydhuahvygwduhaiwgidhagywiudhioawigudhai.jpg"
+            }
+        ]
+    },
+    {
+        "name": "20240917",
+        "type": "directory",
+        "children": [
+            {
+                "name": "111111.jpg",
+                "type": "file",
+                "size": "37.15 KB",
+                "time": "2024/09/19/18:39:23",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240917\\111111.jpg"
+            },
+            {
+                "name": "11111.png",
+                "type": "file",
+                "size": "56.02 KB",
+                "time": "2024/09/19/18:39:23",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240917\\11111.png"
+            },
+            {
+                "name": "5160396E-9777-4CD8-BA2F-3198E9519235.jpeg",
+                "type": "file",
+                "size": "160.32 KB",
+                "time": "2024/09/19/18:39:23",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240917\\5160396E-9777-4CD8-BA2F-3198E9519235.jpeg"
+            },
+            {
+                "name": "123.png",
+                "type": "file",
+                "size": "220.53 KB",
+                "time": "2024/09/19/18:39:23",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240917\\123.png"
+            },
+            {
+                "name": "3.jpg",
+                "type": "file",
+                "size": "243.38 KB",
+                "time": "2024/09/19/18:39:23",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240917\\3.jpg"
+            },
+            {
+                "name": "2.jpg",
+                "type": "file",
+                "size": "345.53 KB",
+                "time": "2024/09/19/18:39:23",
+                "path": "C:\\netfiles\\lyynd\\uploads\\20240917\\2.jpg"
+            }
+        ]
+    }
+]

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const hoverElements = document.querySelectorAll('input, a, button, details, summary');
+    const hoverElements = document.querySelectorAll('input, a, button, summary');
     const customCursor = document.getElementById('customCursor');
     const catchIco = document.getElementById('catchIco');
 

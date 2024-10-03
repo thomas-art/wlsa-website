@@ -44,7 +44,7 @@ if response.status_code == 200:
 
             htmln = htmln.replace(delete_link, (delete_link + ' ' + MD5_salt(time=ftime)))
 
-    with open('admin.html', 'w', encoding='utf-8') as f:
+    with open('webpy2/tools/admin.html', 'w', encoding='utf-8') as f:
         htmln = htmln.replace('/static/', f'http://{config.BASE_URL}/static/')
         htmln = htmln.replace('id="loadingAnimation"', 'id="loadingAnimation" style="display: none;"')
         htmln = htmln.replace('id="loadingAnimation"', 'id="loadingAnimation" style="display: none;"')
