@@ -264,4 +264,5 @@ a{
   max-height: 60px;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-all;
 }
