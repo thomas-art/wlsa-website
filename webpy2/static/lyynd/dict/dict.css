@@ -10,9 +10,11 @@
     justify-content: center;
     font-size: 1.5em;
     z-index: 1001;
+    cursor: none;
 }
 #loadingImage {
     animation: bounce 1.5s infinite ease-in-out;
+    cursor: none;
 }
 @keyframes bounce {
     0% {
@@ -30,6 +32,7 @@
     src: url('/static/common/font/TVPS-Vain-Capital.ttf') format('truetype');
 }
 #progressText {
+    cursor: none;
     font-family: 'TVPS-Vain-Capital', sans-serif;
     font-weight: bold;
     font-size: 30px;
@@ -108,6 +111,9 @@ th[class='time'] {
     cursor: none;
     transition: color 0.3s ease;
 }
+div {
+    cursor: none;
+}
 .header {
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
@@ -149,6 +155,7 @@ a[id='title']:hover {
 }
 .search-container {
     margin-top: 20px;
+    cursor: none;
 }
 
 input[type="submit"] {

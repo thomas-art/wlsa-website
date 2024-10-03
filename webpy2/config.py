@@ -14,6 +14,7 @@ SALT_2 = r"盐2"
 
 # lyynd
 UPLODADS = LYYND_FILE_PATH + r"\uploads"
+DICT_SAVE_JSON_PATH = r"static\lyynd\dict\dict.json"
 
 # wlsaSH
 WLSA_PATH = WLSASH_FILE_PATH + r"\wlsafiles"
