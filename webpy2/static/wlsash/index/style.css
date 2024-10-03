@@ -259,3 +259,9 @@ a{
   width: 100%;
   background-color: var(--hyperlink-blue);
 }
+
+.intro{
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
