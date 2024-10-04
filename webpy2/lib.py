@@ -229,10 +229,10 @@ def get_file_time(path):
     return formatted_time
 
 
-def MD5_salt(time='20240917140059'):
+def MD5_salt(string='20240917140059'):
     hasher = hashlib.md5()
     hasher.update(config.SALT_1.encode('utf-8'))
-    hasher.update(time.encode('utf-8'))
+    hasher.update(string.encode('utf-8'))
     hasher.update(config.SALT_2.encode('utf-8'))
 
     return hasher.hexdigest()
@@ -290,6 +290,16 @@ def replace_list(string, char_list):
     for char in char_list:
         string = string.replace(char, '')
     return string
+
+
+def current_timestamp():
+    timestamp = int(time.time()) #生成一个10位秒时间戳
+    timestamp_str = str(timestamp)[:10]
+    return timestamp_str
+
+
+def xor_encrypt_decrypt(input_string, key):
+    return ''.join(chr(ord(c) ^ ord(key[i % len(key)])) for i, c in enumerate(input_string))
 
 
 if __name__ == "__main__":

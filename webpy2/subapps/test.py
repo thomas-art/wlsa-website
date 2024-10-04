@@ -10,22 +10,25 @@ urls = (
     '/reset', 'Reset',
 )
 
-def logged():
-    cookie_value = web.cookies().get("auth")
-    if cookie_value:
-        return check_auth(cookie_value)
+def logged(auth, key, user, t):
+    if auth and key and user and t:
+        md5user = MD5_salt(user)
+        auth1 = MD5_salt(md5user + t)
+        return auth == auth1
     return False
-
-def check_auth(cookie_value):
-    # This function should validate the cookie value against stored credentials
-    # Here you would implement your logic to validate the user's login status
-    # This is a placeholder implementation
-    return True  # Replace with actual logic
+    
 
 class Login:
     def GET(self):
-        if logged():
-            return f"logged, welcome: {web.cookies().get('user')}"
+        auth = web.cookies().get("auth")
+        key = web.cookies().get("key")
+        user = web.cookies().get("user")
+        t = web.cookies().get("timestamp")
+
+        if logged(auth, key, user, t):
+            md5auth = MD5_salt(auth)
+            passwd = xor_encrypt_decrypt(key, md5auth)
+            return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd}"
         else:
             return render.login()
 
@@ -34,9 +37,16 @@ class Login:
         passwd = web.input().passwd
 
         if check_xiaobao_login(user, passwd):
-            cookie_value = hashlib.sha256(f"{user}:{passwd}".encode()).hexdigest()
-            web.setcookie("auth", cookie_value, 3600)
+            t = current_timestamp()
+            md5user = MD5_salt(user)
+            auth = MD5_salt(md5user + t)
+            md5auth = MD5_salt(auth)
+            key = xor_encrypt_decrypt(passwd, md5auth)
+
+            web.setcookie("auth", auth, 3600) # 86400s = 24h
+            web.setcookie("key", key, 3600)
             web.setcookie("user", user, 3600)  # Store username in a cookie
+            web.setcookie("timestamp", t, 3600)
 
             return f"login success, welcome: {user}"
         else:
@@ -46,6 +56,8 @@ class Reset:
     def GET(self):
         web.setcookie("auth", "", expires=-1)
         web.setcookie("user", "", expires=-1)
+        web.setcookie("key", "", expires=-1)
+        web.setcookie("timestamp", "", expires=-1)
         return 'logged out'
 test = web.application(urls, globals())
 

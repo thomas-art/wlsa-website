@@ -49,4 +49,6 @@
 
 0.2.12 2024/10/3 11:30 Add the announcements in index
 
-下个版本的目标: 1.修改dict逻辑到render里面; 2.翻一下static的实现逻辑; 3.notify.html template; 4.config实现作用; 5.js和css的模块复用; 6.规范化变量，函数，类和文件的命名
+0.2.13 2024/10/4 23:24 basically implemented the function of login and check logged status in subapp "test"
+
+下个版本的目标: 1.将登陆系统迁移至wlsash; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名

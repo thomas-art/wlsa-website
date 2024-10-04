@@ -7,7 +7,6 @@ from subapps import wlsaSH
 from subapps import test
 
 
-# 检测用户存储文件夹是否存在
 if not os.path.exists(config.ROOT_STORAGE_DIR):
     os.makedirs(config.ROOT_STORAGE_DIR)
 
