@@ -82,7 +82,7 @@ a {
   --topbar-height: 65px;
   --pale-blue: #009ef7;
   --wlsa-blue: #2e358b;
-  --hyperlink-paleblue: rgb(0,120,215);
+  --hyperlink-paleblue: rgb(0, 120, 215);
   --hyperlink-blue: rgb(0, 140, 255);
   --black-bg: rgba(22, 22, 23, .8);
 }
@@ -116,7 +116,7 @@ a {
 
 .topbar a {
   color: white;
-
+  white-space: nowrap;
   transition: .25s;
   cursor: pointer;
 }
@@ -171,6 +171,7 @@ a {
   max-height: 100%;
   width: auto;
   display: block;
+  white-space: nowrap;
 }
 
 .right>a:after {
@@ -234,9 +235,10 @@ a {
   box-sizing: border-box;
   cursor: pointer;
   border: 3px solid var(--wlsa-blue);
-  background-color: rgb(46,53,139,.4);
+  background-color: rgb(46, 53, 139, .4);
 }
-.storage-section li>img{
+
+.storage-section li>img {
   height: 32px;
   width: 32px;
 }
