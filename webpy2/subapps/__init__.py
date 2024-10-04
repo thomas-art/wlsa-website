@@ -6,6 +6,7 @@
 
 from .lyyND import lyyND
 from .wlsaSH import wlsaSH
+from .test import test
 
 __version__ = "0.0.1"
 __author__ = "lanyyontop"
