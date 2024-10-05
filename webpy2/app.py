@@ -4,7 +4,6 @@ import config
 from lib import *
 from subapps import lyyND
 from subapps import wlsaSH
-from subapps import test
 
 
 if not os.path.exists(config.ROOT_STORAGE_DIR):
@@ -14,7 +13,6 @@ if not os.path.exists(config.ROOT_STORAGE_DIR):
 urls = (
     '/wlsash', wlsaSH,
     '/disk', lyyND,
-    '/test', test,
     '/(.*)', "Redirect"
 )
 

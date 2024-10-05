@@ -4,13 +4,14 @@ import web
 import config
 
 urls = (
-    "", "Rewlsa",
     '/favicon.ico', 'Favicon',
     '/login', 'Login',
+    '/logout', 'Logout',
     "/archives", "Archives",
     "/archives/preview", "FilePreview",
     "/api/files","FileAPI",
     "/", "Index",
+    "", "Rewlsa",
     "/(.*)", "PageNotFound"
 )
 
@@ -29,29 +30,60 @@ class Favicon:
 
 class Login:
     def GET(self):
-        params = web.input()
-        username = params.get('username')  # 从URL中获取用户名
-        password = params.get('password')  # 从URL中获取密码
+        auth = web.cookies().get("auth")
+        key = web.cookies().get("key")
+        user = web.cookies().get("user")
+        t = web.cookies().get("timestamp")
+        cname = web.cookies().get("cname")
+        ename = web.cookies().get("ename")
 
-        if username and password:
-            flag = check_xiaobao_login(username, password)
-            if flag:
-                return("xiaobao check success")
+        if logged(auth, key, user, t, cname, ename):
+            md5auth = MD5_salt(auth)
+            passwd = xor_encrypt_decrypt(key, md5auth)
+            return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
         else:
             return render.login()
 
-        return("login failed")
-    
     def POST(self):
-        params = web.input()
-        username = params.get('name')  # 从表单中获取用户名
-        password = params.get('password')  # 从表单中获取密码
+        user = web.input().user
+        passwd = web.input().passwd
 
-        if username and password:
-            flag = check_xiaobao_login(username, password)
-            if flag:
-                return "xiaobao check success"
-        return "login failed"
+        studentinfo, flag = check_xiaobao_login(user, passwd)
+
+        if flag and ('data' in studentinfo and studentinfo['data']):
+            c_name = studentinfo['data'].get('cName')  # 中文名
+            e_name = studentinfo['data'].get('eName')  # 英文名
+
+            if not (c_name and e_name):
+                return 'login error'
+            
+            t = current_timestamp()
+            md5user = MD5_salt(user)
+            auth = MD5_salt(md5user + t + c_name + e_name)
+            md5auth = MD5_salt(auth)
+            key = xor_encrypt_decrypt(passwd, md5auth)
+
+            web.setcookie("auth", auth, 3600) # 86400s = 24h
+            web.setcookie("key", key, 3600)
+            web.setcookie("user", user, 3600)  # Store username in a cookie
+            web.setcookie("timestamp", t, 3600)
+            web.setcookie("cname", c_name, 3600)
+            web.setcookie("ename", e_name, 3600)
+
+            return f"login success, welcome: {user}"
+        else:
+            return 'login error'
+
+
+class Logout:
+    def GET(self):
+        web.setcookie("auth", "", expires=-1)
+        web.setcookie("user", "", expires=-1)
+        web.setcookie("key", "", expires=-1)
+        web.setcookie("timestamp", "", expires=-1)
+        web.setcookie("cname", "", expires=-1)
+        web.setcookie("ename", "", expires=-1)
+        return 'logged out'
 
 
 class Rewlsa:
@@ -60,6 +92,10 @@ class Rewlsa:
 
 class Index:
     def GET(self):
+        cname = web.cookies().get("cname")
+        ename = web.cookies().get("ename")
+        if cname and ename:
+            return render.index(f"welcome: {cname}", "logout")
         return render.index()
         
 class PageNotFound:

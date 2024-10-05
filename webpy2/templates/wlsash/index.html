@@ -1,5 +1,6 @@
+$def with (message='', logmessage='login')
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 
 <head>
   <meta charset="utf-8">
@@ -31,6 +32,7 @@
       <span class="title">WLSA School House</span>
   </a>
   <div class="right">
+      <a class="hyperlink" href="./$logmessage" target="_blank">$logmessage</a>
       <a class="hyperlink" href="./dashboard" target="_blank">Dashboard</a>
       <a class="hyperlink" href="./archives" target="_blank">Archives</a>
       <a class="hyperlink" href="./pt-booking" target="_blank">PT Booking</a>
@@ -41,7 +43,7 @@
     <div class="container">
         <img class="main-bg gradient-mv" id="mainview">
         <div class="ani centered slide-in">
-          WLSA SCHOOL HOUSE
+          WLSA SCHOOL HOUSE<br>$message
         </div>
       </div>
     <div class="contents">
