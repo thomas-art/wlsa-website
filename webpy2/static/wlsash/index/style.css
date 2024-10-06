@@ -76,7 +76,7 @@ a{
 .text * {
   cursor: none;
   user-select: text !important;
-  webkit-user-select: text !important;
+  -webkit-user-select: text !important;
 }
 .topbar a {
   cursor: none;
