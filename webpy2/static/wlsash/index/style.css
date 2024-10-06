@@ -1,3 +1,8 @@
+/* used for debugging */
+body.no-cursor {
+  cursor: auto !important;
+}
+
 body {
   margin:0px;
   cursor: none;
@@ -266,4 +271,22 @@ a{
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
+}
+
+@keyframes cover-page-arrow-bounce { /* bounce is taken in the loading page */
+  0% {
+    opacity: 30%;
+    transform: translateY(-16px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(16px);
+  }
+}
+.bounce {
+  animation-name: cover-page-arrow-bounce;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.25s;
+  animation-timing-function: ease-in;
 }
