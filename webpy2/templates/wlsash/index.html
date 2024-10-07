@@ -51,18 +51,27 @@ $def with (message='', logmessage='login')
   <div class="container">
     <img class="main-bg gradient-mv" id="mainview">
     <div class="ani centered slide-in" style="text-align: center;">
-      WLSA SCHOOL HOUSE<br>$message<br>
-      <a href="#contents">
-        <svg class="bounce" width="30" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 27 25">
-          <filter id="shadow_filter">
-            <feDropShadow dx="0" dy="0" stdDeviation="1.5"></feDropShadow>
-          </filter>
-
-          <path d="M0 0 L12 12 L24 0" stroke="white" stroke-linecap="round" stroke-width="3" fill="none"
-            filter="url(#shadow_filter)" />
-        </svg>
-      </a>
+      WLSA SCHOOL HOUSE<br>$message
     </div>
+    <span href="#contents" class="bounce-arrow-wrapper">
+      <svg class="bounce" width="45" height="27" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 27 25">
+        <filter id="shadow_filter">
+          <feDropShadow dx="0" dy="0" stdDeviation="1.5"></feDropShadow>
+        </filter>
+
+        <path d="M0 0 L12 12 L24 0" stroke="white" stroke-linecap="round" stroke-width="3" fill="none"
+          filter="url(#shadow_filter)" />
+      </svg>
+    </span>
+    <script>
+      // Edited from maorx.cn
+      document.querySelector(".bounce-arrow-wrapper").onclick = () => {
+        window.scrollTo({
+          'top': document.getElementById("contents").offsetTop,
+          'behavior': "smooth"
+        });
+      }
+    </script>
   </div>
   <div class="contents" id="contents">
     <a class="ani card slide-in" href="./archives" target="_blank">
