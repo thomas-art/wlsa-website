@@ -7,6 +7,7 @@ import time
 import requests
 import config
 import json
+import web
 
 
 def decode_file_path(encoded_file_path):
@@ -310,10 +311,17 @@ def xor_encrypt_decrypt(input_string, key):
     return ''.join(chr(ord(c) ^ ord(key[i % len(key)])) for i, c in enumerate(input_string))
 
 
-def logged(auth, key, user, t, cname, ename):
-    if auth and key and user and t and cname and ename:
+def logged():
+    auth = web.cookies().get("auth")
+    key = web.cookies().get("key")
+    user = web.cookies().get("user")
+    t = web.cookies().get("timestamp")
+    cname = web.cookies().get("cname")
+    ename = web.cookies().get("ename")
+    user_id = web.cookies().get("user_id")
+    if auth and key and user and t and cname and ename and user_id:
         md5user = MD5_salt(user)
-        auth1 = MD5_salt(md5user + t + cname + ename)
+        auth1 = MD5_salt(md5user + t + cname + ename + str(user_id))
         return auth == auth1
     return False
 

@@ -11,31 +11,33 @@ import config as settings
 db = web.database(dbn='sqlite', db = settings.DB_LOC)
 
 class User:
-    def new(self, email, username, password):
+    def new(self, email, username, password, user_id):
         pwdhash = hashlib.md5(password.encode('utf-8')).hexdigest()
-        return db.insert('users', email=email, name=username, password=pwdhash,
-                         picture='/static/wlsash/community/img/user_normal.jpg', description='')
+        db.insert('users', email=email, name=username, password=pwdhash,
+                         picture='/static/wlsash/community/img/user_normal.jpg', description='', user_id=user_id)
+        return user_id
 
-    def update(self, id, **kwd):
+    def update(self, user_id, **kwd):
         try:
             if 'email' in kwd and kwd['email']:
-                db.update('users', where='id=$id', email=kwd['email'], vars=locals())
-
+                db.update('users', where='user_id=$user_id', email=kwd['email'], vars=locals())
+    
             if 'password' in kwd and kwd['password']:
                 pwdhash = hashlib.md5(kwd['password'].encode('utf-8')).hexdigest()
-                db.update('users', where='id=$id', password=pwdhash, vars=locals())
-
+                db.update('users', where='user_id=$user_id', password=pwdhash, vars=locals())
+    
             if 'picture' in kwd and kwd['picture']:
-                db.update('users', where='id=$id', picture=kwd['picture'], vars=locals())
-
+                db.update('users', where='user_id=$user_id', picture=kwd['picture'], vars=locals())
+    
             if 'description' in kwd and kwd['description']:
-                db.update('users', where='id=$id', description=kwd['description'], vars=locals())
-
+                db.update('users', where='user_id=$user_id', description=kwd['description'], vars=locals())
+    
             return True
         except Exception as e:
             print(e)
             return False
-
+    
+    # 暂时没有用到这个login方法，目前使用的是校宝的check
     def login(self, username, password):
         '''登录验证'''
         pwdhash = hashlib.md5(password.encode('utf-8')).hexdigest()
@@ -47,15 +49,15 @@ class User:
         else:
             return 0
 
-    def status(self, id):
-        '''查询id对应的用户信息'''
+    def status(self, user_id):
+        '''查询 user_id 对应的用户信息'''
         email = ''
         username = ''
         password_hash = ''
         picture = ''
         description = ''
 
-        users = db.query('SELECT email, name, password, picture, description FROM users WHERE id=%d' % id)
+        users = db.query('SELECT email, name, password, picture, description FROM users WHERE user_id=%d' % user_id)
         if users:
             u = users[0]
             email = u.email
@@ -68,12 +70,12 @@ class User:
                 'picture': picture, 'description': description}
 
     def matched_id(self, **kwd):
-        '''根据kwd指定的查询条件，搜索数据库'''
-        users = db.select('users', what='id', where=web.db.sqlwhere(kwd, grouping='OR'))
+        '''根据 kwd 指定的查询条件，搜索数据库'''
+        users = db.select('users', what='user_id', where=web.db.sqlwhere(kwd, grouping='OR'))
         if users:
             # 目前只用于单条记录查询，因此只取第一个
             u = users[0]
-            return u.id
+            return u.user_id
         else:
             return 0
 
@@ -84,9 +86,6 @@ class User:
             user_id = int(web.cookies().get('user_id'))
         except Exception as e:
             print(e)
-        else:
-            # 刷新cookie
-            web.setcookie('user_id', str(user_id), settings.COOKIE_EXPIRES)
         finally:
             return user_id
 
@@ -107,9 +106,9 @@ class Post:
 
     def view(self, id):
         '''获取id对应的文章'''
-        posts = db.query('''SELECT posts.id, title, content, posts.time, user_id, users.name AS username, users.picture AS user_face
+        posts = db.query('''SELECT posts.id, title, content, posts.time, posts.user_id, users.name AS username, users.picture AS user_face
                             FROM posts JOIN users
-                            ON posts.user_id = users.id
+                            ON posts.user_id = users.user_id
                             WHERE posts.id = %d''' % id)
         if posts:
             return posts[0]
@@ -130,9 +129,9 @@ class Post:
 
         # 获取从offset开始共per_page个post
         offset = (page - 1) * per_page
-        posts = db.query('''SELECT posts.id, title, posts.time, user_id, users.name AS username
+        posts = db.query('''SELECT posts.id, title, posts.time, posts.user_id, users.name AS username
                             FROM posts JOIN users
-                            ON posts.user_id = users.id
+                            ON posts.user_id = users.user_id
                             ORDER BY posts.id DESC
                             LIMIT %d OFFSET %d''' % (per_page, offset))
         page_posts = []
@@ -153,7 +152,7 @@ class Post:
     def digest_list(self, user_id):
         '''获取user_id对应作者的文章列表'''
         posts = db.query('''SELECT id, title, time FROM posts
-                            WHERE user_id=%d
+                            WHERE posts.user_id=%d
                             ORDER BY id DESC''' % user_id)
         return posts
 
@@ -174,9 +173,9 @@ class Comment:
             quote_username = ''
             quote_user_id = 0
             if c.quote_id:
-                quotes = db.query('''SELECT content, users.name AS username, user_id
+                quotes = db.query('''SELECT content, users.name AS username, comments.user_id
                                        FROM comments JOIN users
-                                       ON comments.user_id = users.id
+                                       ON comments.user_id = users.user_id
                                        WHERE comments.id=%d''' % c.quote_id)
                 if quotes:
                     q = quotes[0]
@@ -204,18 +203,18 @@ class Comment:
 
     def list(self):
         '''获取当前文章（创建Comment实例时指定了post_id）下面的所有评论'''
-        comments = db.query('''SELECT comments.id, content, comments.time, users.name AS username, user_id, quote_id, users.picture AS user_face
+        comments = db.query('''SELECT comments.id, content, comments.time, users.name AS username, comments.user_id, quote_id, users.picture AS user_face
                                FROM comments JOIN users
-                               ON comments.user_id = users.id
+                               ON comments.user_id = users.user_id
                                WHERE comments.parent_id=%d
                                ORDER BY comments.id''' % self.__parent_id)
         return comments
 
     def last(self):
         '''获取当前文章下面的最新评论'''
-        last_comments = db.query('''SELECT comments.id, content, comments.time, users.name AS username, user_id, quote_id, users.picture AS user_face
+        last_comments = db.query('''SELECT comments.id, content, comments.time, users.name AS username, comments.user_id, quote_id, users.picture AS user_face
                                     FROM comments JOIN users
-                                    ON comments.user_id = users.id
+                                    ON comments.user_id = users.user_id
                                     WHERE comments.id=(SELECT MAX(id) FROM comments WHERE parent_id=%d)''' % self.__parent_id)
         if last_comments:
             return last_comments[0]

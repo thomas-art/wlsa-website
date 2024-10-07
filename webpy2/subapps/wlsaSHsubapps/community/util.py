@@ -50,7 +50,7 @@ def menu(user):
         return [{'link': '/wlsash/community/user/%d' % cur_user_id, 'name': status['username']},
                 {'link': '/wlsash/community/account/posts', 'name': '文章'},
                 {'link': '/wlsash/community/account/settings', 'name': '设置'},
-                {'link': '/wlsash/community/logout', 'name': '退出'}]
+                {'link': '/wlsash/logout', 'name': '退出'}]
     else:
-        return [{'link': '/wlsash/community/login', 'name': '登录'},
+        return [{'link': '/wlsash/login', 'name': '登录'},
                 {'link': '/wlsash/community/register', 'name': '注册'}]

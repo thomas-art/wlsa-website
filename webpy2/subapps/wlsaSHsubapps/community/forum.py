@@ -4,6 +4,7 @@ import web
 import config as settings
 from subapps.wlsaSHsubapps.community import model
 from subapps.wlsaSHsubapps.community import util
+from lib import *
 import os
 import json
 import hashlib
@@ -61,12 +62,14 @@ class Index:
 
 class Add:
     def GET(self):
+        if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
         if model.User().current_id(): # 用户已登录
             return titled_render('发帖').add()
         else:
-            return titled_render().failed('操作受限，请先<a href="/login">登录</a>')
+            return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
 
     def POST(self):
+        if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
         i = web.input(title='', content='')
         post_id = model.Post().new(i.title, i.content, model.User().current_id())
         if post_id:
@@ -76,6 +79,7 @@ class Add:
 
 class Edit:
     def GET(self, post_id):
+        if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
         post_id = int(post_id)
         cur_user_id = model.User().current_id()
         post = model.Post().view(post_id)
@@ -85,9 +89,10 @@ class Edit:
         elif cur_user_id: # 用户已登录，但不是作者
             return titled_render().failed('操作受限，你无权编辑其他人的文章')
         else: # 用户未登录
-            return titled_render().failed('操作受限，请先<a href="/login">登录</a>')
+            return titled_render().failed('操作受限，请先<a href="/wlsash/login">登录</a>')
 
     def POST(self, post_id):
+        if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
         i = web.input(title='', content='')
         post_id = int(post_id)
         if model.Post().update(post_id, i.title, i.content):
@@ -97,6 +102,7 @@ class Edit:
 
 class Del:
     def GET(self, post_id):
+        if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
         post_id = int(post_id)
         cur_user_id = model.User().current_id()
         post = model.Post().view(post_id)
@@ -109,7 +115,7 @@ class Del:
         elif cur_user_id: # 用户已登录，但不是作者
             return titled_render().failed('操作受限，你无权删除其他人的文章')
         else: # 用户未登录
-            return titled_render().failed('操作受限，请先<a href="/login">登录</a>')
+            return titled_render().failed('操作受限，请先<a href="/wlsash/login">登录</a>')
 
 class View:
     def GET(self, post_id):
@@ -142,6 +148,7 @@ class Register:
         return titled_render('注册').register()
 
     def POST(self):
+        return titled_render().failed("""抱歉，目前只供WLSA内部学生使用，请直接使用校宝账号<a href="/wlsash/login">登录</a>""")
         try:
             i = web.input()
             user_id = model.User().new(i.email, i.username, i.password)
@@ -156,9 +163,11 @@ class Register:
 
 class Login:
     def GET(self):
+        raise web.seeother("/wlsash/login")
         return titled_render('登录').login()
 
     def POST(self):
+        raise web.seeother("/wlsash/login")
         i = web.input(username='', password='')
         user_id = model.User().login(i.username, i.password)
         if user_id:
@@ -170,6 +179,7 @@ class Login:
 
 class Logout:
     def GET(self):
+        raise web.seeother("/wlsash/logout")
         if model.User().current_id(): # 用户已登录
             # 取消cookie
             web.setcookie('user_id', '', -1)
@@ -181,6 +191,7 @@ class Profile:
         status = model.User().status(user_id)
         if status['username']:
             if user_id == model.User().current_id():
+                if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
                 return titled_render(status['username']).master_profile(status['username'], status['picture'], status['description'])
             else:
                 return titled_render(status['username']).user_profile(status['username'], status['picture'], status['description'])
@@ -211,10 +222,11 @@ class Profile:
                         fout.write(i.mypic.file.read())
             # 对简介不做检查，直接更新
             user.update(user_id, description=i.description)
-        raise web.seeother('/wlsash/community/user/%d' % user_id)
+        raise web.seeother('/user/%d' % user_id)
 
 class Account:
     def GET(self, part):
+        if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
         # 获取当前登录用户的状态
         cur_user_id = model.User().current_id()
         status = model.User().status(cur_user_id)
@@ -230,9 +242,10 @@ class Account:
                 raise web.notfound()
 
         # 用户未登录
-        return titled_render().failed('操作受限，请先<a href="/login">登录</a>')
+        return titled_render().failed('操作受限，请先<a href="/wlsash/login">登录</a>')
 
     def POST(self, part):
+        if not logged(): return titled_render().failed('操作受限，请先<a href="wlsash/login">登录</a>')
         # 获取当前登录用户的状态
         user = model.User()
         cur_user_id = user.current_id()
@@ -248,9 +261,11 @@ class Account:
 
 class Password:
     def GET(self):
+        return titled_render().failed('功能暂未开放，请先使用校宝账号<a href="wlsash/login">登录</a>')
         return titled_render('密码').password()
 
     def POST(self):
+        return titled_render().failed('功能暂未开放，请先使用校宝账号<a href="wlsash/login">登录</a>')
         i = web.input(email='')
         web.header('Content-Type', 'application/json')
         user = model.User()

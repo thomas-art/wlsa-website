@@ -57,4 +57,6 @@
 
 0.2.16 2024/10/7 12:34 (Felix) Added a couumunity subapp under wlsash.
 
+0.2.17 2024/10/7 18:42 (Felix) Migrated the xiaobao login system into wlsash/community
+
 下个版本的目标: 1.Migrate the login system into wlsash/community; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名
