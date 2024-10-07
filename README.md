@@ -55,4 +55,6 @@
 
 0.2.15 2024/10/6 20:21 Added an arrow in the cover page so that people would know there's stuff below the cover
 
-下个版本的目标: 1.将登陆系统迁移至wlsash; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名
+0.2.16 2024/10/7 12:34 (Felix) Added a couumunity subapp under wlsash.
+
+下个版本的目标: 1.Migrate the login system into wlsash/community; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名

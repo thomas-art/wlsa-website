@@ -2,9 +2,11 @@ import os
 from lib import *
 import web
 import config
+from subapps.wlsaSHsubapps.community import forum
 
 urls = (
     '/favicon.ico', 'Favicon',
+    '/community', forum.community,
     '/login', 'Login',
     '/logout', 'Logout',
     "/archives", "Archives",
@@ -126,12 +128,12 @@ class FilePreview:
     def GET(self):
         # I don't want to create a separate file for only a few lines of code
         return """
-<script>
-window.addEventListener("message", e => {
-    alert(e.data);
-    document.write = e.data;
-})
-</script>
-"""
+            <script>
+            window.addEventListener("message", e => {
+                alert(e.data);
+                document.write = e.data;
+            })
+            </script>
+        """
 
 wlsaSH = web.application(urls, locals())
