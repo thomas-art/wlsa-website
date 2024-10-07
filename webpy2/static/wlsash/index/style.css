@@ -291,8 +291,9 @@ a{
   animation-timing-function: ease-in;
 }
 .bounce-arrow-wrapper {
+  left: calc(50% - 22.5px);
   position: absolute;
-  bottom: 48px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 30px;
+  height: 27px;
+  width: 45px;
 }
