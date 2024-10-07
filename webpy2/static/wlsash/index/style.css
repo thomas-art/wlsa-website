@@ -293,6 +293,6 @@ a{
 .bounce-arrow-wrapper {
   position: absolute;
   bottom: 48px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50% - 13.5px);
+  transition: opacity 0.85s;
 }
