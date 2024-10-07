@@ -53,7 +53,7 @@ $def with (message='', logmessage='login')
     <div class="ani centered slide-in" style="text-align: center;">
       WLSA SCHOOL HOUSE<br>$message
     </div>
-    <span href="#contents" class="bounce-arrow-wrapper">
+    <span href="#contents" class="bounce-arrow-wrapper" style="opacity: 0;">
       <svg class="bounce" width="45" height="27" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 27 25">
         <filter id="shadow_filter">
           <feDropShadow dx="0" dy="0" stdDeviation="1.5"></feDropShadow>
@@ -71,6 +71,9 @@ $def with (message='', logmessage='login')
           'behavior': "smooth"
         });
       }
+      setTimeout(() => {
+        document.querySelector(".bounce-arrow-wrapper").style.opacity = 1;
+      }, 1125);
     </script>
   </div>
   <div class="contents" id="contents">

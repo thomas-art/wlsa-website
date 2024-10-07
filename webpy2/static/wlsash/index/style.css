@@ -296,4 +296,5 @@ a{
   bottom: 30px;
   height: 27px;
   width: 45px;
+  transition: opacity 0.85s;
 }
