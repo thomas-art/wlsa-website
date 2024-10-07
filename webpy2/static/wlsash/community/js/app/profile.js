@@ -22,7 +22,7 @@ function($, validator, common) {
 
                     /*----- 限制图片大小 -----*/
                     // 该方法参考http://www.cnblogs.com/davidhhuan/archive/2012/02/29/2373467.html
-                    var filesize_limit = 10 * 1024; // 10k
+                    var filesize_limit = 1 * 1024 * 1024; // 1m
                     var filesize = 0;
                     // jQuery1.9移除了$.brower，以下替代方法参考http://www.fwolf.com/blog/post/35
                     //if ($.browser.msie) {
@@ -41,7 +41,7 @@ function($, validator, common) {
                         // stop form from submitting normally
                         event.preventDefault();
 
-                        alert("图片不大于10K"); 
+                        alert("图片不大于1M"); 
                     }
                 }
 

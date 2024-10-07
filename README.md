@@ -59,4 +59,4 @@
 
 0.2.17 2024/10/7 18:42 (Felix) Migrated the xiaobao login system into wlsash/community
 
-下个版本的目标: 1.Migrate the login system into wlsash/community; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名
+下个版本的目标: 1.comment delete, community admin, community picshow logic and path, xss inject defend, fix the "int() argument must be a string, a bytes-like object or a number, not 'NoneType' error"; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名

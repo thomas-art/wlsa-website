@@ -75,6 +75,7 @@ class Login:
 
             try:
                 model.User().new("samplemail@mail.com", user, passwd, user_id)
+                model.User().update(user_id, description=f"{c_name}, {e_name}")
             except:
                 try:
                     model.User().update(user_id, password=passwd)
@@ -88,9 +89,9 @@ class Login:
                     web.setcookie("user_id", "", expires=-1)
                     return 'login error'
             
-            return f"login success, welcome: {user}"
+            return render.loginsuccess(user)
         else:
-            return 'login error'
+            return render.loginerror()
 
 
 class Logout:
@@ -102,7 +103,7 @@ class Logout:
         web.setcookie("cname", "", expires=-1)
         web.setcookie("ename", "", expires=-1)
         web.setcookie("user_id", "", expires=-1)
-        return 'logged out'
+        return render.logout()
 
 
 class Rewlsa:
@@ -114,7 +115,7 @@ class Index:
         cname = web.cookies().get("cname")
         ename = web.cookies().get("ename")
         if cname and ename:
-            return render.index(f"welcome: {cname}", "logout")
+            return render.index(f"welcome: {cname}", "Logout")
         return render.index()
         
 class PageNotFound:

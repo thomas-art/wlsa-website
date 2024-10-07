@@ -206,6 +206,14 @@ class Profile:
         # 将头像和简介
         i = web.input(mypic={}, description='')
         if 'mypic' in i:
+
+            i.mypic.file.seek(0, 2)  # 移动到文件末尾
+            file_size = i.mypic.file.tell()  # 获取当前位置，即文件大小
+            i.mypic.file.seek(0)  # 重新将文件指针移动回开头
+    
+            if file_size > 1 * 1024 * 1024:  # 检查是否超过1MB
+                return titled_render().failed('文件过大，点击<a href="">返回</a>')
+            
             filepath = i.mypic.filename.replace('\\','/') # 将Windows风格的斜杠转换为Linux风格
             filename = filepath.split('/')[-1] # 文件名（带后缀）
             ext = filename.split('.')[-1] # 扩展名

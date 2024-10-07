@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录成功</title>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let countdown = 3; // 倒计时初始值
+        const countdownElement = document.getElementById("countdown");
+
+        // 更新倒计时显示
+        function updateCountdown() {
+            if (countdown > 0) {
+                countdownElement.textContent = countdown; // 显示当前倒计时
+                countdown--;
+            } else {
+                window.location.href = "/wlsash/community"; // 跳转
+            }
+        }
+
+        // 每秒更新一次倒计时
+        setInterval(updateCountdown, 1000);});
+    </script>
+</head>
+<body>
+    <h1>已登出</h1>
+    <p><span id="countdown">3</span> 秒后跳转...<a href="/wlsash/">首页</a></a></p>
+</body>
+</html>
