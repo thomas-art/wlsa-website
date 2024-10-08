@@ -91,7 +91,10 @@ class Login:
                     # 以后可能还会尝试更新用户的username，因为username是可以更改的
                     try:
                         model.User().update(user_id, password=passwd)
-                        return render.loginsuccess(f"{user}")
+                        return json.dumps({
+                            "successful": True,
+                            "message": "登录成功！"
+                        })
                     except:
                         # 数据库访问失败，就会跳转到这里
                         web.setcookie("auth", "", expires=-1)
@@ -155,8 +158,10 @@ class Archives:
 class FileAPI:
     def GET(self):
         params = web.input()
-        path = params.get("path")
-        isfile = int(params.get("file"))
+        path = os.path.join(wlsa_path, params.get("path"))
+        # isfile = int(params.get("file"))
+        isfile = not os.path.isdir(path)
+        web.header("Is-File", isfile)
         if not isfile:
             try:
                 return list_directory_json(os.path.join(wlsa_path, path))
