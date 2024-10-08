@@ -1,0 +1,74 @@
+:root {
+    --topbar-height: 65px;
+    --black-bg: rgba(22, 22, 23, .8);
+    --pale-blue:#009ef7;
+    --wlsa-blue: #2e358b;
+    --hyperlink-blue: rgb(0, 140, 255);
+}
+
+.topbar a {
+    cursor: none;
+    color: white;
+
+    transition: .25s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.topbar {
+    cursor: none;
+    user-select: none;
+    background: var(--black-bg);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: var(--topbar-height);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: hidden;
+    backdrop-filter: saturate(180%) blur(20px);
+
+}
+
+.topbar:first-child {
+    cursor: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar .right {
+    cursor: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-right: 25px;
+    gap: 20px;
+}
+
+.topbar .left {
+    cursor: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    color: white;
+}
+
+.topbar .left .favicon {
+    cursor: none;
+    max-height: 100%;
+    width: auto;
+    display: block;
+    margin-right: 15px;
+}
+
+.topbar .left .title {
+    cursor: none;
+    max-height: 100%;
+    width: auto;
+    display: block;
+}
