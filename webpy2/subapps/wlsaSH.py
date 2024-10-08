@@ -83,7 +83,10 @@ class Login:
             try:
                 model.User().new("samplemail@mail.com", user, passwd, user_id)
                 model.User().update(user_id, description=f"{c_name}, {e_name}")
-                return render.loginsuccess(f"hello {user}")
+                return json.dumps({
+                    "successful": True,
+                    "message": "登录成功！"
+                })
             except Exception as e:
                 try:
                     model.User().new("samplemail@mail.com", user, passwd, user_id)
@@ -159,8 +162,10 @@ class Archives:
 class FileAPI:
     def GET(self):
         params = web.input()
-        path = params.get("path")
-        isfile = int(params.get("file"))
+        path = os.path.join(wlsa_path, params.get("path"))
+        # isfile = int(params.get("file"))
+        isfile = not os.path.isdir(path)
+        web.header("Is-File", isfile)
         if not isfile:
             try:
                 return list_directory_json(os.path.join(wlsa_path, path))
