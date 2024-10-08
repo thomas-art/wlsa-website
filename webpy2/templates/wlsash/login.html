@@ -31,7 +31,7 @@ $def with (titleMsg="请输入校宝账号以登录")
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-            background-image: url("./bg.jpg");
+            background-image: url("/static/wlsash/images/keyvision.jpg");
         }
 
         .login-container {
@@ -63,7 +63,7 @@ $def with (titleMsg="请输入校宝账号以登录")
             transition: .25s;
         }
 
-        input[type="text"],
+        input[type="text"]:hover,
         input[type="password"]:hover {
             box-shadow: 0 0 5px var(--hyperlink-blue);
         }
@@ -75,6 +75,7 @@ $def with (titleMsg="请输入校宝账号以登录")
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
+            transition: .25s;
         }
 
         input[type="submit"]:hover {
