@@ -59,6 +59,12 @@
 
 0.2.17 2024/10/7 18:42 (Felix) Migrated the xiaobao login system into wlsash/community
 
+<<<<<<< HEAD
 0.2.18 2024/10/8 14:55 (Felix) fixed the EMAIL same problem
 
 下个版本的目标: 1.comment delete, community admin, community picshow logic and path, xss inject defend, fix the "int() argument must be a string, a bytes-like object or a number, not 'NoneType' error", ban users, fliter blank comments, like blogs; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名
+=======
+0.2.18 2024/10/8 14:46 Added a message bar in the login page and made other minor edits
+
+下个版本的目标: 1.comment delete, community admin, community picshow logic and path, xss inject defend, fix the "int() argument must be a string, a bytes-like object or a number, not 'NoneType' error"; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名
+>>>>>>> e1b26dd7bac5b789021baffe9487e1f2c9f1dc49

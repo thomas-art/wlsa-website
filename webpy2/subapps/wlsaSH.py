@@ -2,6 +2,7 @@ import os
 from lib import *
 import web
 import config
+import json
 from subapps.wlsaSHsubapps.community import forum
 from subapps.wlsaSHsubapps.community import model # 论坛的数据库操作
 
@@ -41,59 +42,87 @@ class Login:
         if logged():
             md5auth = MD5_salt(auth)
             passwd = xor_encrypt_decrypt(key, md5auth)
-            return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
+            # return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
+            return render.login(f"你好，{cname} {ename}")
         else:
             return render.login()
 
     def POST(self):
-        user = web.input().user
-        passwd = web.input().passwd
+        try:
+            user = web.input().user
+            passwd = web.input().passwd
 
-        studentinfo, flag = check_xiaobao_login(user, passwd)
+            studentinfo, flag = check_xiaobao_login(user, passwd)
 
-        if flag and ('data' in studentinfo and studentinfo['data']):
-            c_name = studentinfo['data'].get('cName')  # 中文名
-            e_name = studentinfo['data'].get('eName')  # 英文名
-            user_id = studentinfo['data'].get('studentInfoId')
+            if flag and ('data' in studentinfo and studentinfo['data']):
+                c_name = studentinfo['data'].get('cName')  # 中文名
+                e_name = studentinfo['data'].get('eName')  # 英文名
+                user_id = studentinfo['data'].get('studentInfoId')
 
-            if not (c_name and e_name and user_id):
-                return 'login error'
-            
-            t = current_timestamp()
-            md5user = MD5_salt(user)
-            auth = MD5_salt(md5user + t + c_name + e_name + str(user_id))
-            md5auth = MD5_salt(auth)
-            key = xor_encrypt_decrypt(passwd, md5auth)
+                if not (c_name and e_name and user_id):
+                    # return 'login error'
+                    return json.dumps({
+                        "successful": False,
+                        "message": "请求参数不全"
+                    })
+                
+                t = current_timestamp()
+                md5user = MD5_salt(user)
+                auth = MD5_salt(md5user + t + c_name + e_name + str(user_id))
+                md5auth = MD5_salt(auth)
+                key = xor_encrypt_decrypt(passwd, md5auth)
 
-            web.setcookie("auth", auth, 3600) # 86400s = 24h
-            web.setcookie("key", key, 3600)
-            web.setcookie("user", user, 3600)  # Store username in a cookie
-            web.setcookie("timestamp", t, 3600)
-            web.setcookie("cname", c_name, 3600)
-            web.setcookie("ename", e_name, 3600)
-            web.setcookie("user_id", user_id, 3600)
+                web.setcookie("auth", auth, 3600) # 86400s = 24h
+                web.setcookie("key", key, 3600)
+                web.setcookie("user", user, 3600)  # Store username in a cookie
+                web.setcookie("timestamp", t, 3600)
+                web.setcookie("cname", c_name, 3600)
+                web.setcookie("ename", e_name, 3600)
+                web.setcookie("user_id", user_id, 3600)
 
+<<<<<<< HEAD
             try:
                 model.User().new("samplemail@mail.com", user, passwd, user_id)
                 model.User().update(user_id, description=f"{c_name}, {e_name}")
                 return render.loginsuccess(f"hello {user}")
             except Exception as e:
                 # print("wlsaSH.post" + e)
+=======
+>>>>>>> e1b26dd7bac5b789021baffe9487e1f2c9f1dc49
                 try:
-                    model.User().update(user_id, password=passwd)
+                    model.User().new("samplemail@mail.com", user, passwd, user_id)
+                    model.User().update(user_id, description=f"{c_name}, {e_name}")
                 except:
-                    web.setcookie("auth", "", expires=-1)
-                    web.setcookie("user", "", expires=-1)
-                    web.setcookie("key", "", expires=-1)
-                    web.setcookie("timestamp", "", expires=-1)
-                    web.setcookie("cname", "", expires=-1)
-                    web.setcookie("ename", "", expires=-1)
-                    web.setcookie("user_id", "", expires=-1)
-                    return 'login error'
-            
-            return render.loginsuccess(user)
-        else:
-            return render.loginerror()
+                    try:
+                        model.User().update(user_id, password=passwd)
+                    except:
+                        web.setcookie("auth", "", expires=-1)
+                        web.setcookie("user", "", expires=-1)
+                        web.setcookie("key", "", expires=-1)
+                        web.setcookie("timestamp", "", expires=-1)
+                        web.setcookie("cname", "", expires=-1)
+                        web.setcookie("ename", "", expires=-1)
+                        web.setcookie("user_id", "", expires=-1)
+                        return json.dumps({
+                            "successful": False,
+                            "message": "土壤水"
+                        })
+                
+                return json.dumps({
+                    "successful": True,
+                    "message": "登录成功！"
+                })
+            else:
+                # return render.loginerror()
+                return json.dumps({
+                    "successful": False,
+                    "message": "账号或密码错误"
+                })
+        except Exception as e:
+            return json.dumps({
+                "successful": False,
+                "message": "登录失败，错误信息：" + e
+            })
 
 
 class Logout:
@@ -117,7 +146,7 @@ class Index:
         cname = web.cookies().get("cname")
         ename = web.cookies().get("ename")
         if cname and ename:
-            return render.index(f"welcome: {cname}", "Logout")
+            return render.index(f"welcome: {cname}", "out")
         return render.index()
         
 class PageNotFound:
