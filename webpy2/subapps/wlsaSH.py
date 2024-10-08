@@ -91,7 +91,10 @@ setTimeout(() => window.history.go(-1), 3000);
                 try:
                     model.User().new("samplemail@mail.com", user, passwd, user_id)
                     model.User().update(user_id, description=f"{c_name}, {e_name}")
-                    return render.loginsuccess(f"hello {user}")
+                    return json.dumps({
+                            "successful": True,
+                            "message": "登录成功！"
+                    })
                     # 如果数据库中新建用户成功，就说明是第一次登录
                 except Exception as e:
                     # 新建用户失败，说明不是第一次登录，只需更新用户的密码即可

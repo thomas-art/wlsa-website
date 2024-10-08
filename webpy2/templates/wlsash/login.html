@@ -142,6 +142,7 @@ $def with (titleMsg="请输入校宝账号以登录")
 
             // 使用FormData来提交表单
             const formData = new FormData(form);
+            formData.append('timestamp', timestamp); // 客户端时间戳
 
             let response = await fetch("/wlsash/login", {
                 method: "POST",
