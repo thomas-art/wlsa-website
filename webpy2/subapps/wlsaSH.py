@@ -41,7 +41,7 @@ class Login:
 
         if logged():
             md5auth = MD5_salt(auth)
-            passwd = xor_encrypt_decrypt(key, md5auth)
+            # passwd = xor_encrypt_decrypt(key, md5auth)
             # return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
             return render.login(f"你好，{cname} {ename}")
         else:
