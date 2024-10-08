@@ -76,7 +76,9 @@ class Login:
             try:
                 model.User().new("samplemail@mail.com", user, passwd, user_id)
                 model.User().update(user_id, description=f"{c_name}, {e_name}")
-            except:
+                return render.loginsuccess(f"hello {user}")
+            except Exception as e:
+                # print("wlsaSH.post" + e)
                 try:
                     model.User().update(user_id, password=passwd)
                 except:
