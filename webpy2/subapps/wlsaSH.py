@@ -80,6 +80,12 @@ class Login:
                 web.setcookie("ename", e_name, 3600)
                 web.setcookie("user_id", user_id, 3600)
 
+            try:
+                model.User().new("samplemail@mail.com", user, passwd, user_id)
+                model.User().update(user_id, description=f"{c_name}, {e_name}")
+                return render.loginsuccess(f"hello {user}")
+            except Exception as e:
+                # print("wlsaSH.post" + e)
                 try:
                     model.User().new("samplemail@mail.com", user, passwd, user_id)
                     model.User().update(user_id, description=f"{c_name}, {e_name}")

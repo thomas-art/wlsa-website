@@ -34,7 +34,7 @@ class User:
     
             return True
         except Exception as e:
-            print(e)
+            print("model.user.update" + e)
             return False
     
     # 暂时没有用到这个login方法，目前使用的是校宝的check
@@ -85,7 +85,7 @@ class User:
         try:
             user_id = int(web.cookies().get('user_id'))
         except Exception as e:
-            print(e)
+            print("model.user.currentid" + e)
         finally:
             return user_id
 
@@ -101,7 +101,7 @@ class Post:
             db.update('posts', where='id=$id', title=title, content=content, vars=locals())
             return True
         except Exception as e:
-            print(e)
+            print("model.post.update" + e)
             return False
 
     def view(self, id):
@@ -120,7 +120,7 @@ class Post:
             db.delete('posts', where='id=$id', vars=locals())
             #db.query('DELETE FROM posts WHERE id=%d' % id)
         except Exception as e:
-            print(e)
+            print("model.post.ddel" + e)
             return False
 
     def list(self, page):
@@ -191,7 +191,7 @@ class Comment:
         try:
             return db.insert('comments', content=content, user_id=user_id, parent_id=self.__parent_id, quote_id=quote_id)
         except Exception as e:
-            print(e)
+            print("model.comment.new" + e)
             return 0
 
     def ddel(self):
@@ -199,7 +199,7 @@ class Comment:
             #db.delete('comments', where='parent_id=$self.__parent_id', vars=locals())
             db.query('DELETE FROM comments WHERE parent_id=%d' % self.__parent_id)
         except Exception as e:
-            print(e)
+            print("model.comment.ddel" + e)
 
     def list(self):
         '''获取当前文章（创建Comment实例时指定了post_id）下面的所有评论'''
