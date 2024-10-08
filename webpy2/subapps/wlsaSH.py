@@ -79,22 +79,21 @@ class Login:
                 web.setcookie("cname", c_name, 3600)
                 web.setcookie("ename", e_name, 3600)
                 web.setcookie("user_id", user_id, 3600)
-
-            try:
-                model.User().new("samplemail@mail.com", user, passwd, user_id)
-                model.User().update(user_id, description=f"{c_name}, {e_name}")
-                return json.dumps({
-                    "successful": True,
-                    "message": "登录成功！"
-                })
-            except Exception as e:
+                # 能走到这里就说明账号和密码的验证已经通过了
+                # 登陆成功后，试图将账号添加到数据库
                 try:
                     model.User().new("samplemail@mail.com", user, passwd, user_id)
                     model.User().update(user_id, description=f"{c_name}, {e_name}")
-                except:
+                    return render.loginsuccess(f"hello {user}")
+                    # 如果数据库中新建用户成功，就说明是第一次登录
+                except Exception as e:
+                    # 新建用户失败，说明不是第一次登录，只需更新用户的密码即可
+                    # 以后可能还会尝试更新用户的username，因为username是可以更改的
                     try:
                         model.User().update(user_id, password=passwd)
+                        return render.loginsuccess(f"{user}")
                     except:
+                        # 数据库访问失败，就会跳转到这里
                         web.setcookie("auth", "", expires=-1)
                         web.setcookie("user", "", expires=-1)
                         web.setcookie("key", "", expires=-1)
@@ -104,15 +103,9 @@ class Login:
                         web.setcookie("user_id", "", expires=-1)
                         return json.dumps({
                             "successful": False,
-                            "message": "土壤水"
+                            "message": "服务器内部错误"
                         })
-                
-                return json.dumps({
-                    "successful": True,
-                    "message": "登录成功！"
-                })
             else:
-                # return render.loginerror()
                 return json.dumps({
                     "successful": False,
                     "message": "账号或密码错误"
