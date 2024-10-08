@@ -43,7 +43,14 @@ class Login:
             md5auth = MD5_salt(auth)
             passwd = xor_encrypt_decrypt(key, md5auth)
             # return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
-            return render.login(f"你好，{cname} {ename}")
+            # return render.login(f"你好，{cname} {ename}")
+            return """
+<h1>你已登录。要想切换账号，请先退出登录。<h1>
+<p>3秒后跳转至上一页...<p>
+<script>
+setTimeout(() => window.history.go(-1), 3000);
+</script>
+"""
         else:
             return render.login()
 
