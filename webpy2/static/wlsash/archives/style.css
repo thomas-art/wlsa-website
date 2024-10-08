@@ -23,13 +23,6 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
-a {
-  text-decoration: none;
-  color: var(--hyperlink-paleblue);
-  transition: .25s;
-  cursor: pointer;
-}
-
 ::selection {
   background: rgba(0, 120, 215, 0.5);
 }
@@ -114,14 +107,9 @@ a {
   backface-visibility: hidden;
 }
 
-.topbar a {
-  color: white;
-  white-space: nowrap;
-  transition: .25s;
-  cursor: pointer;
-}
 
 .topbar {
+  cursor: none;
   user-select: none;
   background: var(--black-bg);
   color: white;
@@ -135,16 +123,25 @@ a {
   z-index: 5;
   overflow: hidden;
   backdrop-filter: saturate(180%) blur(20px);
+}
 
+.topbar a {
+  cursor: none;
+  color: white;
+  transition: .25s;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .topbar:first-child {
+  cursor: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .topbar .right {
+  cursor: none;
   height: 40px;
   display: flex;
   align-items: center;
@@ -153,21 +150,24 @@ a {
 }
 
 .topbar .left {
+  cursor: none;
   height: 40px;
   display: flex;
   align-items: center;
   padding-left: 25px;
   color: white;
-  gap: 20px;
 }
 
 .topbar .left .favicon {
+  cursor: none;
   max-height: 100%;
   width: auto;
   display: block;
+  margin-right: 15px;
 }
 
 .topbar .left .title {
+  cursor: none;
   max-height: 100%;
   width: auto;
   display: block;
@@ -211,6 +211,14 @@ a {
 .storage-section h2 {
   border-bottom: 3px solid var(--wlsa-blue);
   padding-bottom: 0.5em;
+}
+
+.storage-section h2>a {
+  text-decoration: none;
+  color: var(--hyperlink-paleblue);
+  transition: .25s;
+  cursor: pointer;
+  line-height: 0px;
 }
 
 .storage-section h2>a:hover {
