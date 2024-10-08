@@ -91,7 +91,10 @@ class Login:
                     # 以后可能还会尝试更新用户的username，因为username是可以更改的
                     try:
                         model.User().update(user_id, password=passwd)
-                        return render.loginsuccess(f"{user}")
+                        return json.dumps({
+                            "successful": True,
+                            "message": "登录成功！"
+                        })
                     except:
                         # 数据库访问失败，就会跳转到这里
                         web.setcookie("auth", "", expires=-1)
