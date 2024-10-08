@@ -130,6 +130,7 @@ body {
   color: white;
   transition: .25s;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .topbar:first-child {
