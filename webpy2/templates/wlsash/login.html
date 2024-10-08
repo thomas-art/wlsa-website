@@ -48,10 +48,6 @@ $def with (titleMsg="请输入校宝账号以登录")
             margin: 10px 0;
         }
 
-        input::placeholder {
-            color: white;
-        }
-
         input[type="text"],
         input[type="password"] {
             outline: none;
@@ -63,9 +59,15 @@ $def with (titleMsg="请输入校宝账号以登录")
             transition: .25s;
         }
 
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: white;
+        }
+
         input[type="text"]:hover,
         input[type="password"]:hover {
             box-shadow: 0 0 5px var(--hyperlink-blue);
+            border-color: var(--hyperlink-blue);
         }
 
         input[type="submit"] {
