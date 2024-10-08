@@ -6,7 +6,7 @@ $def with (titleMsg="请输入校宝账号以登录")
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录页面</title>
+    <title>WLSA SH - Login</title>
     <link rel="stylesheet" href="/static/wlsash/nav.css">
     <style>
         body {
@@ -48,6 +48,10 @@ $def with (titleMsg="请输入校宝账号以登录")
             margin: 10px 0;
         }
 
+        input::placeholder {
+            color: white;
+        }
+
         input[type="text"],
         input[type="password"] {
             outline: none;
@@ -56,6 +60,12 @@ $def with (titleMsg="请输入校宝账号以登录")
             border-radius: 4px;
             width: 100%;
             box-sizing: border-box;
+            transition: .25s;
+        }
+
+        input[type="text"],
+        input[type="password"]:hover {
+            box-shadow: 0 0 5px var(--hyperlink-blue);
         }
 
         input[type="submit"] {
@@ -69,7 +79,6 @@ $def with (titleMsg="请输入校宝账号以登录")
 
         input[type="submit"]:hover {
             background-color: var(--hyperlink-blue);
-            ;
         }
 
         #message {
