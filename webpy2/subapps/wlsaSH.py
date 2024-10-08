@@ -85,7 +85,6 @@ class Login:
                 model.User().update(user_id, description=f"{c_name}, {e_name}")
                 return render.loginsuccess(f"hello {user}")
             except Exception as e:
-                # print("wlsaSH.post" + e)
                 try:
                     model.User().new("samplemail@mail.com", user, passwd, user_id)
                     model.User().update(user_id, description=f"{c_name}, {e_name}")
@@ -152,7 +151,10 @@ class PageNotFound:
     
 class Archives:
     def GET(self):
-        return render.archives()
+        if logged():
+            return render.archives()
+        else: 
+            return render.archives('out')
     
 class FileAPI:
     def GET(self):

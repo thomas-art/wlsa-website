@@ -55,22 +55,46 @@ $def with (titleMsg="请输入校宝账号以登录")
         <form action="/wlsash/login" method="post" id="theForm">
             <input type="text" name="user" placeholder="用户名" required>
             <input type="password" name="passwd" placeholder="密码" required>
+            <input type="hidden" name="hashed_passwd" id="hashed_passwd">
             <input type="submit" value="登录">
         </form>
         <div id="message"></div>
     </div>
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
     <script>
         let form = document.getElementById("theForm");
         let messageDisp = document.getElementById("message");
+        
         form.onsubmit = async (e) => {
             e.preventDefault();
 
+            // 获取用户名和明文密码
+            const user = form.user.value;
+            const passwd = form.passwd.value;
+
+            // 生成时间戳
+            const timestamp = Math.floor(Date.now() / 1000).toString(); // 10位秒时间戳
+
+            // 进行MD5哈希处理
+            const hashedPassword = SparkMD5.hash(passwd).toUpperCase();
+            const combined = hashedPassword + timestamp; // 合并哈希后的密码和时间戳
+            const hashedTwicePassword = SparkMD5.hash(combined).toUpperCase(); // 再次哈希
+
+            // 设置隐藏域的值为加密后的密码
+            document.getElementById("hashed_passwd").value = hashedTwicePassword;
+
+            // 使用FormData来提交表单
+            const formData = new FormData(form);
+
             let response = await fetch("/wlsash/login", {
                 method: "POST",
-                body: new FormData(form)
+                body: formData
             });
+
             let result = await response.json();
             messageDisp.innerHTML = result.message;
+
             form.onfocus = () => {
                 messageDisp.innerHTML = "";
                 form.onfocus = null;
