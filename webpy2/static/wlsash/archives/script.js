@@ -2,77 +2,108 @@ let path = [""];
 
 const fileList = document.getElementById('fileList');
 
-function fetchFiles(hash) {
-    let strPath = hash.slice(1);   // removes leading #
-    if (strPath == "/") strPath = "";
-    path = strPath.split("/");
-    fetch(`api/files?path=${strPath}&file=0`)
-        .then(response => response.json())
-        .then(renderFileList);
-}
-
-function fetchFile(path) {
-    let ext = path.split(".").at(-1);
-    let previewExts = {
-        images: ["jpg", "jpeg", "png", "webp", "gif"],
-        audio: ["mp3", "wav", "flac"],
-        video: ["mp4", "mov", "avi"],
-        document: ["pdf"],
-        text: ["txt", "js", "py", "cpp", "c", "java", "html", "css"]
+function identifyFileType(fileName) {
+    // Written by DingTalk AI
+    var extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+    switch (extension) {
+        case 'jpg':
+        case 'jpeg':
+        case 'png':
+        case 'gif':
+            return 'image';
+        case 'txt':
+            return 'text';
+        case 'mp3':
+        case 'wav':
+        case 'aac':
+            return 'audio';
+        case 'mp4':
+        case 'avi':
+        case 'mov':
+            return 'video';
+        default:
+            return 'other';
     }
-    let fileType = "other";
-    for (let type in previewExts) {
-        if (previewExts[type].includes(ext)) {
-            fileType = type;
-            break;
-        }
-    }
-    fetch(`api/files?path=${path}&file=1`)
-    .then(response => response.blob())
-    .then(result => {
-        if (false /*fileType != "other"*/) {
-            // opens the file in a separate page
-            let newWindow = window.open("archives/preview", "_blank");
-            newWindow.onload = () => newWindow.postMessage([result, fileType], "*");
-        } else {
-            // downloads the file
-            let a = document.createElement("a");
-            a.download = path.split("/").at(-1);
-            a.href = URL.createObjectURL(result);
-            a.click();
-            URL.revokeObjectURL(a.href);
-        }
-    })
 }
 
-function joinPath() {
-    return path.join("/");
-}
-
-// Function to render the folders and files
-function renderFileList(data) {
+function updatePath() {
     let pathWay = ["<a href='#/'>WLSA</a>"];
     let traversedPaths = [];
     for (let item of path) {
         traversedPaths.push(item);
         pathWay.push(` / <a href="#${traversedPaths.join('/')}">${decodeURIComponent(item)}</a>`)
     }
+    document.getElementById("path").innerHTML = pathWay.join('\n');
+}
 
+async function fetchFiles(hash) {
+    let strPath = hash.slice(1);   // removes leading #
+    if (strPath == "/") strPath = "";
+    path = strPath.split("/");
+    updatePath();
+
+    fileList.innerHTML = "";
+
+    let response = await fetch(`api/files?path=${strPath}`)
+    if (response.headers.get("Is-File") == "True") {    // all thanks to Python
+        let fileType = identifyFileType(strPath);
+        let result = await response.blob();
+        renderPreview(result, fileType);
+    } else {
+        let result = await response.json();
+        renderFileList(result);
+    }
+}
+
+function renderPreview(data, type) {
+    let elem;
+    switch (type) {
+        case "text":
+            elem = document.createElement("pre");
+            data.text().then(res => elem.innerHTML = res);
+            fileList.append(elem);
+            break;
+        case "image":
+        case "audio":
+        case "video":
+            elem = new window[type[0].toUpperCase() + type.slice(1)];
+            elem.src = URL.createObjectURL(data);
+            fileList.append(elem);
+            window.addEventListener("hashchange", function f() {
+                URL.revokeObjectURL(elem.src);
+                window.removeEventListener("hashchange", f);
+            })
+            break;
+        default:
+            // download
+            let a = document.createElement("a");
+            a.download = decodeURIComponent(path.at(-1));
+            a.href = URL.createObjectURL(data);
+            a.click();
+            // moves to the previous folder
+            path = path.slice(0, -1);
+            window.location.hash = path.join("/");
+            URL.revokeObjectURL(a.href);
+            break;
+    }
+}
+
+// Function to render the folders and files
+function renderFileList(data) {
     data.sort((a, b) => {
         if (a.type == "folder" && b.type != "folder") return -1;
         else if (b.type == "folder" && a.type != "folder") return 1;
         else return a.name > b.name ? 1 : -1;
     })
 
-    document.getElementById("path").innerHTML = pathWay.join('\n');
-    fileList.innerHTML = "";
+    
     data.forEach(item => {
         const listItem = document.createElement('li');
         listItem.onclick = function () {
             switch (item.type) {
                 case "file":
-                    fetchFile(path.join("/") + "/" + item.name);
-                    break;
+                    /*fetchFile(path.join("/") + "/" + item.name);
+                    break;*/
                 case "folder":
                     if (window.location.hash.slice(1) == "/") window.location.hash = item.name;
                     else window.location.hash = path.join("/") + "/" + item.name;

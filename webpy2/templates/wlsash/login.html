@@ -6,48 +6,78 @@ $def with (titleMsg="请输入校宝账号以登录")
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录页面</title>
+    <title>WLSA SH - Login</title>
     <link rel="stylesheet" href="/static/wlsash/nav.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            margin: 0px;
+            z-index: -1;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            backface-visibility: hidden;
+            overflow: hidden;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-image: url("/static/wlsash/images/keyvision.jpg");
         }
 
         .login-container {
-            background: white;
-            padding: 20px;
+            background-color: var(--black-bg);
+            box-shadow: rgb(0 0 0 / 37%) 0px 3.2px 7.2px 0px, rgb(0 0 0 / 35%) 0px 0.6px 1.8px 0px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: saturate(180%) blur(20px);
+            color: white;
+            padding: 30px;
         }
 
         input {
             padding: 10px;
             margin: 10px 0;
+            color: white;
         }
+
         input[type="text"],
         input[type="password"] {
-            border: 1px solid #ccc;
+            outline: none;
+            border: 3px solid var(--wlsa-blue);
+            background-color: rgb(46, 53, 139, .4);
             border-radius: 4px;
-            width: calc(100% - 20px);
+            width: 100%;
+            box-sizing: border-box;
+            transition: .25s;
+        }
+
+        input[type="text"]:hover,
+        input[type="password"]:hover {
+            box-shadow: 0 0 5px var(--hyperlink-blue);
+            border-color: var(--hyperlink-blue);
         }
 
         input[type="submit"] {
-            background-color: #5cb85c;
+            background-color: var(--wlsa-blue);
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
+            transition: .25s;
         }
 
         input[type="submit"]:hover {
-            background-color: #4cae4c;
+            background-color: var(--hyperlink-blue);
         }
 
         #message {
@@ -56,7 +86,8 @@ $def with (titleMsg="请输入校宝账号以登录")
         }
 
         .topbar {
-            position: fixed; /* breaks with sticky */
+            position: fixed;
+            /* breaks with sticky */
         }
     </style>
 </head>
@@ -85,12 +116,12 @@ $def with (titleMsg="请输入校宝账号以登录")
         </form>
         <div id="message"></div>
     </div>
-    
+
     <script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
     <script>
         let form = document.getElementById("theForm");
         let messageDisp = document.getElementById("message");
-        
+
         form.onsubmit = async (e) => {
             e.preventDefault();
 
