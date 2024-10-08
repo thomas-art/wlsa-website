@@ -112,7 +112,6 @@ a {
   color: white;
   transition: .25s;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .topbar:first-child {
@@ -129,6 +128,7 @@ a {
   align-items: center;
   padding-right: 25px;
   gap: 20px;
+  white-space: nowrap;
 }
 
 .topbar .left {
@@ -153,6 +153,9 @@ a {
   max-height: 100%;
   width: auto;
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 20vw;
   white-space: nowrap;
 }
 
