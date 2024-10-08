@@ -44,17 +44,13 @@ class Login:
             # passwd = xor_encrypt_decrypt(key, md5auth)
             # return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
             # return render.login(f"你好，{cname} {ename}")
-            return """
-<h1>你已登录。要想切换账号，请先退出登录。<h1>
-<p>3秒后跳转至上一页...<p>
-<script>
-setTimeout(() => window.history.go(-1), 3000);
-</script>
-"""
+            return render.alreadylogged(ename)
         else:
             return render.login()
 
     def POST(self):
+        if logged():
+            return """<script>window.history.go(-1);</script>"""
         try:
             user = web.input().user
             passwd = web.input().passwd
