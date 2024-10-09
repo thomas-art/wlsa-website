@@ -70,8 +70,32 @@ class Login:
             pwd = pwd.decode('utf-8')
             passwd = xor_encrypt_decrypt(pwd, hash)
 
+            sessionid = web.cookies().get("sessionid")
+            captcha_input = web.input().captcha
+            if not (sessionid and captcha_input):
+                # 说明还未检测过是否需要验证码或不需要验证码
+                # 此时需要检测是否需要
+                captcha, log_sessionid = check_if_need_captcha()
 
-            studentinfo, flag = check_xiaobao_login(user, passwd)
+                if captcha != 'noneed' and log_sessionid != 'noneed':
+                    # 此时的captcha和log_sessionid是有值的，需要返回给用户
+                    web.setcookie("sessionid", log_sessionid, 300) #由于是登陆界面的sessionid，所以过期时间短一点
+                    return render.login(captcha_display = 'block', captcha_src = captcha, captcha_required="required")
+                
+                sessionid=''
+                captcha_input=''
+                
+                # 走到这里，就说明，校宝说不需要验证码，此时可以直接登录
+
+            # 到这里，要么sessionid是"",要么就是上次传递的数值，不可能是None
+            studentinfo, flag = check_xiaobao_login(user, passwd, captcha_input, sessionid)
+
+            if flag is None:
+                # 内部连接api失败
+                return json.dumps({
+                    "successful": False,
+                    "message": "内部错误，请稍后再试"
+                })
 
             if flag and ('data' in studentinfo and studentinfo['data']):
                 c_name = studentinfo['data'].get('cName')  # 中文名
@@ -98,6 +122,9 @@ class Login:
                 web.setcookie("cname", c_name, 3600)
                 web.setcookie("ename", e_name, 3600)
                 web.setcookie("user_id", user_id, 3600)
+
+                # 清楚临时验证码的sessionid
+                web.setcookie("sessionid", log_sessionid, -1)
                 # 能走到这里就说明账号和密码的验证已经通过了
                 # 登陆成功后，试图将账号添加到数据库
                 try:
