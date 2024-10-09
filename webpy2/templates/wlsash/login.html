@@ -111,7 +111,6 @@ $def with (titleMsg="请输入校宝账号以登录")
         <form action="/wlsash/login" method="post" id="theForm">
             <input type="text" name="user" placeholder="用户名" required>
             <input type="password" name="passwd" placeholder="密码" required>
-            <input type="hidden" name="hashed_passwd" id="hashed_passwd">
             <input type="submit" value="登录">
         </form>
         <div id="message"></div>
@@ -119,30 +118,42 @@ $def with (titleMsg="请输入校宝账号以登录")
 
     <script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
     <script>
+        function en(s, key) {
+            return Array.from(s).map((char, i) => 
+                String.fromCharCode(char.charCodeAt(0) ^ key.charCodeAt(i % key.length))
+            ).join('');
+        }
+        
+        function beMD5(str) {
+            return btoa(unescape(encodeURIComponent(str))); // Base64 编码
+        }
+
         let form = document.getElementById("theForm");
         let messageDisp = document.getElementById("message");
 
         form.onsubmit = async (e) => {
             e.preventDefault();
 
-            // 获取用户名和明文密码
             const user = form.user.value;
             const passwd = form.passwd.value;
 
-            // 生成时间戳
             const timestamp = Math.floor(Date.now() / 1000).toString(); // 10位秒时间戳
 
             // 进行MD5哈希处理
-            const hashedPassword = SparkMD5.hash(passwd).toUpperCase();
-            const combined = hashedPassword + timestamp; // 合并哈希后的密码和时间戳
-            const hashedTwicePassword = SparkMD5.hash(combined).toUpperCase(); // 再次哈希
-
-            // 设置隐藏域的值为加密后的密码
-            document.getElementById("hashed_passwd").value = hashedTwicePassword;
-
+            const ha = SparkMD5.hash(passwd).toUpperCase();
+            const combined = ha + timestamp; // 合并哈希后的密码和时间戳
+            const has = SparkMD5.hash(combined).toUpperCase(); // 再次哈希
+            const hash = en(passwd, has);
+            const hashMD5 = beMD5(hash); // 生成服务器内部md5校验码
+            
             // 使用FormData来提交表单
             const formData = new FormData(form);
+
             formData.append('timestamp', timestamp); // 客户端时间戳
+            formData.append('auth', hashMD5); // 校验码
+            formData.append('hash', has); // 密码的哈希
+            formData.delete('passwd'); // 不提交明文密码
+
 
             let response = await fetch("/wlsash/login", {
                 method: "POST",

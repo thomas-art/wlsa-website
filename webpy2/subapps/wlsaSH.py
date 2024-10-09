@@ -52,8 +52,24 @@ class Login:
         if logged():
             return """<script>window.history.go(-1);</script>"""
         try:
+            data = web.input()
+
+            #先检查表单的元素是否齐了
+            required_fields = ['user', 'timestamp', 'auth', 'hash']
+            for field in required_fields:
+                if field not in data:
+                    return {"message": f"Missing field: {field}", "successful": False}
+                
             user = web.input().user
-            passwd = web.input().passwd
+            timestamp = web.input().timestamp
+            pwd = web.input().auth
+            hash = web.input().hash
+
+
+            pwd = base64.b64decode(pwd)
+            pwd = pwd.decode('utf-8')
+            passwd = xor_encrypt_decrypt(pwd, hash)
+
 
             studentinfo, flag = check_xiaobao_login(user, passwd)
 
