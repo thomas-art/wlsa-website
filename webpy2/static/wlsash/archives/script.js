@@ -65,11 +65,23 @@ function renderPreview(data, type) {
             break;
         case "image":
         case "audio":
-        case "video":
             elem = new window[type[0].toUpperCase() + type.slice(1)];
             elem.src = URL.createObjectURL(data);
             fileList.append(elem);
+            if (type == "audio") elem.controls = true;
             window.addEventListener("hashchange", function f() {
+                elem.remove();
+                URL.revokeObjectURL(elem.src);
+                window.removeEventListener("hashchange", f);
+            })
+            break;
+        case "video":
+            elem = document.createElement("video");
+            elem.src = URL.createObjectURL(data);
+            fileList.append(elem);
+            elem.controls = true;
+            window.addEventListener("hashchange", function f() {
+                elem.remove();
                 URL.revokeObjectURL(elem.src);
                 window.removeEventListener("hashchange", f);
             })

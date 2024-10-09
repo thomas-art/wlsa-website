@@ -283,3 +283,16 @@ body {
     height: calc(100% - 70px);
   }
 }
+#fileList {
+  text-align: center;
+}
+#fileList audio {
+  width: 60%;
+}
+#fileList img, #fileList video{
+  max-width: 100%;
+}
+#fileList pre {
+  text-align: left;
+  text-wrap: wrap;
+}
