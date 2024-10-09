@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('customCursor').style.display = 'none';
                 document.getElementById('catchIcon').style.display = 'none';
             }
-            URL.revokeObjectURL(imageBlobUrl);
             setTimeout(() => {
                 clearInterval(interval);
                 document.getElementById('loadingAnimation').remove();

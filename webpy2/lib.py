@@ -260,7 +260,7 @@ def check_xiaobao_login(username, password):
         timestamp_str = str(timestamp)[:10]
 
         md5_pass=xiaobao_MD5_password(password, timestamp_str)
-        print(md5_pass)
+        # print(md5_pass)
         headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
         }

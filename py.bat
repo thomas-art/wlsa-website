@@ -23,3 +23,5 @@ IF %ERRORLEVEL% NEQ 0 (
         python -B app.py %1
     )
 )
+
+pause
