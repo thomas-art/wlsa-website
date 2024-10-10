@@ -19,8 +19,19 @@ function identifyFileType(fileName) {
         case 'heic':
             return 'image';
         case 'txt':
-        case 'dat':
-        case 'bin':
+        case 'html':
+        case "css":
+        case 'js':
+        case 'cpp':
+        case 'c':
+        case 'h':
+        case 'cs':
+        case 'py':
+        case 'php':
+        case 'java':
+        case 'json':
+        case 'csv':
+        case 'md':
             return 'text';
         case 'mp3':
         case 'wav':
@@ -30,6 +41,7 @@ function identifyFileType(fileName) {
         case 'aiff':
         case 'ape':
         case 'wma':
+        case 'm4a':
             return 'audio';
         case 'mp4':
         case 'avi':

@@ -287,10 +287,12 @@ body {
   text-align: center;
 }
 #fileList audio {
-  width: 60%;
+  width: 100%;
+  border-radius: 8px;
 }
 #fileList img, #fileList video{
   max-width: 100%;
+  border-radius: 8px;
 }
 #fileList pre {
   text-align: left;
