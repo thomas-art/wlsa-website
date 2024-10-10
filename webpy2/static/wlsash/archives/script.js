@@ -9,17 +9,37 @@ function identifyFileType(fileName) {
         case 'jpg':
         case 'jpeg':
         case 'png':
+        case 'png':
         case 'gif':
+        case 'webp':
+        case 'bmp':
+        case 'tif':
+        case 'tiff':
+        case 'svg':
+        case 'heic':
             return 'image';
         case 'txt':
+        case 'dat':
+        case 'bin':
             return 'text';
         case 'mp3':
         case 'wav':
         case 'aac':
+        case 'flac':
+        case 'aif':
+        case 'aiff':
+        case 'ape':
+        case 'wma':
             return 'audio';
         case 'mp4':
         case 'avi':
         case 'mov':
+        case 'wmv':
+        case 'm4v':
+        case 'mkv':
+        case 'flv':
+        case '3gp':
+        case 'ts':
             return 'video';
         default:
             return 'other';
@@ -108,14 +128,14 @@ function renderFileList(data) {
         else return a.name > b.name ? 1 : -1;
     })
 
-    
+
     data.forEach(item => {
         const listItem = document.createElement('li');
         listItem.onclick = function () {
             switch (item.type) {
                 case "file":
-                    /*fetchFile(path.join("/") + "/" + item.name);
-                    break;*/
+                /*fetchFile(path.join("/") + "/" + item.name);
+                break;*/
                 case "folder":
                     if (window.location.hash.slice(1) == "/") window.location.hash = item.name;
                     else window.location.hash = path.join("/") + "/" + item.name;
@@ -127,7 +147,7 @@ function renderFileList(data) {
                     alert("Unknown file type: " + item.type);
                     break;
             }
-            
+
         };
         listItem.classList.add(item.type);
         listItem.innerHTML = `<img src="/static/common/images/icons8-${item.type}.svg"><span>${item.name}</span>`;
