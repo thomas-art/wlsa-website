@@ -1,5 +1,4 @@
-$def with (titleMsg="请输入校宝账号以登录", captcha_display="none", captcha_src="", captcha_required="")
-
+$def with (titleMsg="请输入校宝账号以登录", captcha_display="none", captcha_src="", captcha_required="", sessionid="")
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -117,10 +116,11 @@ $def with (titleMsg="请输入校宝账号以登录", captcha_display="none", ca
         <form action="/wlsash/login" method="post" id="theForm">
             <input type="text" name="user" placeholder="用户名" required>
             <input type="password" name="passwd" placeholder="密码" required>
-
+            
             <input type="text" name="captcha" placeholder="验证码" style="display: $captcha_display;" $captcha_required>
-            <img id="captchaImage" src="$captcha_src" alt="验证码" style="margin-top: 10px; display: $captcha_display;" $captcha_required>
-                
+            <img id="captchaImage" src="$captcha_src" alt="验证码" style="margin-top: 10px; display: $captcha_display;">
+            <input type="hidden" name="sessionid" value="$sessionid">
+            
             <input type="submit" value="登录">
         </form>
         <div id="message"></div>
@@ -165,6 +165,8 @@ $def with (titleMsg="请输入校宝账号以登录", captcha_display="none", ca
 
             const user = form.user.value;
             const passwd = form.passwd.value;
+            const captcha = form.captcha.value;
+            const sessionid = form.sessionid.value;
 
             const timestamp = Math.floor(Date.now() / 1000).toString(); // 10位秒时间戳
 
@@ -189,30 +191,22 @@ $def with (titleMsg="请输入校宝账号以登录", captcha_display="none", ca
                 body: formData
             });
 
-            if (response.headers.get("Content-Type").includes("text/html")) {
-                // 如果返回的是 HTML 页面，直接跳转
-                const newPage = await response.text(); // 获取新的 HTML 内容
-                document.open();
-                document.write(newPage);
-                document.close();
+            let result = await response.json();
+            messageDisp.innerHTML = result.message;
+
+            form.onfocus = () => {
+                messageDisp.innerHTML = "";
+                form.onfocus = null;
+            }
+            if (result.successful) {
+                messageDisp.style.color = "#4cae4c";
+                window.location.href = "/wlsash/community";
             } else {
-                // 否则处理 JSON 数据
-                let result = await response.json();
-                messageDisp.innerHTML = result.message;
-            
-                form.onfocus = () => {
-                    messageDisp.innerHTML = "";
-                    form.onfocus = null;
-                }
-                if (result.successful) {
-                    messageDisp.style.color = "#4cae4c";
-                    window.location.href = "/wlsash/community";
-                } else {
-                    messageDisp.style.color = "red";
-                }
+                messageDisp.style.color = "red";
             }
         }
     </script>
 </body>
 
 </html>
+               

@@ -311,6 +311,7 @@ def check_xiaobao_login(username, password, captcha = '', sessionid = ''):
             "password": md5_pass,
             "timestamp": timestamp
         }
+    
         r1 = requests.post(login_url, json=data, headers=headers)
         # 访问校宝api
         if r1.status_code == 200:
@@ -321,10 +322,13 @@ def check_xiaobao_login(username, password, captcha = '', sessionid = ''):
             # 密码错误会返回:
             # {"data":null,"msgCN":null,"msgEN":null,"state":1010076,"msg":"引发类型为“Myth.ErrorException”的异常。"}
             if rjson.get('data') is True:
-                sessionid = r1.cookies.get('SessionId')
-                if sessionid:
-                    student_info_cookies = {'SessionId': sessionid}
-                    r2 = requests.get(studentinfo_url, headers=headers, cookies=student_info_cookies)
+                sessionid1 = r1.cookies.get('SessionId')
+                if sessionid1:
+                    headers1={
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0",
+                    }
+                    student_info_cookies = {'SessionId': sessionid1}
+                    r2 = requests.get(studentinfo_url, headers=headers1, cookies=student_info_cookies)
                     
                     if r2.status_code == 200:
                         return r2.json(), True
@@ -377,6 +381,8 @@ if __name__ == "__main__":
         while True:
             name = input('username:')
             password = input('password:')
-            content = check_xiaobao_login(name, password)
+            captcha = input('captcha:')
+            sessionid = input('sessionid:')
+            content = check_xiaobao_login(name, password, captcha, sessionid)
             print(content)
     
