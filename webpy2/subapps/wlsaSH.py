@@ -194,9 +194,9 @@ class PageNotFound:
 class Archives:
     def GET(self):
         if logged():
-            return render.archives()
-        else: 
             return render.archives('out')
+        else: 
+            return render.archives('in')
     
 class FileAPI:
     def GET(self):
