@@ -332,3 +332,10 @@ a {
   width: 45px;
   transition: opacity 0.85s;
 }
+
+@media screen and (orientation: portrait) {
+  .bounce-arrow-wrapper {
+    bottom: 120px;
+    transform: scale(1.5);
+  }
+}
