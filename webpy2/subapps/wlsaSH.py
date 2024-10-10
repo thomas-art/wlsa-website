@@ -186,18 +186,21 @@ class Index:
         if cname and ename:
             return render.index(f"welcome: {cname}", "out")
         return render.index()
-        
+
+
 class PageNotFound:
     def GET(self, n):
         raise web.NotFound()
-    
+
+
 class Archives:
     def GET(self):
         if logged():
             return render.archives('out')
         else: 
             return render.archives('in')
-    
+
+
 class FileAPI:
     def GET(self):
         params = web.input()
@@ -215,7 +218,8 @@ class FileAPI:
             data = f.read()
             f.close()
             return data
-        
+
+
 class FilePreview:
     def GET(self):
         # I don't want to create a separate file for only a few lines of code
@@ -227,5 +231,6 @@ class FilePreview:
             })
             </script>
         """
+
 
 wlsaSH = web.application(urls, locals())
