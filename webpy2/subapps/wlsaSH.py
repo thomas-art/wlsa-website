@@ -46,7 +46,13 @@ class Login:
             # return render.login(f"你好，{cname} {ename}")
             return render.alreadylogged(ename)
         else:
-            return render.login()
+            captcha, log_sessionid = check_if_need_captcha()
+
+            if captcha != 'noneed' and log_sessionid != 'noneed':
+                # 此时的captcha和log_sessionid是有值的，需要返回给用户
+                return render.login(captcha_display = 'block', captcha_src = captcha, captcha_required="required", sessionid=log_sessionid)
+            
+            return render.login(sessionid=log_sessionid)
 
     def POST(self):
         if logged():
@@ -70,8 +76,22 @@ class Login:
             pwd = pwd.decode('utf-8')
             passwd = xor_encrypt_decrypt(pwd, hash)
 
+            sessionid = web.input().sessionid
+            captcha_input = web.input().captcha
+            if sessionid == 'noneed':
+                sessionid=''
+                captcha_input=''
+                # 走到这里，就说明，校宝说不需要验证码，此时可以直接登录
 
-            studentinfo, flag = check_xiaobao_login(user, passwd)
+            # 到这里，要么sessionid是"",要么就是上次传递的数值，不可能是None
+            studentinfo, flag = check_xiaobao_login(user, passwd, captcha_input, sessionid)
+
+            if flag is None:
+                # 内部连接api失败
+                return json.dumps({
+                    "successful": False,
+                    "message": "内部错误，请稍后再试"
+                })
 
             if flag and ('data' in studentinfo and studentinfo['data']):
                 c_name = studentinfo['data'].get('cName')  # 中文名
@@ -98,6 +118,7 @@ class Login:
                 web.setcookie("cname", c_name, 3600)
                 web.setcookie("ename", e_name, 3600)
                 web.setcookie("user_id", user_id, 3600)
+
                 # 能走到这里就说明账号和密码的验证已经通过了
                 # 登陆成功后，试图将账号添加到数据库
                 try:

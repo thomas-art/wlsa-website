@@ -1,5 +1,4 @@
-$def with (titleMsg="请输入校宝账号以登录")
-
+$def with (titleMsg="请输入校宝账号以登录", captcha_display="none", captcha_src="", captcha_required="", sessionid="")
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -117,6 +116,11 @@ $def with (titleMsg="请输入校宝账号以登录")
         <form action="/wlsash/login" method="post" id="theForm">
             <input type="text" name="user" placeholder="用户名" required>
             <input type="password" name="passwd" placeholder="密码" required>
+            
+            <input type="text" name="captcha" placeholder="验证码" style="display: $captcha_display;" $captcha_required>
+            <img id="captchaImage" src="$captcha_src" alt="验证码" style="margin-top: 10px; display: $captcha_display;">
+            <input type="hidden" name="sessionid" value="$sessionid">
+            
             <input type="submit" value="登录">
         </form>
         <div id="message"></div>
@@ -124,25 +128,25 @@ $def with (titleMsg="请输入校宝账号以登录")
 </div>
     <script src="/static/common/js/spark-md5.min.js"></script>
     <script>
-        setInterval(function() {
-            check()
-        }, 100);
-        var check = function() {
-            function doCheck(a) {
-                if (("" + a / a)["length"] !== 1 || a % 20 === 0) {
-                    (function() {}
-                    ["constructor"]("debugger")())
-                } else {
-                    (function() {}
-                    ["constructor"]("debugger")())
-                }
-                doCheck(++a)
-            }
-            try {
-                doCheck(0)
-            } catch (err) {}
-        };
-        check();
+        // setInterval(function() {
+        //     check()
+        // }, 100);
+        // var check = function() {
+        //     function doCheck(a) {
+        //         if (("" + a / a)["length"] !== 1 || a % 20 === 0) {
+        //             (function() {}
+        //             ["constructor"]("debugger")())
+        //         } else {
+        //             (function() {}
+        //             ["constructor"]("debugger")())
+        //         }
+        //         doCheck(++a)
+        //     }
+        //     try {
+        //         doCheck(0)
+        //     } catch (err) {}
+        // };
+        // check();
         function en(s, key) {
             return Array.from(s).map((char, i) => 
                 String.fromCharCode(char.charCodeAt(0) ^ key.charCodeAt(i % key.length))
@@ -161,6 +165,8 @@ $def with (titleMsg="请输入校宝账号以登录")
 
             const user = form.user.value;
             const passwd = form.passwd.value;
+            const captcha = form.captcha.value;
+            const sessionid = form.sessionid.value;
 
             const timestamp = Math.floor(Date.now() / 1000).toString(); // 10位秒时间戳
 
@@ -203,3 +209,4 @@ $def with (titleMsg="请输入校宝账号以登录")
 </body>
 
 </html>
+               
