@@ -12,6 +12,7 @@ urls = (
     '/login', 'Login',
     '/logout', 'Logout',
     "/archives", "Archives",
+    "/dashboard", "Dashboard",
     "/archives/preview", "FilePreview",
     "/api/files","FileAPI",
     "/", "Index",
