@@ -10,7 +10,15 @@ nav.innerHTML = `<a href="./" class="left">
       <a href="./archives" target="_blank" class="pc-only">Archives</a>
       <a href="./pt-booking" target="_blank" class="pc-only">PT Booking</a>
       <a href="./community" target="_blank" class="pc-only">Community</a>
-      <span id="toggle-mobile-nav" class="mobile-only">三</span>
+      <span id="toggle-mobile-nav" class="mobile-only">
+        <svg width="16" height="12">
+          <g stroke="black">
+            <line x1="0" y1="0" x2="16" y2="0" stroke-width="3"></line>
+            <line x1="0" y1="6" x2="16" y2="6" stroke-width="1.5"></line>
+            <line x1="0" y1="12" x2="16" y2="12" stroke-width="3"></line>
+          </g>
+        </svg>
+      </span>
     </div>`
 let mobileNav = document.createElement("div");
 mobileNav.className = "mobile-only mobile-nav";
