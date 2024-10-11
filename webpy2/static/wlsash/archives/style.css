@@ -174,7 +174,7 @@ body {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 20vw;
+  max-width: 50vw;
   white-space: nowrap;
 }
 
@@ -194,7 +194,7 @@ body {
 }
 
 .main {
-  padding: 35px 35px 0px 35px;
+  padding: 35px;
   width: 1300px;
   height: 650px;
   top: calc(50% - 325px);
@@ -206,18 +206,17 @@ body {
   backdrop-filter: saturate(180%) blur(20px);
   color: white;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.storage-section {
-  margin-bottom: 2em;
-}
-
-.storage-section h2 {
+.main h2 {
   border-bottom: 3px solid var(--wlsa-blue);
   padding-bottom: 0.5em;
+  box-sizing: border-box;
 }
 
-.storage-section h2>a {
+.main h2>a {
   text-decoration: none;
   color: var(--hyperlink-paleblue);
   transition: .25s;
@@ -225,18 +224,22 @@ body {
   line-height: 0px;
 }
 
-.storage-section h2>a:hover {
+.main h2>a:hover {
   text-decoration: underline;
   color: var(--hyperlink-blue);
 }
 
-.storage-section ul {
+.main ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-rows: min-content;
 }
 
-.storage-section li {
-  margin: 8px 0;
+.main li {
+  margin-bottom: 8px;
   padding: 6px 12px;
   border-radius: 4px;
   display: flex;
@@ -248,24 +251,26 @@ body {
   cursor: pointer;
   border: 3px solid var(--wlsa-blue);
   background-color: rgb(46, 53, 139, .4);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.storage-section li>img {
+.main li>img {
   height: 32px;
   width: 32px;
 }
 
-.storage-section li:hover {
+.main li:hover {
   transform: scale(1.01);
   background-color: var(--wlsa-blue);
 }
 
-.storage-section li:active {
+.main li:active {
   background-color: var(--hyperlink-paleblue);
-  border: 3px solid var(--hyperlink-paleblue);
+  border-color: var(--hyperlink-paleblue);
 }
 
-.storage-section li span {
+.main li span {
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -287,14 +292,21 @@ body {
   text-align: center;
 }
 #fileList audio {
-  width: 100%;
   border-radius: 8px;
+  justify-self: center;
+  align-self: center;
 }
 #fileList img, #fileList video{
   max-width: 100%;
   border-radius: 8px;
+  align-self: center;
+  justify-self: center;
 }
 #fileList pre {
   text-align: left;
   text-wrap: wrap;
+}
+.mobile-only>icon {
+  font-size: 30px;
+  font-weight: lighter;
 }

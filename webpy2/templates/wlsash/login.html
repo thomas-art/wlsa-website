@@ -133,7 +133,7 @@ $def with (titleMsg="请输入校宝账号以登录", captcha_display="none", ca
 </div>
     <script src="/static/common/js/spark-md5.min.js"></script>
     <script>
-        setInterval(function() {
+        /*setInterval(function() {
             check()
         }, 10);
         var check = function() {
@@ -151,7 +151,7 @@ $def with (titleMsg="请输入校宝账号以登录", captcha_display="none", ca
                 doCheck(0)
             } catch (err) {}
         };
-        check();
+        check();*/
         function en(s, key) {
             return Array.from(s).map((char, i) => 
                 String.fromCharCode(char.charCodeAt(0) ^ key.charCodeAt(i % key.length))
