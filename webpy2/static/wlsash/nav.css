@@ -6,7 +6,18 @@
     --hyperlink-blue: rgb(0, 140, 255);
 }
 
-.topbar a {
+@media screen and (orientation: landscape) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+@media screen and (orientation: portrait) {
+    .pc-only {
+        display: none !important;
+    }
+}
+
+.topbar a, .mobile-nav a{
     cursor: none;
     color: white;
 
@@ -40,7 +51,7 @@
     align-items: center;
 }
 
-.topbar .right {
+.topbar .right, mobile-nav a {
     cursor: none;
     height: 40px;
     display: flex;
@@ -71,4 +82,23 @@
     max-height: 100%;
     width: auto;
     display: block;
+}
+
+.mobile-nav {
+    position: absolute;
+    background-color: var(--black-bg);
+    backdrop-filter: blur(5px);
+    top: var(--topbar-height);
+    left: 0;
+    width: 100%;
+    z-index: 9998;
+    transition: height 0.5s;
+    overflow: hidden;
+}
+
+.mobile-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
 }
