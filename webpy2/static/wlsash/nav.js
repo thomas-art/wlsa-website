@@ -12,7 +12,7 @@ nav.innerHTML = `<a href="./" class="left">
       <a href="./community" target="_blank" class="pc-only">Community</a>
       <span id="toggle-mobile-nav" class="mobile-only">
         <svg width="16" height="12">
-          <g stroke="black">
+          <g stroke="white">
             <line x1="0" y1="0" x2="16" y2="0" stroke-width="3"></line>
             <line x1="0" y1="6" x2="16" y2="6" stroke-width="1.5"></line>
             <line x1="0" y1="12" x2="16" y2="12" stroke-width="3"></line>
@@ -34,6 +34,6 @@ document.body.prepend(nav);         // normal nav first, then mobile nav
 
 let navToggler = document.getElementById("toggle-mobile-nav");
 navToggler.onclick = () => {
-    if (mobileNav.style.height == "0%") mobileNav.style.height = "100%";
+    if (mobileNav.style.height == "0%") mobileNav.style.height = "";
     else mobileNav.style.height = "0%";
 }
