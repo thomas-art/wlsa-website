@@ -48,6 +48,7 @@ class Login:
         else:
             captcha, log_sessionid = check_if_need_captcha()
 
+            # 这里要加一下captcha==None的处理方法
             if captcha != 'noneed' and log_sessionid != 'noneed':
                 # 此时的captcha和log_sessionid是有值的，需要返回给用户
                 return render.login(captcha_display = 'block', captcha_src = captcha, captcha_required="required", sessionid=log_sessionid)
