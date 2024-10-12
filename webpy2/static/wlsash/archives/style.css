@@ -291,12 +291,13 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(100% - 97px);
-  justify-content: center;
   align-items: center;
 }
 
 .main ul>audio {
   border-radius: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .main ul>video,
@@ -304,6 +305,8 @@ body {
   max-height: 100%;
   max-width: 100%;
   border-radius: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .main ul>pre {
