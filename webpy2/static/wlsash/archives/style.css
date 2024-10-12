@@ -227,7 +227,11 @@ body {
 .main h2 {
   border-bottom: 3px solid var(--wlsa-blue);
   padding-bottom: 0.5em;
+  white-space: nowrap;
   box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 35px;
 }
 
 .main h2>a {
@@ -241,15 +245,6 @@ body {
 .main h2>a:hover {
   text-decoration: underline;
   color: var(--hyperlink-blue);
-}
-
-.main ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .main li {
@@ -290,7 +285,14 @@ body {
 }
 
 .main ul {
-  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 97px);
+  align-items: center;
+  width:100%;
 }
 
 .main ul>audio {
@@ -301,13 +303,22 @@ body {
 
 .main ul>video,
 .main ul>img {
-  border-radius: 8px;
   margin-top: auto;
   margin-bottom: auto;
   object-fit: contain;
+  height: inherit;
+  width: inherit;
 }
 
 .main ul>pre {
-  text-align: left;
-  text-wrap: wrap;
+  border-radius: 8px;
+  text-align: start;
+  background: var(--black-bg);
+  padding: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: inherit;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }

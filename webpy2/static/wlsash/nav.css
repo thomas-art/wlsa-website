@@ -101,3 +101,11 @@
     justify-content: center;
     height: 40px;
 }
+
+.mobile-nav a:hover{
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav a:active {
+    background:rgba(255, 255, 255, 0.2);
+  }
