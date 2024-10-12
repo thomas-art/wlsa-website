@@ -214,24 +214,9 @@ body {
   border-bottom: 3px solid var(--wlsa-blue);
   padding-bottom: 0.5em;
   box-sizing: border-box;
-  overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
-  position: relative;
 }
-.main h2>.pathway {
-  position: relative;
-    display: inline-block;
-    direction: rtl;
-}
-.main h2>.pathway:before {
-  content: "";
-  position: absolute;
-  right: 100%;
-  width: 1000px;
-  height: 1px;
-  background: white;
-}
+
 .main h2>a {
   text-decoration: none;
   color: var(--hyperlink-paleblue);
@@ -249,9 +234,9 @@ body {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  display: grid;
-  grid-auto-rows: min-content;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .main li {
@@ -263,11 +248,11 @@ body {
   align-items: center;
   transition: 0.25s;
   height: 50px;
+  width: 100%;
   box-sizing: border-box;
   cursor: pointer;
   border: 3px solid var(--wlsa-blue);
   background-color: rgb(46, 53, 139, .4);
-  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -304,25 +289,26 @@ body {
     height: calc(100% - 70px);
   }
 }
-#fileList {
+
+.main ul {
   text-align: center;
 }
-#fileList audio {
+
+.main ul>audio {
   border-radius: 8px;
-  justify-self: center;
-  align-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-#fileList img, #fileList video{
-  max-width: 100%;
+
+.main ul>video,
+.main ul>img {
   border-radius: 8px;
-  align-self: center;
-  justify-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  object-fit: contain;
 }
-#fileList pre {
+
+.main ul>pre {
   text-align: left;
   text-wrap: wrap;
-}
-.mobile-only>icon {
-  font-size: 30px;
-  font-weight: lighter;
 }
