@@ -318,6 +318,6 @@ body {
   margin-bottom: auto;
   width: 100%;
   overflow-x: hidden;
-  text-overflow: ellipsis;
   box-sizing: border-box;
+  white-space: pre-wrap;
 }
