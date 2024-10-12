@@ -194,6 +194,9 @@ class PageNotFound:
     def GET(self, n):
         raise web.NotFound()
 
+class Dashboard:
+    def GET(self):
+        return render.dashboard()
 
 class Archives:
     def GET(self):

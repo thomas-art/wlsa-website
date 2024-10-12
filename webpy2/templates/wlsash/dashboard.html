@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>考试管理器</title>
+    <link href="general.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <style>
+        .important {
+            color: red;
+        }
+    </style>
+    <script src="format.js"></script>
+    <script src="script.js" defer=""></script>
+</head>
+
+<body>
+    <div class="heading">
+        <h1 id="greetings-title">欢迎，阿斯蒂芬！</h1>
+        <br>
+        <div id="greetings-rand">[Line 4]</div>
+    </div>
+    <div class="main">
+        <div class="bar">
+            <div>考试：</div>
+            <!-- 我突然忘了upcoming怎么说 -->
+            <img src="plus.svg" id="toggle-add-btn" alt="添加考试">
+            <img src="sort-icon.svg" id="toggle-float-btn" alt="排序">
+            <div class="float sort-float" id="sort-menu">
+                <div data-val="start">开始时间</div>
+                <div data-val="end">结束时间</div>
+                <div data-val="name">名称（Unicode编码）</div>
+            </div>
+        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="2">IAEMPCBLABHBFBSHSSS</td>
+                    <td>2024/8/8 20:00:00</td>
+                    <td>2024/8/8 20:30:00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">21年级无机化学总测评</td>
+                    <td>2024/8/31 20:11:00</td>
+                    <td>2024/8/31 20:13:00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Inorganic Chemistry for Grade 21</td>
+                    <td>2024/8/31 20:11:00</td>
+                    <td>2024/8/31 20:13:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mask"></div>
+    <div id="popup" class="float popup">
+        <div id="close">
+            <img src="cross.svg">
+        </div>
+        <h1>添加考试</h1>
+        <div>
+            考试名称: <span class="important">*</span>
+            <input id="test-name" type="text">
+        </div>
+        <div>
+            考试开始时间: <span class="important">*</span>
+            <input id="test-start" type="datetime-local">
+        </div>
+        <div>
+            考试结束时间: <span class="important">*</span>
+            <input id="test-end" type="datetime-local">
+        </div>
+        <div>
+            其他内容：
+            <textarea rows="3" id="test-desc"></textarea>
+        </div>
+        <button id="add-btn" class="large" style="display: flex; align-items: center;">
+            <img src="./tick.svg" style="margin-right: 4px;">
+            添加
+        </button>
+    </div>
+
+
+    <script src="greetings.js"></script>
+
+
+</body>
+
+</html>
