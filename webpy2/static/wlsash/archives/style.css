@@ -205,9 +205,23 @@ body {
   border-radius: 8px;
   backdrop-filter: saturate(180%) blur(20px);
   color: white;
-  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 1350px) {
+  .main {
+    left: 25px !important;
+    width: calc(100% - 50px) !important;
+  }
+}
+
+@media screen and (max-height: 786px) {
+  .main {
+    top: 35px;
+    height: calc(100% - 70px);
+  }
 }
 
 .main h2 {
@@ -274,20 +288,6 @@ body {
 .main li span {
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-@media screen and (max-width: 1350px) {
-  .main {
-    left: 25px !important;
-    width: calc(100% - 50px) !important;
-  }
-}
-
-@media screen and (max-height: 786px) {
-  .main {
-    top: 35px;
-    height: calc(100% - 70px);
-  }
 }
 
 .main ul {
