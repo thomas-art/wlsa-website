@@ -18,7 +18,7 @@
 }
 
 .topbar a, .mobile-nav a{
-    cursor: none;
+    /*cursor: none;*/
     color: white;
 
     transition: .25s;
@@ -27,7 +27,7 @@
 }
 
 .topbar {
-    cursor: none;
+    /*cursor: none;*/
     user-select: none;
     background: var(--black-bg);
     color: white;
@@ -45,14 +45,14 @@
 }
 
 .topbar:first-child {
-    cursor: none;
+    /*cursor: none;*/
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .topbar .right, mobile-nav a {
-    cursor: none;
+    /*cursor: none;*/
     height: 40px;
     display: flex;
     align-items: center;
@@ -61,7 +61,7 @@
 }
 
 .topbar .left {
-    cursor: none;
+    /*cursor: none;*/
     height: 40px;
     display: flex;
     align-items: center;
@@ -70,7 +70,7 @@
 }
 
 .topbar .left .favicon {
-    cursor: none;
+    /*cursor: none;*/
     max-height: 100%;
     width: auto;
     display: block;
@@ -78,7 +78,7 @@
 }
 
 .topbar .left .title {
-    cursor: none;
+    /*cursor: none;*/
     max-height: 100%;
     width: auto;
     display: block;
