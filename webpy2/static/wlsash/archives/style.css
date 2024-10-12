@@ -291,23 +291,19 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(100% - 97px);
+  justify-content: center;
   align-items: center;
-  width:100%;
 }
 
 .main ul>audio {
   border-radius: 8px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .main ul>video,
 .main ul>img {
-  margin-top: auto;
-  margin-bottom: auto;
-  object-fit: contain;
-  height: inherit;
-  width: inherit;
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 8px;
 }
 
 .main ul>pre {
@@ -317,7 +313,7 @@ body {
   padding: 20px;
   margin-top: auto;
   margin-bottom: auto;
-  width: inherit;
+  width: 100%;
   overflow-x: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
