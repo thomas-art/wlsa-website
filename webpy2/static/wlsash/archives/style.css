@@ -214,8 +214,24 @@ body {
   border-bottom: 3px solid var(--wlsa-blue);
   padding-bottom: 0.5em;
   box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
 }
-
+.main h2>.pathway {
+  position: relative;
+    display: inline-block;
+    direction: rtl;
+}
+.main h2>.pathway:before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  width: 1000px;
+  height: 1px;
+  background: white;
+}
 .main h2>a {
   text-decoration: none;
   color: var(--hyperlink-paleblue);

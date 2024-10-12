@@ -34,6 +34,6 @@ document.body.prepend(nav);         // normal nav first, then mobile nav
 
 let navToggler = document.getElementById("toggle-mobile-nav");
 navToggler.onclick = () => {
-    if (mobileNav.style.height == "0%") mobileNav.style.height = "";
+    if (mobileNav.style.height == "0%") mobileNav.style.height = "200px";
     else mobileNav.style.height = "0%";
 }
