@@ -18,7 +18,7 @@
 }
 
 .topbar a, .mobile-nav a{
-    cursor: none;
+    /*cursor: none;*/
     color: white;
 
     transition: .25s;
@@ -27,7 +27,7 @@
 }
 
 .topbar {
-    cursor: none;
+    /*cursor: none;*/
     user-select: none;
     background: var(--black-bg);
     color: white;
@@ -45,14 +45,14 @@
 }
 
 .topbar:first-child {
-    cursor: none;
+    /*cursor: none;*/
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .topbar .right, mobile-nav a {
-    cursor: none;
+    /*cursor: none;*/
     height: 40px;
     display: flex;
     align-items: center;
@@ -61,7 +61,7 @@
 }
 
 .topbar .left {
-    cursor: none;
+    /*cursor: none;*/
     height: 40px;
     display: flex;
     align-items: center;
@@ -70,7 +70,7 @@
 }
 
 .topbar .left .favicon {
-    cursor: none;
+    /*cursor: none;*/
     max-height: 100%;
     width: auto;
     display: block;
@@ -78,7 +78,7 @@
 }
 
 .topbar .left .title {
-    cursor: none;
+    /*cursor: none;*/
     max-height: 100%;
     width: auto;
     display: block;
@@ -86,8 +86,7 @@
 
 .mobile-nav {
     position: absolute;
-    background-color: var(--black-bg);
-    backdrop-filter: blur(5px);
+    background-color: rgb(22, 22, 23);
     top: var(--topbar-height);
     left: 0;
     width: 100%;
@@ -102,3 +101,11 @@
     justify-content: center;
     height: 40px;
 }
+
+.mobile-nav a:hover{
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav a:active {
+    background:rgba(255, 255, 255, 0.2);
+  }

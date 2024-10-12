@@ -109,7 +109,7 @@ body {
 
 
 .topbar {
-  cursor: none;
+  /*cursor: none;*/
   user-select: none;
   background: var(--black-bg);
   color: white;
@@ -126,7 +126,7 @@ body {
 }
 
 .topbar a {
-  cursor: none;
+  /*cursor: none;*/
   color: white;
   transition: .25s;
   cursor: pointer;
@@ -134,14 +134,14 @@ body {
 }
 
 .topbar:first-child {
-  cursor: none;
+  /*cursor: none;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .topbar .right {
-  cursor: none;
+  /*cursor: none;*/
   height: 40px;
   display: flex;
   align-items: center;
@@ -151,7 +151,7 @@ body {
 }
 
 .topbar .left {
-  cursor: none;
+  /*cursor: none;*/
   height: 40px;
   display: flex;
   align-items: center;
@@ -160,7 +160,7 @@ body {
 }
 
 .topbar .left .favicon {
-  cursor: none;
+  /*cursor: none;*/
   max-height: 100%;
   width: auto;
   display: block;
@@ -168,13 +168,13 @@ body {
 }
 
 .topbar .left .title {
-  cursor: none;
+  /*cursor: none;*/
   max-height: 100%;
   width: auto;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 20vw;
+  max-width: 50vw;
   white-space: nowrap;
 }
 
@@ -194,7 +194,7 @@ body {
 }
 
 .main {
-  padding: 35px 35px 0px 35px;
+  padding: 35px;
   width: 1300px;
   height: 650px;
   top: calc(50% - 325px);
@@ -205,69 +205,9 @@ body {
   border-radius: 8px;
   backdrop-filter: saturate(180%) blur(20px);
   color: white;
-  overflow-y: auto;
-}
-
-.storage-section {
-  margin-bottom: 2em;
-}
-
-.storage-section h2 {
-  border-bottom: 3px solid var(--wlsa-blue);
-  padding-bottom: 0.5em;
-}
-
-.storage-section h2>a {
-  text-decoration: none;
-  color: var(--hyperlink-paleblue);
-  transition: .25s;
-  cursor: pointer;
-  line-height: 0px;
-}
-
-.storage-section h2>a:hover {
-  text-decoration: underline;
-  color: var(--hyperlink-blue);
-}
-
-.storage-section ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.storage-section li {
-  margin: 8px 0;
-  padding: 6px 12px;
-  border-radius: 4px;
+  overflow-x: hidden;
   display: flex;
-  gap: 12px;
-  align-items: center;
-  transition: 0.25s;
-  height: 50px;
-  box-sizing: border-box;
-  cursor: pointer;
-  border: 3px solid var(--wlsa-blue);
-  background-color: rgb(46, 53, 139, .4);
-}
-
-.storage-section li>img {
-  height: 32px;
-  width: 32px;
-}
-
-.storage-section li:hover {
-  transform: scale(1.01);
-  background-color: var(--wlsa-blue);
-}
-
-.storage-section li:active {
-  background-color: var(--hyperlink-paleblue);
-  border: 3px solid var(--hyperlink-paleblue);
-}
-
-.storage-section li span {
-  text-overflow: ellipsis;
-  overflow: hidden;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1350px) {
@@ -283,18 +223,101 @@ body {
     height: calc(100% - 70px);
   }
 }
-#fileList {
-  text-align: center;
+
+.main h2 {
+  border-bottom: 3px solid var(--wlsa-blue);
+  padding-bottom: 0.5em;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 35px;
 }
-#fileList audio {
+
+.main h2>a {
+  text-decoration: none;
+  color: var(--hyperlink-paleblue);
+  transition: .25s;
+  cursor: pointer;
+  line-height: 0px;
+}
+
+.main h2>a:hover {
+  text-decoration: underline;
+  color: var(--hyperlink-blue);
+}
+
+.main li {
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: 0.25s;
+  height: 50px;
   width: 100%;
-  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 3px solid var(--wlsa-blue);
+  background-color: rgb(46, 53, 139, .4);
+  white-space: nowrap;
 }
-#fileList img, #fileList video{
+
+.main li>img {
+  height: 32px;
+  width: 32px;
+}
+
+.main li:hover {
+  transform: scale(1.01);
+  background-color: var(--wlsa-blue);
+}
+
+.main li:active {
+  background-color: var(--hyperlink-paleblue);
+  border-color: var(--hyperlink-paleblue);
+}
+
+.main li span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.main ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 97px);
+  align-items: center;
+}
+
+.main ul>audio {
+  border-radius: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.main ul>video,
+.main ul>img {
+  max-height: 100%;
   max-width: 100%;
   border-radius: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-#fileList pre {
-  text-align: left;
-  text-wrap: wrap;
+
+.main ul>pre {
+  border-radius: 8px;
+  text-align: start;
+  background: var(--black-bg);
+  padding: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  white-space: pre-wrap;
 }
