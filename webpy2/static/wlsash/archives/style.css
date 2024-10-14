@@ -72,7 +72,6 @@ body {
 }
 
 :root {
-  --topbar-height: 65px;
   --pale-blue: #009ef7;
   --wlsa-blue: #2e358b;
   --hyperlink-paleblue: rgb(0, 120, 215);
