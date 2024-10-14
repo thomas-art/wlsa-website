@@ -1,3 +1,4 @@
+$def with(EnglishName="User")
 <!DOCTYPE html>
 <html>
 
@@ -5,8 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>考试管理器</title>
-    <link href="general.css" rel="stylesheet" type="text/css">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/wlsash/nav.css">
+    <link href="/static/wlsash/dashboard/general.css" rel="stylesheet" type="text/css">
+    <link href="/static/wlsash/dashboard/style.css" rel="stylesheet" type="text/css">
     <style>
         .important {
             color: red;
@@ -17,8 +19,10 @@
 </head>
 
 <body>
+    <script>window.logmessage = "out";</script>
+    <script src="/static/wlsash/nav.js"></script>
     <div class="heading">
-        <h1 id="greetings-title">欢迎，阿斯蒂芬！</h1>
+        <h1 id="greetings-title">Welcome, $EnglishName!</h1>
         <br>
         <div id="greetings-rand">[Line 4]</div>
     </div>

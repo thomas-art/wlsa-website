@@ -45,7 +45,8 @@ class Login:
             # passwd = xor_encrypt_decrypt(key, md5auth)
             # return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
             # return render.login(f"你好，{cname} {ename}")
-            return render.alreadylogged(ename)
+            # return render.alreadylogged(ename)
+            return web.seeother("/dashboard")
         else:
             captcha, log_sessionid = check_if_need_captcha()
 
@@ -196,7 +197,20 @@ class PageNotFound:
 
 class Dashboard:
     def GET(self):
-        return render.dashboard()
+        auth = web.cookies().get("auth")
+        key = web.cookies().get("key")
+        cname = web.cookies().get("cname")
+        ename = web.cookies().get("ename")
+
+        if logged():
+            md5auth = MD5_salt(auth)
+            # passwd = xor_encrypt_decrypt(key, md5auth)
+            # return f"logged, welcome: {web.cookies().get('user')};\ncurrent password: {passwd};\nchinese name: {cname};\nenglish name: {ename}"
+            # return render.login(f"你好，{cname} {ename}")
+            return render.dashboard(ename)
+        else:
+            return render.login()
+
 
 class Archives:
     def GET(self):
