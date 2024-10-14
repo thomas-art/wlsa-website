@@ -1,52 +1,38 @@
-/* used for debugging */
-body.no-cursor {
-  cursor: auto !important;
-}
-
 body {
   margin: 0px;
-  cursor: none;
 }
 
 * {
-  cursor: none;
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 a {
-  cursor: none;
   text-decoration: none;
 }
 
 ::selection {
-  cursor: none;
   background: rgba(0, 120, 215, 0.5);
 }
 
 ::-moz-selection {
-  cursor: none;
   background: rgba(0, 120, 215, 0.5);
 }
 
 ::-webkit-selection {
-  cursor: none;
   background: rgba(0, 120, 215, 0.5);
 }
 
 ::-webkit-scrollbar {
-  cursor: none;
   width: 10px;
   height: 10px;
   transition: all 1s ease 0s;
 }
 
 ::-webkit-scrollbar-corner {
-  cursor: none;
   background: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  cursor: none;
   background-color: rgba(127, 127, 127, 0.6);
   background-clip: padding-box;
   border-width: 2px;
@@ -58,7 +44,6 @@ a {
 }
 
 ::-webkit-scrollbar-thumb:active {
-  cursor: none;
   background-color: rgba(127, 127, 127, 0.6);
   background-clip: padding-box;
   border-width: 1px;
@@ -70,12 +55,10 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  cursor: none;
   background-color: transparent;
 }
 
 :root {
-  cursor: none;
   --topbar-height: 65px;
   --pale-blue: #009ef7;
   --wlsa-blue: #2e358b;
@@ -85,13 +68,11 @@ a {
 
 
 .text * {
-  cursor: none;
   user-select: text !important;
   -webkit-user-select: text !important;
 }
 
 .topbar {
-  cursor: none;
   user-select: none;
   background: var(--black-bg);
   color: white;
@@ -108,21 +89,18 @@ a {
 }
 
 .topbar a {
-  cursor: none;
   color: white;
   transition: .25s;
   cursor: pointer;
 }
 
 .topbar:first-child {
-  cursor: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .topbar .right {
-  cursor: none;
   height: 40px;
   display: flex;
   align-items: center;
@@ -132,7 +110,6 @@ a {
 }
 
 .topbar .left {
-  cursor: none;
   height: 40px;
   display: flex;
   align-items: center;
@@ -141,7 +118,6 @@ a {
 }
 
 .topbar .left .favicon {
-  cursor: none;
   max-height: 100%;
   width: auto;
   display: block;
@@ -149,7 +125,6 @@ a {
 }
 
 .topbar .left .title {
-  cursor: none;
   max-height: 100%;
   width: auto;
   display: block;
@@ -160,12 +135,10 @@ a {
 }
 
 .card:hover {
-  cursor: none;
   transform: scale(1.02);
 }
 
 .card {
-  cursor: none;
   color: white;
   display: flex;
   align-items: center;
@@ -180,7 +153,6 @@ a {
 }
 
 .card img {
-  cursor: none;
   height: 80px;
   width: 80px;
   border-radius: 8px;
@@ -188,19 +160,16 @@ a {
 }
 
 .card h1 {
-  cursor: none;
   font-size: 24px;
   font-weight: bold;
   margin: 0px 0px 8px 0px;
 }
 
 .contents {
-  cursor: none;
   margin: 16px min(10%, 48px);
 }
 
 .container {
-  cursor: none;
   user-select: none;
   width: 100%;
   height: calc(100vh - var(--topbar-height));
@@ -210,7 +179,6 @@ a {
 }
 
 .centered {
-  cursor: none;
   margin: auto;
   position: absolute;
   width: fit-content;
@@ -222,7 +190,6 @@ a {
 }
 
 .container .centered {
-  cursor: none;
   color: white;
   font-size: 55px;
   text-shadow: 0 0 20px rgba(0, 0, 0, .8);
@@ -230,7 +197,6 @@ a {
 }
 
 .main-bg {
-  cursor: none;
   z-index: -3;
   left: 0;
   top: 0;
@@ -253,7 +219,6 @@ a {
 }
 
 .slide-in {
-  cursor: none;
   animation-name: slide-in;
   animation-duration: 1s;
   animation-timing-function: ease;
@@ -273,7 +238,6 @@ a {
 }
 
 .gradient-mv {
-  cursor: none;
   animation-name: gradient-mv;
   animation-duration: 1s;
   animation-timing-function: ease;

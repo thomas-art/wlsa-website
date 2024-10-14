@@ -109,7 +109,6 @@ body {
 
 
 .topbar {
-  /*cursor: none;*/
   user-select: none;
   background: var(--black-bg);
   color: white;
@@ -126,7 +125,6 @@ body {
 }
 
 .topbar a {
-  /*cursor: none;*/
   color: white;
   transition: .25s;
   cursor: pointer;
@@ -134,14 +132,12 @@ body {
 }
 
 .topbar:first-child {
-  /*cursor: none;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .topbar .right {
-  /*cursor: none;*/
   height: 40px;
   display: flex;
   align-items: center;
@@ -151,7 +147,6 @@ body {
 }
 
 .topbar .left {
-  /*cursor: none;*/
   height: 40px;
   display: flex;
   align-items: center;
@@ -160,7 +155,6 @@ body {
 }
 
 .topbar .left .favicon {
-  /*cursor: none;*/
   max-height: 100%;
   width: auto;
   display: block;
@@ -168,7 +162,6 @@ body {
 }
 
 .topbar .left .title {
-  /*cursor: none;*/
   max-height: 100%;
   width: auto;
   display: block;
