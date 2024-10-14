@@ -68,8 +68,8 @@ a {
 
 
 .text * {
-  user-select: text !important;
   -webkit-user-select: text !important;
+  user-select: text !important;
 }
 
 .card:hover {
@@ -109,6 +109,7 @@ a {
 }
 
 .container {
+  -webkit-user-select: none;
   user-select: none;
   width: 100%;
   height: calc(100vh - var(--topbar-height));
