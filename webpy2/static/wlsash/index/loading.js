@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
     var progressText = document.getElementById('progressText');
     var loadingImage = document.getElementById('loadingImage');
-    var image = '/static/wlsash/images/keyvision.jpg';
+    var image = selectRandomBg();
     var imageIndex = 0;
     var interval = setInterval(function () {
         images[imageIndex].style.display = 'none';
@@ -48,7 +48,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return new Response(stream).blob();
         })
         .then(imageBlob => {
-            const imageBlobUrl = URL.createObjectURL(imageBlob);
+            let imageBlobUrl;
+            try {
+                imageBlobUrl = URL.createObjectURL(imageBlob);
+            } catch (e) {
+                console.error(e);
+                imageBlobUrl = imageUrl;
+            }
             const backgroundImage = document.getElementById('mainview');
             backgroundImage.src = imageBlobUrl;
 
