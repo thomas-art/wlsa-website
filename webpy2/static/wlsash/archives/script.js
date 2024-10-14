@@ -20,6 +20,7 @@ function identifyFileType(fileName) {
             return 'image';
         case 'txt':
         case 'html':
+        case 'htm':
         case "css":
         case 'js':
         case 'cpp':
@@ -32,6 +33,30 @@ function identifyFileType(fileName) {
         case 'json':
         case 'csv':
         case 'md':
+        case 'bat':
+        case 'cmd':
+        case "sh":
+        case 'vbs':
+        case 'ps1':
+        case 'psm1':
+        case 'reg':
+        case 'm':
+        case 'r':
+        case 'swift':
+        case 'rb':
+        case 'go':
+        case 'rs':
+        case 'lua':
+        case 'kt':
+        case 'asp':
+        case 'aspx':
+        case 'jsp':
+        case 'bas':
+        case 'rtf':
+        case 'dbf':
+        case 'wri':
+        case 'kt':
+        case 'prg':
             return 'text';
         case 'mp3':
         case 'wav':
@@ -92,7 +117,7 @@ function renderPreview(data, type) {
     switch (type) {
         case "text":
             elem = document.createElement("pre");
-            data.text().then(res => elem.innerHTML = res);
+            data.text().then(res => elem.innerText = res);
             fileList.append(elem);
             break;
         case "image":
