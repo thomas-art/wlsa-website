@@ -96,7 +96,6 @@ body {
   justify-content: center;
 }
 
-
 .main-bg {
   z-index: -99;
   left: 0;
@@ -106,71 +105,6 @@ body {
   object-fit: cover;
   backface-visibility: hidden;
 }
-
-
-.topbar {
-  user-select: none;
-  background: var(--black-bg);
-  color: white;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: var(--topbar-height);
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  overflow: hidden;
-}
-
-.topbar a {
-  color: white;
-  transition: .25s;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.topbar:first-child {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.topbar .right {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  padding-right: 25px;
-  gap: 20px;
-  white-space: nowrap;
-}
-
-.topbar .left {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  padding-left: 25px;
-  color: white;
-}
-
-.topbar .left .favicon {
-  max-height: 100%;
-  width: auto;
-  display: block;
-  margin-right: 15px;
-}
-
-.topbar .left .title {
-  max-height: 100%;
-  width: auto;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 50vw;
-  white-space: nowrap;
-}
-
-
 
 .main {
   padding: 35px;
