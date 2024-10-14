@@ -19,7 +19,6 @@
 }
 
 .topbar a, .mobile-nav a{
-    /*cursor: none;*/
     color: white;
     transition: .25s;
     cursor: pointer;
@@ -51,7 +50,6 @@
 }
 
 .topbar .right, mobile-nav a {
-    /*cursor: none;*/
     height: 40px;
     display: flex;
     align-items: center;
