@@ -1,96 +1,83 @@
-$def with(EnglishName="User")
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>考试管理器</title>
-    <link rel="stylesheet" href="/static/wlsash/nav.css">
-    <link href="/static/wlsash/dashboard/general.css" rel="stylesheet" type="text/css">
-    <link href="/static/wlsash/dashboard/style.css" rel="stylesheet" type="text/css">
-    <style>
-        .important {
-            color: red;
-        }
-    </style>
-    <script src="/static/wlsash/bg.js"></script>
-    <script src="format.js"></script>
-    <script src="script.js" defer=""></script>
+    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./quoteDB.js"></script>
+    <title>Dashboard</title>
 </head>
 
 <body>
-    <script>window.logmessage = "out";</script>
-    <script src="/static/wlsash/nav.js"></script>
-    <div class="heading">
-        <h1 id="greetings-title">Welcome, $EnglishName!</h1>
-        <br>
-        <div id="greetings-rand">[Line 4]</div>
+
+    <div class="top-stuff">
+        <div class="header">
+            <h1>Welcome, Hans!</h1>
+            <p class="sub-header" id="zenquotes">As a soilwater quick fox jump over something ejiao.</p>
+        </div>
+        <div class="next-class">
+            <p>Next Class: Grade 1 Calculus</p>
+            <p id="time"></p>
+        </div>
     </div>
-    <div class="main">
-        <div class="bar">
-            <div>考试：</div>
-            <!-- 我突然忘了upcoming怎么说 -->
-            <img src="plus.svg" id="toggle-add-btn" alt="添加考试">
-            <img src="sort-icon.svg" id="toggle-float-btn" alt="排序">
-            <div class="float sort-float" id="sort-menu">
-                <div data-val="start">开始时间</div>
-                <div data-val="end">结束时间</div>
-                <div data-val="name">名称（Unicode编码）</div>
+    <div class="contents">
+        <div class="boxes">
+            <div class="box">AMC (American Mathematics Competition)</div>
+            <div class="box">Notice: Archives has been launched!</div>
+            <div class="box">SwEC (Soilwater Engineering Competition)</div>
+            <div class="box">Notice: Fatal XSS flaw in the community</div>
+        </div>
+        <div class="lower-boxes">
+            <div class="lower-box">
+                <p>New Archive Files:</p>
+                <ul>
+                    <li>File 1</li>
+                    <li>File 2</li>
+                    <li>File 3</li>
+                    <li>File 4</li>
+                    <li>File 5</li>
+                    <li>File 6</li>
+                    <li>...</li>
+                </ul>
+            </div>
+            <div class="lower-box">
+                <p>Community:</p>
+                <ul>
+                    <li>I think this is great!</li>
+                    <li>The egg rolls in Replit are disgusting.</li>
+                    <li>Vote for the new Soilwater Engineering Competition hoster!</li>
+                </ul>
+            </div>
+            <div class="lower-box">
+                <p>Your homework:</p>
+                <ul>
+                    <li>soilwater</li>
+                    <li>chemistry...</li>
+                    <li>Music</li>
+                    <li>art</li>
+                </ul>
             </div>
         </div>
-        <table>
-            <tbody>
-                <tr>
-                    <td colspan="2">IAEMPCBLABHBFBSHSSS</td>
-                    <td>2024/8/8 20:00:00</td>
-                    <td>2024/8/8 20:30:00</td>
-                </tr>
-                <tr>
-                    <td colspan="2">21年级无机化学总测评</td>
-                    <td>2024/8/31 20:11:00</td>
-                    <td>2024/8/31 20:13:00</td>
-                </tr>
-                <tr>
-                    <td colspan="2">Inorganic Chemistry for Grade 21</td>
-                    <td>2024/8/31 20:11:00</td>
-                    <td>2024/8/31 20:13:00</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
-    <div class="mask"></div>
-    <div id="popup" class="float popup">
-        <div id="close">
-            <img src="cross.svg">
-        </div>
-        <h1>添加考试</h1>
-        <div>
-            考试名称: <span class="important">*</span>
-            <input id="test-name" type="text">
-        </div>
-        <div>
-            考试开始时间: <span class="important">*</span>
-            <input id="test-start" type="datetime-local">
-        </div>
-        <div>
-            考试结束时间: <span class="important">*</span>
-            <input id="test-end" type="datetime-local">
-        </div>
-        <div>
-            其他内容：
-            <textarea rows="3" id="test-desc"></textarea>
-        </div>
-        <button id="add-btn" class="large" style="display: flex; align-items: center;">
-            <img src="./tick.svg" style="margin-right: 4px;">
-            添加
-        </button>
-    </div>
-
-
-    <script src="greetings.js"></script>
-
-
+    <script>
+        function getTime() {
+            let now = new Date();
+            let h = now.getHours();
+            let m = now.getMinutes();
+            let ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+            m = m < 10 ? '0' + m : m;
+            document.getElementById("time").innerText = `${h}:${m}\x20${ampm}`;
+        }
+        getTime();
+        setInterval(getTime, 60000);
+    </script>
+    <script type="module">
+        import { quotes } from './quoteDB.js';
+        let id = Math.floor(Math.random() * 51);
+        document.getElementById("zenquotes").innerHTML = `${quotes[id].q}&mdash;${quotes[id].a}`;
+    </script>
 </body>
 
 </html>
