@@ -16,7 +16,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-image: url("./bg.jpg");
+    background-image: url("/static/wlsash/images/keyvision.jpg");
 }
 
 body::after {
@@ -29,7 +29,6 @@ body::after {
     height: 100%;
     pointer-events: none;
     background-image: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .5) 100%), radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, .3) 166%);
-    transition: .25s;
 }
 
 * {
