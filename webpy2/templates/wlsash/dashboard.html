@@ -68,7 +68,7 @@ $def with (ename='')
             let ampm = h >= 12 ? 'PM' : 'AM';
             h = h % 12 || 12;
             m = m < 10 ? '0' + m : m;
-            document.getElementById("time").innerText = `${h}:${m}\x20${ampm}`;
+            document.getElementById("time").innerText = h + ":" + m + "\x20" + ampm;
         }
         getTime();
         setInterval(getTime, 60000);
@@ -76,7 +76,7 @@ $def with (ename='')
     <script type="module">
         import { quotes } from '/static/wlsash/dashboard/quoteDB.js';
         let id = Math.floor(Math.random() * 51);
-        document.getElementById("zenquotes").innerHTML = `${quotes[id].q}&mdash;${quotes[id].a}`;
+        document.getElementById("zenquotes").innerHTML = quotes[id].q + "&mdash;" + quotes[id].a;
     </script>
 </body>
 
