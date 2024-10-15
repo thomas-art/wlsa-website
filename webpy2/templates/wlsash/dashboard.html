@@ -6,6 +6,7 @@ $def with (ename='')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - WLSA SH</title>
+    <link rel="stylesheet" href="/static/wlsash/nav.css">
     <link rel="stylesheet" href="/static/wlsash/dashboard/style.css">
     <link rel="shortcut icon" href="/static/wlsash/index/favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="/static/wlsash/index/favicon.ico" />
@@ -13,7 +14,8 @@ $def with (ename='')
 </head>
 
 <body>
-
+    <script src="/static/wlsash/nav.js"></script>
+    <div class="contents">
     <div class="top-stuff">
         <div class="header">
             <h1>Welcome$ename</h1>
@@ -24,15 +26,14 @@ $def with (ename='')
             <p id="time"></p>
         </div>
     </div>
-    <div class="contents">
         <div class="boxes">
-            <div class="box">AMC (American Mathematics Competition)</div>
-            <div class="box">Notice: Archives has been launched!</div>
-            <div class="box">SwEC (Soilwater Engineering Competition)</div>
-            <div class="box">Notice: Fatal XSS flaw in the community</div>
+            <div class="box slide-in">AMC (American Mathematics Competition)</div>
+            <div class="box slide-in">Notice: Archives has been launched!</div>
+            <div class="box slide-in">SwEC (Soilwater Engineering Competition)</div>
+            <div class="box slide-in">Notice: Fatal XSS flaw in the community</div>
         </div>
         <div class="lower-boxes">
-            <div class="lower-box">
+            <div class="lower-box slide-in">
                 <p>New Archive Files:</p>
                 <ul>
                     <li>File 1</li>
@@ -44,7 +45,7 @@ $def with (ename='')
                     <li>...</li>
                 </ul>
             </div>
-            <div class="lower-box">
+            <div class="lower-box slide-in">
                 <p>Community:</p>
                 <ul>
                     <li>I think this is great!</li>
@@ -52,7 +53,7 @@ $def with (ename='')
                     <li>Vote for the new Soilwater Engineering Competition hoster!</li>
                 </ul>
             </div>
-            <div class="lower-box">
+            <div class="lower-box slide-in">
                 <p>Your homework:</p>
                 <ul>
                     <li>soilwater</li>
@@ -74,12 +75,12 @@ $def with (ename='')
             document.getElementById("time").innerText = h + ":" + m + "\x20" + ampm;
         }
         getTime();
-        setInterval(getTime, 60000);
+        setInterval(getTime, 1000);
     </script>
     <script type="module">
         import { quotes } from '/static/wlsash/dashboard/quoteDB.js';
         let id = Math.floor(Math.random() * 51);
-        document.getElementById("zenquotes").innerHTML = quotes[id].q + "&mdash;" + quotes[id].a;
+        document.getElementById("zenquotes").innerText = quotes[id].q + "&mdash;" + quotes[id].a;
     </script>
 </body>
 
