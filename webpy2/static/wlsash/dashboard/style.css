@@ -177,14 +177,15 @@ a {
 
 .boxes {
     display: flex;
-    justify-content: space-between;
+    overflow-x: auto;
+    scrollbar-width: none;
 }
 
 .box {
     color: white;
     padding: 20px;
     text-align: center;
-    width: 23%;
+    width: 100%;
     margin: 10px;
     background-color: var(--wlsa-blue);
     border-radius: 8px;
@@ -196,6 +197,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex: none;
 }
 
 
