@@ -185,7 +185,8 @@ a {
     color: white;
     padding: 20px;
     text-align: center;
-    width: 100%;
+    aspect-ratio: 3 / 2;
+    width: 300px;
     margin: 10px;
     background-color: var(--wlsa-blue);
     border-radius: 8px;
@@ -226,7 +227,6 @@ a {
     text-overflow: ellipsis;
 }
 
-.lower-box:hover,
-.box:hover {
+.lower-box:hover {
     transform: scale(1.02)
 }
