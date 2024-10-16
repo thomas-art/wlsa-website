@@ -194,12 +194,6 @@ a {
     flex: none;
 }
 
-
-.lower-boxes {
-    /*display: flex;
-    justify-content: space-between;*/
-}
-
 .lower-box {
     padding: 20px;
     margin: 20px;
