@@ -13,8 +13,9 @@ urls = (
     '/login', 'Login',
     '/logout', 'Logout',
     "/archives", "Archives",
-    "/dashboard", "Dashboard",
     "/archives/preview", "FilePreview",
+    "/dashboard", "Dashboard",
+    "/pt-booking", "PT",
     "/api/files","FileAPI",
     "/api/xb", "XiaobaoAPI",
     "/", "Index",
@@ -225,6 +226,12 @@ class Archives:
         else: 
             return render.archives('in')
 
+class PT:
+    def GET(self):
+        if logged():
+            return render.pt()
+        else:
+            return web.seeother("login")
 
 class FileAPI:
     def GET(self):
