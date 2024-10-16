@@ -5,7 +5,8 @@ import config
 import json
 from subapps.wlsaSHsubapps.community import forum
 from subapps.wlsaSHsubapps.community import model # 论坛的数据库操作
-
+from subapps.wlsaSHsubapps.xiaobao import *
+test_lib()
 urls = (
     '/favicon.ico', 'Favicon',
     '/community', forum.community,

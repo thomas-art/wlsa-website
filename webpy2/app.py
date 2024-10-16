@@ -2,7 +2,7 @@ import web
 import os
 import urllib.parse
 import config
-from lib import *
+# from lib import *
 from subapps import lyyND
 from subapps import wlsaSH
 
