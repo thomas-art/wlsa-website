@@ -1,6 +1,7 @@
 import requests
 import hashlib
 import time
+import json
 
 userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
 
@@ -94,66 +95,31 @@ def check_xiaobao_login(username, password, captcha='', sessionid=''):
                         studentinfo_url, headers=headers1, cookies=student_info_cookies)
 
                     if r2.status_code == 200:
-                        return r2.json(), True
+                        return r2.json(), True, student_info_cookies["SessionId"]
 
-            return False, False
+            return False, False, False
         else:
-            return None, None
+            return None, None, None
     except:
-        return None, None
+        return None, None, None
 
 
 
 # Xiaobao API functions
-def getStudentInfo(cookie):
+def requestXiaobao(link, cookie):
+    # cookie = "47281aa5-2d92-483a-971b-7db8358ed94c" # change!
+    print(cookie)
     try:
-        req = requests.get("https://wlsastu.schoolis.cn/api/MemberShip/GetCurrentStudentInfo", headers={
+        req = requests.get(link, headers={
             "User-Agent": userAgent,
-            "Cookies": "SessionId=" + cookie
+            "Cookie": "SessionId=" + cookie,
+            "Referer": "https://wlsastu.schoolis.cn/Home"
         })
         data = req.json()
         if "data" not in data:
+            print(data)
             raise Exception("unauthorized")
-        return req.json()
-    except Exception as e:
-        print("getInfo error:", e)
-        return
-def getStudentInfo(cookie):
-    try:
-        req = requests.get("https://wlsastu.schoolis.cn/api/MemberShip/GetCurrentStudentInfo", headers={
-            "User-Agent": userAgent,
-            "Cookies": "SessionId=" + cookie
-        })
-        data = req.json()
-        if "data" not in data:
-            raise Exception("unauthorized")
-        return req.json()
-    except Exception as e:
-        print("getInfo error:", e)
-        return
-def getStudentInfo(cookie):
-    try:
-        req = requests.get("https://wlsastu.schoolis.cn/api/MemberShip/GetCurrentStudentInfo", headers={
-            "User-Agent": userAgent,
-            "Cookies": "SessionId=" + cookie
-        })
-        data = req.json()
-        if "data" not in data:
-            raise Exception("unauthorized")
-        return req.json()
-    except Exception as e:
-        print("getInfo error:", e)
-        return
-def getStudentInfo(cookie):
-    try:
-        req = requests.get("https://wlsastu.schoolis.cn/api/MemberShip/GetCurrentStudentInfo", headers={
-            "User-Agent": userAgent,
-            "Cookies": "SessionId=" + cookie
-        })
-        data = req.json()
-        if "data" not in data:
-            raise Exception("unauthorized")
-        return req.json()
+        return json.dumps(req.json())
     except Exception as e:
         print("getInfo error:", e)
         return

@@ -16,6 +16,7 @@ urls = (
     "/dashboard", "Dashboard",
     "/archives/preview", "FilePreview",
     "/api/files","FileAPI",
+    "/api/xb", "XiaobaoAPI",
     "/", "Index",
     "", "Rewlsa",
     "/(.*)", "PageNotFound"
@@ -88,7 +89,7 @@ class Login:
                 # 走到这里，就说明，校宝说不需要验证码，此时可以直接登录
 
             # 到这里，要么sessionid是"",要么就是上次传递的数值，不可能是None
-            studentinfo, flag = check_xiaobao_login(user, passwd, captcha_input, sessionid)
+            studentinfo, flag, xbid = check_xiaobao_login(user, passwd, captcha_input, sessionid)
 
             if flag is None:
                 # 内部连接api失败
@@ -122,6 +123,7 @@ class Login:
                 web.setcookie("cname", c_name, 3600)
                 web.setcookie("ename", e_name, 3600)
                 web.setcookie("user_id", user_id, 3600)
+                web.setcookie("SessionId", xbid, 3600)
 
                 # 能走到这里就说明账号和密码的验证已经通过了
                 # 登陆成功后，试图将账号添加到数据库
@@ -185,11 +187,14 @@ class Rewlsa:
 
 class Index:
     def GET(self):
-        cname = web.cookies().get("cname")
-        ename = web.cookies().get("ename")
-        if cname and ename:
-            return render.index(f"welcome: {cname}", "out")
-        return render.index()
+        if logged():
+            return web.seeother("/dashboard")
+        else:
+            cname = web.cookies().get("cname")
+            ename = web.cookies().get("ename")
+            if cname and ename:
+                return render.index(f"welcome: {cname}", "out")
+            return render.index()
 
 
 class PageNotFound:
@@ -210,7 +215,7 @@ class Dashboard:
             # return render.login(f"你好，{cname} {ename}")
             return render.dashboard((', ' + ename))
         else:
-            return render.login()
+            return web.seeother("login")
 
 
 class Archives:
@@ -239,6 +244,14 @@ class FileAPI:
             f.close()
             return data
 
+class XiaobaoAPI:
+    def GET(self):
+        link = web.input().get("link")
+        try:
+            return requestXiaobao(link, web.cookies().get("SessionId"))
+        except Exception as e:
+            print("Error in XiaobaoAPI:", e)
+            return {}
 
 class FilePreview:
     def GET(self):

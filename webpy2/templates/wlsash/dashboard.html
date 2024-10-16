@@ -11,6 +11,8 @@ $def with (ename='')
     <link rel="shortcut icon" href="/static/wlsash/index/favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="/static/wlsash/index/favicon.ico" />
     <link rel="apple-touch-startup-image" href="/static/wlsash/index/favicon.ico" />
+    <script src="/static/wlsash/dashboard/xbapi.js"></script>
+    <script>window.logmessage = "out";</script>
 </head>
 
 <body>
@@ -34,6 +36,11 @@ $def with (ename='')
         </div>
         <div class="lower-boxes">
             <div class="lower-box slide-in">
+                <p>Your homework:</p>
+                <ul id="hw-list">
+                </ul>
+            </div>
+            <div class="lower-box slide-in">
                 <p>New Archive Files:</p>
                 <ul>
                     <li>File 1</li>
@@ -53,17 +60,21 @@ $def with (ename='')
                     <li>Vote for the new Soilwater Engineering Competition hoster!</li>
                 </ul>
             </div>
-            <div class="lower-box slide-in">
-                <p>Your homework:</p>
-                <ul>
-                    <li>soilwater</li>
-                    <li>chemistry...</li>
-                    <li>Music</li>
-                    <li>art</li>
-                </ul>
-            </div>
         </div>
     </div>
+    <script>
+        let hwDisp = document.getElementById("hw-list");
+        let semesterId = 28043;     // may be subject to change
+        getList(semesterId, 12)
+        .then(data => {
+            let hws = data.list;
+            for (let hw of hws) {
+                let li = document.createElement("li");
+                li.innerHTML = hw.name;
+                hwDisp.append(li);
+            }
+        })
+    </script>
     <script>
         function getTime() {
             let now = new Date();

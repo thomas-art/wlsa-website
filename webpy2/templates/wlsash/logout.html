@@ -6,7 +6,7 @@
     <title>Logout Successfully - WLSA SH</title>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let countdown = 3; // 倒计时初始值
+        let countdown = 0; // 倒计时初始值
         const countdownElement = document.getElementById("countdown");
 
         // 更新倒计时显示
@@ -15,7 +15,7 @@
                 countdownElement.textContent = countdown; // 显示当前倒计时
                 countdown--;
             } else {
-                window.location.href = "/wlsash/community"; // 跳转
+                window.location.href = "/wlsash/login"; // 跳转
             }
         }
 
@@ -25,6 +25,6 @@
 </head>
 <body>
     <h1>已登出</h1>
-    <p><span id="countdown">3</span> 秒后跳转...<a href="/wlsash/">首页</a></a></p>
+    <p><span id="countdown"></span> 正在跳转...<a href="/wlsash/">首页</a></a></p>
 </body>
 </html>

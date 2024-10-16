@@ -23,7 +23,7 @@ nav.innerHTML = `<a href="./" class="left">
 let mobileNav = document.createElement("div");
 mobileNav.className = "mobile-only mobile-nav";
 mobileNav.innerHTML = `
-    <a href="./log${window.logmessage || 'in'}" target="_blank">Log${window.logmessage || 'in'}</a>
+    <a href="./log${window.logmessage || 'in'}">Log${window.logmessage || 'in'}</a>
     <a href="./dashboard" target="_blank">Dashboard</a>
     <a href="./archives" target="_blank">Archives</a>
     <a href="./pt-booking" target="_blank">PT Booking</a>

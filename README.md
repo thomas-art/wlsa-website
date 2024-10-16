@@ -67,4 +67,6 @@
 
 0.2.21 2024/10/10 10:41 (Felix) realized the function of captcha, add function in lib.py, wlsash.py and login.html
 
+0.2.22 2024/10/16 You can now use the dashboard to look at your homework
+
 下个版本的目标: 1.comment deleteeeeeeeeeeeeeeeeeeeeeee, community admin, community picshow logic and path, xss inject defend, fix the "int() argument must be a string, a bytes-like object or a number, not 'NoneType' error"; 2.翻一下static的实现逻辑; 3.notify.html template; 4.js和css的模块复用; 5.规范化变量，函数，类和文件的命名
