@@ -224,3 +224,20 @@ class Comment:
     def count(self):
         '''获取当前文章下面的评论总数'''
         return db.query("SELECT COUNT(*) AS count FROM comments WHERE parent_id=%d" % self.__parent_id)[0].count
+
+class PTRequest:
+    def __init__(self, tutor: User, tutee: User, subj: str, beginTime: int, endTime: int):
+        self.tutor = tutor
+        self.tutee = tutee
+        self.subj = subj
+        self.begin = beginTime
+        self.end = endTime
+        self.verified = False   # set to True when tutor sees
+    def verify(self, user: User):
+        if user == self.tutor:
+            self.verified = True
+    def setTime(self, begin: int, end: int):
+        self.begin = begin
+        self.end = end
+    def store(self):
+        pass

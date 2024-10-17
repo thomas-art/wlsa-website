@@ -33,3 +33,13 @@ CREATE TABLE IF NOT EXISTS comments (
     FOREIGN KEY (quote_id) REFERENCES comments(id)
 );
 
+-- Peer Tuturing 数据表
+CREATE TABLE IF NOT EXISTS pt_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tutor_id INTEGER,
+    tutee_id INTEGER,
+    subj TEXT,
+    begin_time INTEGER,  -- timestamp
+    end_time INTEGER,
+    verified INTEGER     -- 0/1 boolean
+)

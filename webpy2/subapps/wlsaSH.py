@@ -216,7 +216,7 @@ class Dashboard:
             # return render.login(f"你好，{cname} {ename}")
             return render.dashboard((', ' + ename))
         else:
-            return web.seeother("login")
+            return web.seeother("login?redir=/wlsash/dashboard")
 
 
 class Archives:
@@ -231,7 +231,7 @@ class PT:
         if logged():
             return render.pt()
         else:
-            return web.seeother("login")
+            return web.seeother("login?redir=/wlsash/pt-booking")
 
 class FileAPI:
     def GET(self):

@@ -121,11 +121,12 @@ main {
 }
 
 .table > div:not(.time-col) > div {
-    border: 1px solid var(--pale-blue);
+    border: 1px solid #fff5;
 }
 .table>div:not(.time-col)>div {
     background-color: #fff3;
 }
 .table > div:not(.time-col) > div:first-child {
-    background-color: #009ef788;
+    background-color: var(--wlsa-blue);
+    border: 1px solid var(--wlsa-blue);     /* the same applies, only smart people can see the border */
 }
