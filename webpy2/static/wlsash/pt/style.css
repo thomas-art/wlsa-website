@@ -85,7 +85,8 @@ a {
     --pale-blue: #009ef7;
     --wlsa-blue: #2e358b;
     --hyperlink-blue: rgb(0, 140, 255);
-    --black-bg: rgba(22, 22, 23, .8)
+    --black-bg: rgba(22, 22, 23, .8);
+    --box-height: 80px;
 }
 
 main {
@@ -97,24 +98,34 @@ main {
 
 }
 
-.table>div {
-    flex-grow: 2;
+.table > div:not(.time-col) {
+    width: 100%;    /* suppressed by the flex */
 }
 
-.table>div:first-child {
-    flex-grow: 1;
+.time-col {
+    margin-top: calc(var(--box-height) / 2 + 1px);
+    margin-right: 16px;
+}
+.time-col > div{
+    border: 1px solid #11451400;    /* you can only see it if you're smart */
 }
 
 .table>div>div {
+    display: flex;
+    justify-content: center;
     text-align: center;
-    height: 80px;
+    align-items: center;
+    height: var(--box-height);
+    text-shadow: 0 0 1px black;
+    backdrop-filter: blur(1px);
 }
 
-/* Reference */
-.table>div>div:nth-child(2n) {
-    background-color: #777;
+.table > div:not(.time-col) > div {
+    border: 1px solid var(--pale-blue);
 }
-
-.table>div>div:nth-child(2n+1) {
-    background-color: #666;
+.table>div:not(.time-col)>div {
+    background-color: #fff3;
+}
+.table > div:not(.time-col) > div:first-child {
+    background-color: #009ef788;
 }
