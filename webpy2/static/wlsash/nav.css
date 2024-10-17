@@ -6,13 +6,13 @@
     --hyperlink-blue: rgb(0, 140, 255);
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (min-width: 768px) {
     .mobile-only {
         display: none !important;
     }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 768px) {
     .pc-only {
         display: none !important;
     }
