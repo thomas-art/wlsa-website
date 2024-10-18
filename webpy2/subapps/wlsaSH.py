@@ -16,6 +16,7 @@ urls = (
     "/archives/preview", "FilePreview",
     "/dashboard", "Dashboard",
     "/pt-booking", "PT",
+    "/ptold", "PTOld",
     "/api/files","FileAPI",
     "/api/xb", "XiaobaoAPI",
     "/", "Index",
@@ -232,6 +233,10 @@ class PT:
             return render.pt()
         else:
             return web.seeother("login?redir=/wlsash/pt-booking")
+
+class PTOld:
+    def GET(self):
+        return render.ptold()
 
 class FileAPI:
     def GET(self):
