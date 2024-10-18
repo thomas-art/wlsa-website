@@ -98,8 +98,14 @@ main {
 
 }
 
-.table > div:not(.time-col) {
-    width: 100%;    /* suppressed by the flex */
+.schedule-col {
+    display: flex;
+    width: 100%;
+    backdrop-filter: blur(11.4514px);
+    height: fit-content;
+}
+.schedule-col > div {
+    width: 100%;
 }
 
 .time-col {
@@ -110,23 +116,20 @@ main {
     border: 1px solid #11451400;    /* you can only see it if you're smart */
 }
 
-.table>div>div {
+.time-col > div, .schedule-col>div>div {
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
     height: var(--box-height);
     text-shadow: 0 0 1px black;
-    backdrop-filter: blur(1px);
 }
 
-.table > div:not(.time-col) > div {
+.schedule-col > div > div {
     border: 1px solid #fff5;
+    background-color: var(--black-bg);
 }
-.table>div:not(.time-col)>div {
-    background-color: #fff3;
-}
-.table > div:not(.time-col) > div:first-child {
+.schedule-col > div > div:first-child {
     background-color: var(--wlsa-blue);
     border: 1px solid var(--wlsa-blue);     /* the same applies, only smart people can see the border */
 }
