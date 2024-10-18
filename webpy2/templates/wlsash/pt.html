@@ -1,183 +1,197 @@
-$def with (message='', logmessage='in')
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Peer Tutoring Booking - WLSA School House</title>
-    <link rel="stylesheet" href="/static/wlsash/nav.css">
-    <link rel="stylesheet" href="/static/wlsash/pt/style.css" />
-    <script>window.logmessage = "out";</script>
-    <link rel="shortcut icon" href="/static/wlsash/index/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" href="/static/wlsash/index/favicon.ico" />
-    <link rel="apple-touch-startup-image" href="/static/wlsash/index/favicon.ico" />
-    <script src="/static/wlsash/bg.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WLSA SH - PT Booking</title>
+  <link rel="stylesheet" href="/static/wlsash/nav.css">
+  <link rel="shortcut icon" href="/static/wlsash/index/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" href="/static/wlsash/index/favicon.ico" />
+  <link rel="apple-touch-startup-image" href="/static/wlsash/index/favicon.ico" />
+  <link rel="stylesheet" href="/static/wlsash/pt-booking/style.css">
 </head>
 
 <body>
-    <script src="/static/wlsash/nav.js"></script>
-    <main>
-        <h1>Peer Tutoring</h1>
-        <!-- 此处使用心里咨询的排版 -->
-        <div>
-            <div>Control</div>
-            <div class="table">
-                <div class="time-col">
-                    <div>07:00</div>
-                    <div>08:00</div>
-                    <div>09:00</div>
-                    <div>10:00</div>
-                    <div>11:00</div>
-                    <div>12:00</div>
-                    <div>13:00</div>
-                    <div>14:00</div>
-                    <div>15:00</div>
-                    <div>16:00</div>
-                    <div>17:00</div>
-                    <div>18:00</div>
-                    <div>19:00</div>
-                    <div>20:00</div>
-                    <div>21:00</div>
-                </div>
-                <div>
-                    <div>
-                        Monday<br>10/31
-                    </div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
-                <div>
-                    <div>
-                        Tuesday<br>10/32
-                    </div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
-                <div>
-                    <div>
-                        Wednesday<br>10/33
-                    </div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
-                <div class="pc-only">
-                    <div>
-                        Thursday<br>10/34
-                    </div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
-                <div class="pc-only">
-                    <div>
-                        Friday<br>10/35
-                    </div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
-                <div class="pc-only">
-                    <div>
-                        Saturday<br>10/36
-                    </div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
-                <div class="pc-only">
-                    <div>
-                        Sunday<br>10/37
-                    </div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                    <div>1</div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script src="/static/wlsash/index/script.js"></script>
+  <div class="schedule-container">
+    <table>
+      <thead>
+        <tr>
+          <td></td>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th>Sunday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>7:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>8:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>9:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>10:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>11:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>12:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>13:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>14:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>15:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>16:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>17:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>18:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tr>
+        <tr>
+          <th>19:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>20:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th>21:00</th>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 
 </html>

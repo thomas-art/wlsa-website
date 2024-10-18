@@ -1,0 +1,132 @@
+body {
+    margin: 0px;
+    object-fit: cover;
+    backface-visibility: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("/static/wlsash/images/keyvision.jpg");
+    color: white;
+}
+
+body::after {
+    content: "";
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .5) 100%), radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, .3) 166%);
+}
+
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+::selection {
+    background: rgba(0, 120, 215, 0.5);
+}
+
+::-moz-selection {
+    background: rgba(0, 120, 215, 0.5);
+}
+
+::-webkit-selection {
+    background: rgba(0, 120, 215, 0.5);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    transition: all 1s ease 0s;
+}
+
+::-webkit-scrollbar-corner {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(127, 127, 127, 0.6);
+    background-clip: padding-box;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-radius: 5px;
+    transition: all 1s ease 0s;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: rgba(127, 127, 127, 0.6);
+    background-clip: padding-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-radius: 5px;
+    transition: all 1s ease 0s;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+:root {
+    --pale-blue: #009ef7;
+    --wlsa-blue: #2e358b;
+    --hyperlink-blue: rgb(0, 140, 255);
+    --black-bg: rgba(22, 22, 23, .8);
+    --box-height: 80px;
+}
+
+main {
+    margin: 16px min(10%, 48px)
+}
+
+.table {
+    display: flex;
+
+}
+
+.table > div:not(.time-col) {
+    width: 100%;    /* suppressed by the flex */
+}
+
+.time-col {
+    margin-top: calc(var(--box-height) / 2 + 1px);
+    margin-right: 16px;
+}
+.time-col > div{
+    border: 1px solid #11451400;    /* you can only see it if you're smart */
+}
+
+.table>div>div {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: var(--box-height);
+    text-shadow: 0 0 1px black;
+    backdrop-filter: blur(1px);
+}
+
+.table > div:not(.time-col) > div {
+    border: 1px solid #fff5;
+}
+.table>div:not(.time-col)>div {
+    background-color: #fff3;
+}
+.table > div:not(.time-col) > div:first-child {
+    background-color: var(--wlsa-blue);
+    border: 1px solid var(--wlsa-blue);     /* the same applies, only smart people can see the border */
+}
