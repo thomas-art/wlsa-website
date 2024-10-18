@@ -8,7 +8,9 @@ CREATE TABLE IF NOT EXISTS users (
     picture TEXT,
     description TEXT,
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    role TEXT
+    roles TEXT,         -- Current roles: tutor, developer
+    tutor_subj TEXT,
+    tutor_loc TEXT      -- Only used when 'tutor' is in roles
 );
 
 -- 创建表 posts

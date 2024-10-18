@@ -230,8 +230,8 @@ class PTRequest:
         self.tutor = tutor
         self.tutee = tutee
         self.subj = subj
-        self.begin = beginTime
-        self.end = endTime
+        self.begin = self.changeBegin = beginTime
+        self.end = self.changeEnd = endTime
         self.verified = False   # set to True when tutor sees
         db.insert("pt_requests", tutor_id = tutor, tutee_id = tutee, begin = beginTime, end = endTime, verify = 0, subj = subj)
 
@@ -241,9 +241,39 @@ class PTRequest:
     def verify(self, user: User):
         if user == self.tutor:
             self.verified = True
-            self.update()
+            self.update(verified = True)
     def setTime(self, begin: int, end: int):
         self.begin = begin
         self.end = end
-    def update(self):
-        db.update("pt_requests", where = f"id = {self.id}", )
+    def update(self, **args):
+        try:
+            db.update("pt_requests", where = f"id = {self.id}", **args)
+        except Exception as e:
+            print(e)
+            e.with_traceback()
+    def updateAll(self):
+        self.update(tutor_id = self.tutor, tutee_id = self.tutee, begin = self.begin, end = self.end, verify = int(self.verified), subj = self.subj)
+
+if __name__ == "__main__":
+    print("==== Admin Settings ====")
+    if input("Enter password > ") != "123570":
+        print("Wrong password! ")
+    while True:
+        print("1. Set roles")
+        options = input("> ")
+        match options:
+            case "1":
+                name = print("Enter the name > ")
+                users = db.query(f"SELECT * FROM users WHERE name = {name}")
+                if not users:
+                    print("User not found! ")
+                    continue
+                user = users[0]
+                currentRoles = user.roles
+                print("Current roles:", currentRoles)
+                roles = input("Enter the new roles > ")
+                try:
+                    db.update("users", where = f"name = {name}", roles = roles)
+                    print("Done! ")
+                except Exception as e:
+                    print(e)
