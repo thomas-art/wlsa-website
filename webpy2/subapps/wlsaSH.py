@@ -19,6 +19,7 @@ urls = (
     "/ptold", "PTOld",
     "/api/files","FileAPI",
     "/api/xb", "XiaobaoAPI",
+    "/api/pt/(.*)", "PTAPI",
     "/", "Index",
     "", "Rewlsa",
     "/(.*)", "PageNotFound"
@@ -35,7 +36,8 @@ class Favicon:
         favicon_path = os.path.join(os.getcwd(), 'static/wlsash/index/Favicon.ico')
         web.header('Content-Type', 'image/x-icon')
         return open(favicon_path, 'rb').read()
-
+class Rewlsa:
+    def GET(self): raise web.seeother('/')
 
 class Login:
     def GET(self):
@@ -130,7 +132,7 @@ class Login:
                 # 能走到这里就说明账号和密码的验证已经通过了
                 # 登陆成功后，试图将账号添加到数据库
                 try:
-                    model.User().new("samplemail@mail.com", user, passwd, user_id)
+                    model.User().new("samplemail@mail.com", user, e_name, passwd, user_id)
                     model.User().update(user_id, description=f"{c_name}, {e_name}")
                     return json.dumps({
                             "successful": True,
@@ -169,8 +171,6 @@ class Login:
                 "successful": False,
                 "message": "登录失败，错误信息：" + e
             })
-
-
 class Logout:
     def GET(self):
         web.setcookie("auth", "", expires=-1)
@@ -181,12 +181,6 @@ class Logout:
         web.setcookie("ename", "", expires=-1)
         web.setcookie("user_id", "", expires=-1)
         return render.logout()
-
-
-class Rewlsa:
-    def GET(self): raise web.seeother('/')
-
-
 class Index:
     def GET(self):
         if logged():
@@ -197,12 +191,9 @@ class Index:
             if cname and ename:
                 return render.index(f"welcome: {cname}", "out")
             return render.index()
-
-
 class PageNotFound:
     def GET(self, n):
         raise web.NotFound()
-
 class Dashboard:
     def GET(self):
         auth = web.cookies().get("auth")
@@ -218,26 +209,23 @@ class Dashboard:
             return render.dashboard((', ' + ename))
         else:
             return web.seeother("login?redir=/wlsash/dashboard")
-
-
 class Archives:
     def GET(self):
         if logged():
             return render.archives('out')
         else: 
             return render.archives('in')
-
 class PT:
     def GET(self):
         if logged():
             return render.pt()
         else:
             return web.seeother("login?redir=/wlsash/pt-booking")
-
 class PTOld:
     def GET(self):
         return render.ptold()
 
+# APIs
 class FileAPI:
     def GET(self):
         params = web.input()
@@ -255,16 +243,6 @@ class FileAPI:
             data = f.read()
             f.close()
             return data
-
-class XiaobaoAPI:
-    def GET(self):
-        link = web.input().get("link")
-        try:
-            return requestXiaobao(link, web.cookies().get("SessionId"))
-        except Exception as e:
-            print("Error in XiaobaoAPI:", e)
-            return {}
-
 class FilePreview:
     def GET(self):
         # I don't want to create a separate file for only a few lines of code
@@ -276,6 +254,57 @@ class FilePreview:
             })
             </script>
         """
-
+class XiaobaoAPI:
+    def GET(self):
+        link = web.input().get("link")
+        try:
+            return requestXiaobao(link, web.cookies().get("SessionId"))
+        except Exception as e:
+            print("Error in XiaobaoAPI:", e)
+            return {}
+class PTAPI:
+    def GET(action):
+        try:
+            match action:
+                case "get":
+                    begin = int(web.input().get("begin"))
+                    end = int(web.input().get("end"))
+                    userId = requestXiaobao("https://wlsastu.schoolis.cn/api/MemberShip/GetCurrentStudentInfo", web.cookies().get("SessionId"))["studentInfoId"]
+                    reqListSQL = model.PTRequest.fromUserId(userId)
+                    reqList = []
+                    for thing in reqListSQL:
+                        jsonThing = {
+                            "tutor_id": thing.tutor, 
+                            "tutee_id": thing.tutee, 
+                            "begin": thing.begin, 
+                            "end": thing.end, 
+                            "verify": thing.verify, 
+                            "subj": thing.subj
+                        }
+                        reqList.append(jsonThing)
+                    return json.dumps(reqList)
+                case _:
+                    return "No such action"
+        except:
+            return json.dumps([])
+    def POST(action):
+        return 0    # for security reasons
+        try:
+            match action:
+                case "add":
+                    begin = int(web.input().get("begin"))
+                    end = int(web.input().get("end"))
+                    tutorName = int(web.input().get("tname"))   # The user shouldn't know anyone else's ID
+                    subj = int(web.input().get("id"))
+                    userId = requestXiaobao("https://wlsastu.schoolis.cn/api/MemberShip/GetCurrentStudentInfo", web.cookies().get("SessionId"))["studentInfoId"]
+                    
+                    tutee = model.User.matched_id(ename = tutorName)
+                    res = model.PTRequest(tutee.user_id, userId, subj, begin, end)
+                    
+                    return res.id
+                case _:
+                    return "No such action"
+        except:
+            return -1
 
 wlsaSH = web.application(urls, locals())

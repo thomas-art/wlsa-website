@@ -11,10 +11,10 @@ import config as settings
 db = web.database(dbn='sqlite', db = settings.DB_LOC)
 
 class User:
-    def new(self, email, username, password, user_id):
+    def new(self, email, username, ename, password, user_id):
         pwdhash = hashlib.md5(password.encode('utf-8')).hexdigest()
         db.insert('users', email=email, name=username, password=pwdhash,
-                         picture='/static/wlsash/community/img/user_normal.jpg', description='', user_id=user_id)
+                         picture='/static/wlsash/community/img/user_normal.jpg', description='', user_id=user_id, ename = ename)
         return user_id
 
     def update(self, user_id, **kwd):
@@ -226,16 +226,16 @@ class Comment:
         return db.query("SELECT COUNT(*) AS count FROM comments WHERE parent_id=%d" % self.__parent_id)[0].count
 
 class PTRequest:
-    def __init__(self, tutor, tutee, subj: str, beginTime: int, endTime: int):
+    def __init__(self, tutor, tutee, subj: str, begin: int, end: int, verified = False):
         self.tutor = tutor
         self.tutee = tutee
         self.subj = subj
-        self.begin = self.changeBegin = beginTime
-        self.end = self.changeEnd = endTime
+        self.begin = self.changeBegin = begin
+        self.end = self.changeEnd = end
         self.verified = False   # set to True when tutor sees
-        db.insert("pt_requests", tutor_id = tutor, tutee_id = tutee, begin = beginTime, end = endTime, verify = 0, subj = subj)
+        db.insert("pt_requests", tutor_id = tutor, tutee_id = tutee, begin = begin, end = end, verify = 0, subj = subj)
 
-        this = self.id = db.query(f"SELECT * FROM pt_requests WHERE tutor_id = {tutor}, tutee_id = {tutee}, begin = {beginTime}, end = {endTime}")
+        this = self.id = db.query(f"SELECT * FROM pt_requests WHERE tutor_id = '{tutor}', tutee_id = {tutee}, begin = {begin}, end = {end}")
         if this:
             self.id = this[0].id
     def verify(self, user: User):
@@ -252,7 +252,27 @@ class PTRequest:
             print(e)
             e.with_traceback()
     def updateAll(self):
-        self.update(tutor_id = self.tutor, tutee_id = self.tutee, begin = self.begin, end = self.end, verify = int(self.verified), subj = self.subj)
+        self.update(tutor_id = self.tutor, tutee_id = self.tutee, begin = self.begin, end = self.end, verified = int(self.verified), subj = self.subj)
+
+    @staticmethod
+    def fromRequestId(id):
+        try:
+            this = db.query(f"SELECT * FROM pt_requests WHERE id = " + str(id))[0]
+            return PTRequest(tutor = this.tutor, tutee = this.tutee, begin = this.begin, end = this.end, verified = bool(this.verified), subj = this.subj)
+        except Exception as e:
+            print(e)
+            e.with_traceback()
+    @staticmethod
+    def fromUserId(id, begin, end):
+        try:
+            this = db.query(f"SELECT * FROM pt_requests WHERE (tutor_id = {id} OR tutee_id = {id}) AND begin_time > {begin} AND end_time < {end}")
+            requestList = []
+            for thing in this:
+                requestList.append(PTRequest(tutor = thing.tutor, tutee = thing.tutee, begin = thing.begin, end = thing.end, verified = bool(thing.verified), subj = thing.subj))
+            return requestList
+        except Exception as e:
+            print(e)
+            e.with_traceback()
 
 if __name__ == "__main__":
     print("==== Admin Settings ====")
@@ -264,7 +284,7 @@ if __name__ == "__main__":
         match options:
             case "1":
                 name = print("Enter the name > ")
-                users = db.query(f"SELECT * FROM users WHERE name = {name}")
+                users = db.query(f"SELECT * FROM users WHERE name = '{name}'")
                 if not users:
                     print("User not found! ")
                     continue

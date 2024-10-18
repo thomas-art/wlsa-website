@@ -4,13 +4,15 @@ CREATE TABLE IF NOT EXISTS users (
     user_id INTEGER NOT NULL UNIQUE,
     email TEXT NOT NULL,
     name TEXT NOT NULL UNIQUE,
+    ename TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     picture TEXT,
     description TEXT,
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     roles TEXT,         -- Current roles: tutor, developer
     tutor_subj TEXT,
-    tutor_loc TEXT      -- Only used when 'tutor' is in roles
+    tutor_loc TEXT,     -- Only used when 'tutor' is in roles
+    tutor_unavaliable_time TEXT   -- json
 );
 
 -- 创建表 posts
