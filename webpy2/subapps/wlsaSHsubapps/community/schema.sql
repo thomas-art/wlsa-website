@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL,
     picture TEXT,
     description TEXT,
-    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    role TEXT
 );
 
 -- 创建表 posts
@@ -36,10 +37,10 @@ CREATE TABLE IF NOT EXISTS comments (
 -- Peer Tuturing 数据表
 CREATE TABLE IF NOT EXISTS pt_requests (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    tutor_id INTEGER,
-    tutee_id INTEGER,
-    subj TEXT,
-    begin_time INTEGER,  -- timestamp
-    end_time INTEGER,
-    verified INTEGER     -- 0/1 boolean
+    tutor_id INTEGER NOT NULL,
+    tutee_id INTEGER NOT NULL,
+    subj TEXT NOT NULL,
+    begin_time INTEGER NOT NULL,  -- timestamp
+    end_time INTEGER NOT NULL,
+    verified INTEGER NOT NULL     -- 0/1 boolean
 )

@@ -226,18 +226,24 @@ class Comment:
         return db.query("SELECT COUNT(*) AS count FROM comments WHERE parent_id=%d" % self.__parent_id)[0].count
 
 class PTRequest:
-    def __init__(self, tutor: User, tutee: User, subj: str, beginTime: int, endTime: int):
+    def __init__(self, tutor, tutee, subj: str, beginTime: int, endTime: int):
         self.tutor = tutor
         self.tutee = tutee
         self.subj = subj
         self.begin = beginTime
         self.end = endTime
         self.verified = False   # set to True when tutor sees
+        db.insert("pt_requests", tutor_id = tutor, tutee_id = tutee, begin = beginTime, end = endTime, verify = 0, subj = subj)
+
+        this = self.id = db.query(f"SELECT * FROM pt_requests WHERE tutor_id = {tutor}, tutee_id = {tutee}, begin = {beginTime}, end = {endTime}")
+        if this:
+            self.id = this[0].id
     def verify(self, user: User):
         if user == self.tutor:
             self.verified = True
+            self.update()
     def setTime(self, begin: int, end: int):
         self.begin = begin
         self.end = end
-    def store(self):
-        pass
+    def update(self):
+        db.update("pt_requests", where = f"id = {self.id}", )
