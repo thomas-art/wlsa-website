@@ -89,17 +89,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
 }
 
 table {
   border-collapse: collapse;
   color: white;
   width: 1300px;
-  height: 650px;
-  top: calc(50% - 325px);
+  height:999px;
   left: calc(50% - 650px);
   box-shadow: rgb(0 0 0 / 37%) 0px 3.2px 7.2px 0px, rgb(0 0 0 / 35%) 0px 0.6px 1.8px 0px;
   backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 8px;
+  text-shadow: 0 0 20px rgba(0, 0, 0, .8);
 }
 
 @media screen and (max-width: 1350px) {
@@ -109,20 +111,11 @@ table {
   }
 }
 
-@media screen and (max-height: 786px) {
-  table {
-    top: 35px;
-    height: calc(100% - 70px);
-  }
-}
-
 tbody>tr>td {
   border: 1px solid #fff5;
-  padding: 5px;
   text-align: center;
-  width: calc(100% / 8);
+  width:calc((1300px - 80px) / 7);
   background-color: var(--black-bg);
-
 }
 
 thead>tr>th {
@@ -130,15 +123,15 @@ thead>tr>th {
 }
 
 tbody>tr>th {
-  vertical-align: top;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 80px;
 }
 
-thead>tr:first-child,
-thead>tr:last-child {
-  border-radius: 8px;
+thead>tr>th:last-child {
+  border-radius: 0 8px 0 0;
 }
 
-tbody:last-child>:last-child,
-tbody:last-child>:first-child {
-  border-radius: 8px;
+tbody>tr:last-child>td:last-child {
+  border-radius: 0 0 8px 0;
 }
