@@ -16,7 +16,7 @@
 <body>
   <script src="/static/wlsash/nav.js"></script>
   <div class="schedule-container">
-    <table>
+    <table id="sch">
       <thead>
         <tr>
           <td></td>
@@ -194,6 +194,18 @@
       </tbody>
     </table>
   </div>
+  <script>
+let sch = document.getElementById('sch');
+ 
+ function printWidth() {
+   let width = sch.getBoundingClientRect().width;
+   console.log(width);
+ }
+
+ window.onresize = function() {
+   printWidth();
+ };
+  </script>
 </body>
 
 </html>
